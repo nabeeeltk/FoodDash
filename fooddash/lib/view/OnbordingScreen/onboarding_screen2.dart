@@ -31,8 +31,10 @@ class OnboardingScreen2 extends StatelessWidget {
           style: TextStyle(fontSize: 18)),
          const  SizedBox(height: 30,),
             Padding(
-            padding: const EdgeInsets.all(10),
-            child: MaterialButton(onPressed: (){
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+
+              onPressed: (){
                  Get.to(const UserLogin());
             },
             color: Colors.orange.shade800,
@@ -49,7 +51,7 @@ class OnboardingScreen2 extends StatelessWidget {
             color: Colors.white,
             height: 50,
             minWidth: double.infinity,
-            child:const  Text("SKIP......",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w500),),),
+            child:const  Text("SKIP2",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w500),),),
           ),
           ],
         ),
