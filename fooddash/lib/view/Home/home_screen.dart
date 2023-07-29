@@ -1,8 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fooddash/widget/category_widget.dart';
-
-import '../../widget/restuarant_list.dart';
+import 'package:fooddash/widget/restuarant_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -54,9 +53,9 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             const Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
@@ -83,26 +82,25 @@ class HomeScreen extends StatelessWidget {
                         borderSide: BorderSide.none)),
               ),
             ),
+            // call  all categorywidget
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.only(left: 8),
               child: Text(
                 "All Categories",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
-            // call  all categorywidget 
             const AllCategoryWidget(),
 
-     // Resotorent 
-     const Padding(
-              padding: EdgeInsets.all(8.0),
+            //  call all  Restuarent 
+            const Padding(
+              padding: EdgeInsets.only(left: 8),
               child: Text(
-                "Open Restaurants",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                " All Restaurants",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
-
-          
+           const  RestuarentWidget(),
           ],
         ),
       ),
