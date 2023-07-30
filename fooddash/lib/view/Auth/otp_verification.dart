@@ -63,7 +63,7 @@ class OtpVerification extends StatelessWidget {
                     height: 30,
                   ),
                  const  Text("Enter your OTP"),
-                 SizedBox(height: 10,),
+               const   SizedBox(height: 10,),
                   OtpTextField(
                     
                     numberOfFields: 5,

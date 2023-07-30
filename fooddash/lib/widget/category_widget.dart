@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/FoodDetailsPage/food_details.dart';
+import 'package:get/get.dart';
 
 class AllCategoryWidget extends StatelessWidget {
   const AllCategoryWidget({Key? key}) : super(key: key);
@@ -17,7 +19,9 @@ class AllCategoryWidget extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(right: 10),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.to(FoodDetailsPage());
+                },
                 child: Container(
                   width: 150,
                   decoration: BoxDecoration(
@@ -34,9 +38,9 @@ class AllCategoryWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.blueGrey,
                           borderRadius: BorderRadius.circular(20),
-                          // image: DecorationImage(
-                          //   image:AssetImage("image/pizza1.jpg")
-                          //   )
+                          image:const  DecorationImage(
+                            image:AssetImage("image/pizza1.jpg"),fit: BoxFit.cover
+                            )
                         
                         ),
                       ),

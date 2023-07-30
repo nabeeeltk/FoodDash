@@ -31,6 +31,7 @@ class RestuarentWidget extends StatelessWidget {
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: Colors.blueGrey,
+                              image: DecorationImage(image: AssetImage("image/pizza1.jpg"),fit: BoxFit.cover),
                               borderRadius: BorderRadius.circular(20)
                             ),
                           ),
