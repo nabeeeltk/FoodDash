@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
@@ -9,7 +10,9 @@ class MyCart extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
@@ -66,8 +69,10 @@ class MyCart extends StatelessWidget {
                   return const Divider(
                       height: 50, thickness: 0, color: Colors.white);
                 },
-                itemCount: 5,
+                itemCount: 3,
               ),
+
+              
               Container(
                 height: 250,
                 width: double.infinity,
@@ -79,13 +84,17 @@ class MyCart extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                   Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        
                         decoration: InputDecoration(
+                          hintText: "Enter Adress",
                             fillColor: Colors.blueGrey,
                             filled: true,
-                            border: OutlineInputBorder()),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30)
+                            )),
                       ),
                     ),
                     const Text(

@@ -38,9 +38,9 @@ class FoodDetailsPage extends StatelessWidget {
                 width: double.infinity,
                 decoration:const  BoxDecoration(
                     color: Colors.blueGrey,
-                    image:  DecorationImage(
-                        image: AssetImage("image/pizza1.jpg"),
-                        fit: BoxFit.cover),
+                    // image:  DecorationImage(
+                    //     image: AssetImage("image/pizza1.jpg"),
+                    //     fit: BoxFit.cover),
                     borderRadius: BorderRadiusDirectional.only(
                       bottomEnd: Radius.circular(30),bottomStart: Radius.circular(30))),
                 child: Row(
