@@ -11,7 +11,7 @@ class AllCategoryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         // Remove the height constraint, so the ListView can expand to fit the available space.
-         height: 200,
+        height: 200,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 5,
@@ -36,23 +36,22 @@ class AllCategoryWidget extends StatelessWidget {
                         width: 200,
                         // Wrap the DecorationImage with a BoxDecoration and BoxFit.cover.
                         decoration: BoxDecoration(
-                          color: Colors.blueGrey,
-                          borderRadius: BorderRadius.circular(20),
-                          image:const  DecorationImage(
-                            image:AssetImage("image/pizza1.jpg"),fit: BoxFit.cover
-                            )
-                        
-                        ),
+                            color: Colors.blueGrey,
+                            borderRadius: BorderRadius.circular(20),
+                            image: const DecorationImage(
+                                image: AssetImage("image/pizza1.jpg"),
+                                fit: BoxFit.cover)),
                       ),
-                    const   Padding(
-                        padding:  EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "Pizza",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    const   Padding(
-                        padding:  EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

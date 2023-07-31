@@ -27,7 +27,6 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         log("open menu");
                       },
-    
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
                         radius: 25,
@@ -38,7 +37,11 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Image.asset("image/fooddash.jpg",width: 100,height: 80,),
+                    Image.asset(
+                      "image/fooddash.jpg",
+                      width: 100,
+                      height: 80,
+                    ),
                     GestureDetector(
                       onTap: () {
                         log("open menu");
@@ -94,8 +97,8 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const AllCategoryWidget(),
-    
-              //  call all  Restuarent 
+
+              //  call all  Restuarent
               const Padding(
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
@@ -103,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
               ),
-            const RestuarentWidget(),
+              const RestuarentWidget(),
             ],
           ),
         ),

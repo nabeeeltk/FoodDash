@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/RestuarentDetails/restuarebt_details_page.dart';
+import 'package:get/get.dart';
 
 class RestuarentWidget extends StatelessWidget {
   const RestuarentWidget({super.key});
@@ -15,7 +17,9 @@ class RestuarentWidget extends StatelessWidget {
                   return   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: InkWell(
-                      onTap: (){},
+                      onTap: (){
+                        Get.to(RestuarentDetails());
+                      },
                       child: Container(
                         height: 250,
                       width: double.infinity,
