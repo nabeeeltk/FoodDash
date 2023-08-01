@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/MyCart/my_cart.dart';
 import 'package:get/get.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../../controller/food_Quntity_controller.dart';
 
@@ -108,7 +110,9 @@ class FoodDetailsPage extends StatelessWidget {
                     height: 10,
                   ),
                   const Row(
-                    children: [],
+                    children: [
+                      // count create here ...........
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -116,7 +120,7 @@ class FoodDetailsPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 40,
                       onPressed: () {},
-                      color: Colors.orange.shade800,
+                      color: Colors.black,
                       child: const Text(
                         "BUY NOW",
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -129,7 +133,8 @@ class FoodDetailsPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 40,
                       onPressed: () {
-                        Get.to( const MyCart());
+                        showAlert(context, QuickAlertType.success);
+                       
                       },
                       color: Colors.orange.shade800,
                       child: const Text(
@@ -144,6 +149,16 @@ class FoodDetailsPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+  void showAlert(BuildContext context, QuickAlertType quickAlertType) {
+    QuickAlert.show(
+      context: context,
+      type: quickAlertType,
+      confirmBtnColor: Colors.orange.shade800,
+      onConfirmBtnTap: () {
+         Get.to( const MyCart());
+      },
     );
   }
 }

@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quickalert/quickalert.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
@@ -52,7 +55,9 @@ class MyCart extends StatelessWidget {
                                 image: AssetImage("image/pizza1.jpg"),
                                 fit: BoxFit.cover)),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                     showAlert(context, QuickAlertType.confirm);
+                      },
                       trailing: const Column(
                         children: [
                           Text(
@@ -76,9 +81,10 @@ class MyCart extends StatelessWidget {
               Container(
                 height: 250,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const  BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),topRight: Radius.circular(20))),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -93,14 +99,15 @@ class MyCart extends StatelessWidget {
                             fillColor: Colors.blueGrey,
                             filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30)
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide.none
                             )),
                       ),
                     ),
                     const Text(
                       "TOTAL #2000",
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 2, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 20,
@@ -109,8 +116,8 @@ class MyCart extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
                           color: Colors.orange.shade800,
-                          minWidth: double.infinity,
-                          height: 50,
+                          minWidth: 200,
+                          height: 40,
                           child: const Text(
                             "PLACE ORDER",
                             style: TextStyle(
@@ -129,4 +136,13 @@ class MyCart extends StatelessWidget {
       ),
     );
   }
+ void showAlert(BuildContext context, QuickAlertType quickAlertType) {
+    QuickAlert.show(
+      context: context,
+      type: quickAlertType,
+      confirmBtnColor: Colors.orange,
+      
+    );
+  }
+
 }
