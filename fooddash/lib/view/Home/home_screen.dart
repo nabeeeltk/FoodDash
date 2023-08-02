@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/UserProfile/user_profile.dart';
 import 'package:fooddash/widget/category_widget.dart';
 import 'package:fooddash/widget/restuarant_list.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,9 +17,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(
-              //   height: 10,
-              // ),
+            
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -25,13 +25,13 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        log("open menu");
+                   Get.to(UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
                         radius: 25,
                         child: const Icon(
-                          Icons.menu_outlined,
+                          Icons.person,
                           size: 30,
                           color: Colors.black,
                         ),

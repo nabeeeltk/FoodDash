@@ -4,11 +4,8 @@ import 'package:get/get.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
-import '../../controller/food_Quntity_controller.dart';
-
 class FoodDetailsPage extends StatelessWidget {
   FoodDetailsPage({super.key});
-  final FoodQuantityController controller = Get.put(FoodQuantityController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +35,14 @@ class FoodDetailsPage extends StatelessWidget {
               child: Container(
                 height: 250,
                 width: double.infinity,
-                decoration:const  BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.blueGrey,
                     // image:  DecorationImage(
                     //     image: AssetImage("image/pizza1.jpg"),
                     //     fit: BoxFit.cover),
                     borderRadius: BorderRadiusDirectional.only(
-                      bottomEnd: Radius.circular(30),bottomStart: Radius.circular(30))),
+                        bottomEnd: Radius.circular(30),
+                        bottomStart: Radius.circular(30))),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -63,14 +61,14 @@ class FoodDetailsPage extends StatelessWidget {
               height: 10,
             ),
             const Padding(
-              padding: EdgeInsets.only(left:8.0),
+              padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "pizza calzone european",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
             const Padding(
-             padding: EdgeInsets.only(left:8.0),
+              padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
                 style: TextStyle(
@@ -96,68 +94,57 @@ class FoodDetailsPage extends StatelessWidget {
                     label: const Text("free"))
               ],
             ),
-            Container(
-              height: 250,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [
-                      // count create here ...........
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MaterialButton(
-                      minWidth: double.infinity,
-                      height: 40,
-                      onPressed: () {},
-                      color: Colors.black,
-                      child: const Text(
-                        "BUY NOW",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+            Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MaterialButton(
+                        height: 40,
+                        onPressed: () {},
+                        color: Colors.black,
+                        child: const Text(
+                          "BUY NOW",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MaterialButton(
-                      minWidth: double.infinity,
-                      height: 40,
-                      onPressed: () {
-                        showAlert(context, QuickAlertType.success);
-                       
-                      },
-                      color: Colors.orange.shade800,
-                      child: const Text(
-                        "ADD  TO CART",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MaterialButton(
+                        height: 40,
+                        onPressed: () {
+                          showAlert(context, QuickAlertType.success);
+                        },
+                        color: Colors.orange.shade800,
+                        child: const Text(
+                          "ADD  TO CART",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                    )
+                  ],
+                ),
+              ],
             )
           ],
         ),
       ),
     );
   }
+
   void showAlert(BuildContext context, QuickAlertType quickAlertType) {
     QuickAlert.show(
       context: context,
       type: quickAlertType,
       confirmBtnColor: Colors.orange.shade800,
       onConfirmBtnTap: () {
-         Get.to( const MyCart());
+        Get.to(MyCart());
       },
     );
   }

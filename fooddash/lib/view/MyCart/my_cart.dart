@@ -1,11 +1,12 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quickalert/quickalert.dart';
+
+import '../../controller/car_controller.dart';
+import '../../widget/build_card.dart';
 
 class MyCart extends StatelessWidget {
-  const MyCart({super.key});
+  final MyCardController controller = Get.put(MyCardController());
+  MyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +14,15 @@ class MyCart extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 30,
-            )),
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 30,
+          ),
+        ),
         title: const Text(
           "My Cart",
           style: TextStyle(color: Colors.white),
@@ -28,121 +30,69 @@ class MyCart extends StatelessWidget {
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                      horizontalTitleGap: 3,
-                      title: const Text(
-                        "Pizza Ferguson ",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      subtitle: const Text(
-                        "Spicy restaurant  ",
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                      leading: Container(
-                        height: 100,
-                        width: 80,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("image/pizza1.jpg"),
-                                fit: BoxFit.cover)),
-                      ),
-                      onTap: () {
-                     showAlert(context, QuickAlertType.confirm);
-                      },
-                      trailing: const Column(
-                        children: [
-                          Text(
-                            "#300",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.orange),
-                          ),
-                        ],
-                      ));
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider(
-                      height: 50, thickness: 0, color: Colors.white);
-                },
-                itemCount: 3,
-              ),
-
-              
-              Container(
-                height: 250,
-                width: double.infinity,
-                decoration: const  BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),topRight: Radius.circular(20))),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                   Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        
-                        decoration: InputDecoration(
-                          hintText: "Enter Adress",
-                            fillColor: Colors.blueGrey,
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none
-                            )),
-                      ),
-                    ),
-                    const Text(
-                      "TOTAL #2000",
-                      style:
-                          TextStyle(fontSize: 2, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                          color: Colors.orange.shade800,
-                          minWidth: 200,
-                          height: 40,
-                          child: const Text(
-                            "PLACE ORDER",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () {}),
-                    )
-                  ],
+        child: Column(
+          children: [
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return ListView.separated(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return buildCard(context, constraints);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                      height: 1,
+                    );
+                  },
+                  itemCount: 3,
+                );
+              },
+            ),
+            Container(
+              height: 150,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-              )
-            ],
-          ),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "TOTAL PRIZE :900 ",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MaterialButton(
+                      color: Colors.orange.shade800,
+                      minWidth: 300,
+                      height: 60,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Text(
+                        "PLACE ORDER",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
   }
- void showAlert(BuildContext context, QuickAlertType quickAlertType) {
-    QuickAlert.show(
-      context: context,
-      type: quickAlertType,
-      confirmBtnColor: Colors.orange,
-      
-    );
-  }
-
 }

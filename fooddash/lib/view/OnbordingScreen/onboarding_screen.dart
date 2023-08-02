@@ -19,7 +19,8 @@ class OnboardingScreen extends StatelessWidget {
                 width:200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey.shade600
+                      color: Colors.blueGrey,
+                      image: const DecorationImage(image: AssetImage("image/roomimage.jpeg",),fit: BoxFit.cover)
                     ),
               ),
             ),
