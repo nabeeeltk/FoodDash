@@ -12,6 +12,7 @@ class RestuarentWidget extends StatelessWidget {
       child: SizedBox(
         height: 200,
         child: ListView.builder(
+          
             itemCount: 5,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -36,7 +37,7 @@ class RestuarentWidget extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.blueGrey,
                               image: const DecorationImage(
-                                  image: AssetImage("image/pizza1.jpg"),
+                                  image: AssetImage("image/Resturent1.jpg"),
                                   fit: BoxFit.cover),
                               borderRadius: BorderRadius.circular(20)),
                         ),

@@ -27,13 +27,16 @@ class RestuarentDetails extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Colors.blueGrey,
+                image: DecorationImage(
+                    image: AssetImage("image/Resturent1.jpg"),
+                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -78,7 +81,7 @@ class RestuarentDetails extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
             ),
-          const  SizedBox(
+            const SizedBox(
               height: 20,
             ),
             const Padding(
@@ -92,29 +95,38 @@ class RestuarentDetails extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
-                 horizontalTitleGap: 5,
-                  title: const Text("Burger Ferguson ",style: TextStyle(fontSize: 18,
-                  fontWeight:FontWeight.bold ),),
-                  subtitle:const  Text("Spicy restaurant  ",style: TextStyle(fontSize: 15,
-                  
-                  ),),
-                  leading: Container(
-                    height: 100,
-                    width: 80,
-                    decoration: const  BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("image/pizza1.jpg"),fit: BoxFit.cover)),
-                  ),
-                  onTap: (){
-                    Get.to(FoodDetailsPage());
-                  },
-                  trailing:const Column(children: [
-                    Text("#300",style: TextStyle(fontSize: 18,
-                  fontWeight:FontWeight.bold ),),
-                 
-                  ],)
-                  
-                );
+                    horizontalTitleGap: 5,
+                    title: const Text(
+                      "Burger Ferguson ",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                      "Spicy restaurant  ",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                    leading: Container(
+                      height: 100,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("image/pizza1.jpg"),
+                              fit: BoxFit.cover)),
+                    ),
+                    onTap: () {
+                      Get.to(FoodDetailsPage());
+                    },
+                    trailing: const Column(
+                      children: [
+                        Text(
+                          "#300",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ));
               },
               separatorBuilder: (context, index) {
                 return const Divider(

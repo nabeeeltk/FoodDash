@@ -52,7 +52,7 @@ class FoodDetailsPage extends StatelessWidget {
                         icon: const Icon(
                           Icons.favorite,
                           color: Colors.red,
-                        ))
+                        )),
                   ],
                 ),
               ),

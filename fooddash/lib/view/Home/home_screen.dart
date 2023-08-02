@@ -1,12 +1,11 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/UserProfile/user_profile.dart';
+import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:fooddash/widget/category_widget.dart';
 import 'package:fooddash/widget/restuarant_list.dart';
 import 'package:get/get.dart';
-
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                   Get.to(UserProfilePage());
+                   Get.to( const UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        log("open menu");
+                       Get.to(UserOrderPage());
                       },
                       child: const CircleAvatar(
                         backgroundColor: Colors.black,
@@ -92,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
-                  "All Categories",
+                  "All Items",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
               ),
