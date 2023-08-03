@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/utile/constents.dart';
-import 'package:fooddash/view/Auth/forgot_password.dart';
-import 'package:fooddash/view/Auth/otp_verification.dart';
-import 'package:fooddash/view/Auth/user_sign_up.dart';
+import 'package:fooddash/view/Auth/ShopeOwner/owner_login.dart';
+import 'package:fooddash/view/Auth/user/forgot_password.dart';
+import 'package:fooddash/view/Auth/user/otp_verification.dart';
+import 'package:fooddash/view/Auth/user/user_sign_up.dart';
 import 'package:fooddash/widget/social_media_icon.dart';
 import 'package:get/get.dart';
 
@@ -129,6 +130,24 @@ class UserLogin extends StatelessWidget {
                           child:const  Text(
                             "SIGN UP",
                             style: TextStyle(color:appColor.themcolor),
+                          ),
+                        ),
+                      ],
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Are you Shop Owner?",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.to(const OwnerLogin());
+                          },
+                          child:const  Text(
+                            "Click Here",
+                            style: TextStyle(color:Colors.blue),
                           ),
                         ),
                       ],

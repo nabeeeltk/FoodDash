@@ -12,7 +12,6 @@ class RestuarentWidget extends StatelessWidget {
       child: SizedBox(
         height: 200,
         child: ListView.builder(
-          
             itemCount: 5,
             itemBuilder: (BuildContext context, int index) {
               return Padding(

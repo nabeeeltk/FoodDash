@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/Auth/user_log_in.dart';
+import 'package:fooddash/view/Auth/user/user_log_in.dart';
 import 'package:get/get.dart';
 
 class OnboardingScreen2 extends StatelessWidget {
@@ -35,7 +35,7 @@ class OnboardingScreen2 extends StatelessWidget {
             child: MaterialButton(
 
               onPressed: (){
-                 Get.to(const UserLogin());
+                 Get.to(UserLogin());
             },
             color: Colors.orange.shade800,
             height: 50,

@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/utile/constents.dart';
-import 'package:fooddash/view/Auth/user_log_in.dart';
+import 'package:fooddash/view/Auth/user/user_log_in.dart';
 import 'package:get/get.dart';
 
-import '../../widget/social_media_icon.dart';
+import '../../../widget/social_media_icon.dart';
 
 class UserSignUp extends StatelessWidget {
   const UserSignUp({Key? key}) : super(key: key);

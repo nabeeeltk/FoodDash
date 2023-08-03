@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.5
   flutter_otp_text_field: ^1.1.1
   quickalert: ^1.0.1
+  fl_chart: ^0.63.0
+  image_picker: ^1.0.1
 
 dev_dependencies:
   flutter_test:
