@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/UserProfile/user_profile.dart';
-import 'package:fooddash/view/myOrder/user_orde_page.dart';
-import 'package:fooddash/widget/category_widget.dart';
-import 'package:fooddash/widget/restuarant_list.dart';
+import 'package:fooddash/widget/food_item_list.dart';
+import 'package:fooddash/widget/main_card.dart';
+
 import 'package:get/get.dart';
 class HomeScreen extends StatelessWidget {
 const HomeScreen({super.key});
@@ -36,25 +36,25 @@ const HomeScreen({super.key});
                         ),
                       ),
                     ),
-                    Image.asset(
-                      "image/fooddash.jpg",
-                      width: 100,
-                      height: 80,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                       Get.to(UserOrderPage());
-                      },
-                      child: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        radius: 25,
-                        child: Icon(
-                          Icons.shopping_cart,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
+                    // Image.asset(
+                    //   "image/fooddash.jpg",
+                    //   width: 100,
+                    //   height: 80,
+                    // ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //    Get.to(UserOrderPage());
+                    //   },
+                    //   child: const CircleAvatar(
+                    //     backgroundColor: Colors.black,
+                    //     radius: 25,
+                    //     child: Icon(
+                    //       Icons.shopping_cart,
+                    //       size: 30,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ),
@@ -70,42 +70,53 @@ const HomeScreen({super.key});
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  cursorHeight: 25,
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-                      hintText: "Search dishes, restaurants,",
-                      hintStyle: const TextStyle(fontSize: 18),
-                      fillColor: const Color.fromARGB(179, 209, 207, 207),
-                      filled: true,
-                      prefixIcon: const Icon(
-                        Icons.search,
-                        size: 30,
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none)),
+                child: SizedBox(
+                  height: 50,
+                  child: TextField(
+                    cursorHeight: 25,
+                    cursorColor: Colors.black,
+                    decoration: InputDecoration(
+                        hintText: "Search dishes, restaurants,",
+                        hintStyle: const TextStyle(fontSize: 18),
+                        fillColor: const Color.fromARGB(179, 209, 207, 207),
+                        filled: true,
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          size: 30,
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none)),
+                  ),
                 ),
               ),
               // call  all categorywidget
-              const Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: Text(
-                  "All Items",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-              const AllCategoryWidget(),
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 8),
+              //   child: Text(
+              //     "All Items",
+              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              //   ),
+              // ),
+              // const AllCategoryWidget(),
 
-              //  call all  Restuarent
-              const Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: Text(
-                  " All Restaurants",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ),
-              const RestuarentWidget(),
+              // //  call all  Restuarent
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 8),
+              //   child: Text(
+              //     " All Restaurants",
+              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              //   ),
+              // ),
+              // const RestuarentWidget(),
+              
+            CardCarousel(),
+           const  SizedBox(height: 10,),
+          const   Padding(
+              padding:EdgeInsets.all(8.0),
+              child: Text("Populer Item", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            ),
+          const   FoodItemList()
             ],
           ),
         ),

@@ -1,77 +1,49 @@
-// import 'package:carousel_slider/carousel_options.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
-// class CardItem {
-//   final String title;
-//   final String description;
-//   final String imageUrl;
+class CardCarousel extends StatelessWidget {
+  final List<String> cardAssetPaths = [
+    "image/Resturent1.jpg",
+  "image/Resturent1.jpg",
+  "image/Resturent1.jpg",    // Add more asset paths here
+  ];
 
-//   CardItem({required this.title, required this.description, required this.imageUrl});
-// }
-
-// final List<CardItem> cardItems = [
-//   CardItem(
-//     title: "Item 1",
-//     description: "Description of Item 1",
-//     imageUrl: "image/Resturent1.jpg",
-//   ),
-//   CardItem(
-//     title: "Item 2",
-//     description: "Description of Item 2",
-//     imageUrl: "image/Resturent1.jpg",
-//   ),
-//   // Add more items as needed
-// ];
-// class CardCarousel extends StatefulWidget {
-//    CardCarousel({super.key});
-
-//   @override
-//   State<CardCarousel> createState() => _CardCarouselState();
-// }
-
-
-// class _CardCarouselState extends State<CardCarousel> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return CarouselSlider.builder(
-//       itemCount: cardItems.length,
-//       itemBuilder: (BuildContext context, int index, int realIndex) {
-//         final item = cardItems[index];
-//         return Card(
-//           // You can design the card as per your requirement
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//                       Container(
-//                         height: 100,
-//                         width: double.infinity,
-//                         de
-//                       ),
-//                       // Use Image.asset for asset images
-//               SizedBox(height: 10),
-//               Text(item.title),
-//               Text(item.description),
-//             ],
-//           ),
-//         );
-//       },
-//       options: CarouselOptions(
-//         // Customize carousel options as needed
-//         height: 300,
-//         viewportFraction: 0.8,
-//         initialPage: 0,
-//         enableInfiniteScroll: true,
-//         reverse: false,
-//         autoPlay: true,
-//         autoPlayInterval: Duration(seconds: 3),
-//         autoPlayAnimationDuration: Duration(milliseconds: 800),
-//         autoPlayCurve: Curves.fastOutSlowIn,
-//         enlargeCenterPage: true,
-//         onPageChanged: (index, reason) {
-//           // Optional: Implement logic for handling page change events
-//         },
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return  Center(
+        child: SizedBox(
+          height: 200, // Adjust the height according to your preference
+          child: CarouselSlider.builder(
+            itemCount: cardAssetPaths.length,
+            itemBuilder: (BuildContext context, int index, int realIndex) {
+              return Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Image.asset(
+                    cardAssetPaths[index],
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            },
+            options: CarouselOptions(
+              viewportFraction: 0.8, // Adjust the card width
+              enlargeCenterPage: true,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3), // Adjust the auto-play interval
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              aspectRatio: 2.0, // Adjust the aspect ratio of the carousel
+              onPageChanged: (index, reason) {
+                // Handle page change event if needed
+              },
+            ),
+          ),
+        ),
+      );
+  }
+}

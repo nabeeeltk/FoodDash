@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/Payment/payment_page.dart';
 import 'package:get/get.dart';
 
 import '../../controller/car_controller.dart';
@@ -84,7 +85,9 @@ class MyCart extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                       Get.to(PaymentPage()) ;
+                      },
                     ),
                   )
                 ],

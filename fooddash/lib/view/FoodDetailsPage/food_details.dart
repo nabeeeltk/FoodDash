@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
+import '../Payment/payment_page.dart';
+
 class FoodDetailsPage extends StatelessWidget {
   FoodDetailsPage({super.key});
 
@@ -11,29 +13,14 @@ class FoodDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-            )),
-        title: const Text("Food Details"),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
             Padding(
               padding: const EdgeInsets.all(0),
               child: Container(
-                height: 250,
+                height: 300,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                     color: Colors.blueGrey,
@@ -44,15 +31,21 @@ class FoodDetailsPage extends StatelessWidget {
                         bottomEnd: Radius.circular(30),
                         bottomStart: Radius.circular(30))),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.black,
+                            size: 30,
+                          )),
+                    ),
                   ],
                 ),
               ),
@@ -91,13 +84,27 @@ class FoodDetailsPage extends StatelessWidget {
                       Icons.delivery_dining,
                       color: Colors.amber,
                     ),
-                    label: const Text("free"))
+                    label: const Text("free")),
               ],
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 10,
+                const Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    "Ingrdiance",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.Prosciutto e funghi is a pizza variety that is topped with tomato sauce",
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,7 +113,9 @@ class FoodDetailsPage extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
                         height: 40,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(PaymentPage());
+                        },
                         color: Colors.black,
                         child: const Text(
                           "BUY NOW",
