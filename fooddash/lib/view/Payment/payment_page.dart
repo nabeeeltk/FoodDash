@@ -89,7 +89,6 @@ class PaymentPage extends StatelessWidget {
         ),
       ),
 
-      
       // String cardHolder = cardHolderController.text;
       //    String cardNumber = cardNumberController.text;
       //     String expiryDate = expiryDateController.text;

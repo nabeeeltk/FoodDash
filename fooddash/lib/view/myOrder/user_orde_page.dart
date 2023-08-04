@@ -35,13 +35,14 @@ class UserOrderPage extends StatelessWidget {
                               width: 100,
                               decoration:const  BoxDecoration(
                                 color: Colors.blueGrey,
+                                image: DecorationImage(image: AssetImage("image/Banner1.jpeg"),fit: BoxFit.cover)
                               ),
                             ),
                           ),
-                         const  Text("Item Name"),
+                         const  Text("Item Name",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                         const  Padding(
                            padding:  EdgeInsets.all(8.0),
-                           child:  Text("Prize:#300"),
+                           child:  Text("Prize:#300",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green)),
                          )
                         ],
                       ),

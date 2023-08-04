@@ -5,7 +5,7 @@ import '../controller/car_controller.dart';
 Widget buildCard(BuildContext context, BoxConstraints constraints) {
   final MyCardController controller = Get.put(MyCardController());
     return Card(
-      color: Colors.grey.shade500,
+      color: Colors.grey.shade400,
       elevation: 4.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,7 +18,9 @@ Widget buildCard(BuildContext context, BoxConstraints constraints) {
                 child: Container(
                   height: constraints.maxWidth * 0.25,
                   width: constraints.maxWidth * 0.25,
-                  decoration: const BoxDecoration(color: Colors.blueGrey),
+                  decoration: const  BoxDecoration(
+                    image: DecorationImage(image: AssetImage("image/Banner1.jpeg"),fit: BoxFit.cover),
+                    color: Colors.blueGrey),
                 ),
               ),
               const Text("Item Name"),

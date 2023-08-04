@@ -1,60 +1,103 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/OnbordingScreen/onboarding_screen2.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-          const   SizedBox(height: 100,),
-            Center(
-              child: Container(
-                height: 250,
-                width:200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueGrey,
-                      image: const DecorationImage(image: AssetImage("image/roomimage.jpeg",),fit: BoxFit.cover)
-                    ),
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("image/bg3.jpeg"),
+                fit: BoxFit.cover,
               ),
             ),
-           const  SizedBox(height: 20,),
-
-          const  Text("All your favorites",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),
-          ),
-          const  Text("Get all your loved foods in one once place \n  you just place the orer we do the rest",
-          style: TextStyle(fontSize: 18)),
-         const  SizedBox(height: 30,),
-            Padding(
-            padding: const EdgeInsets.all(10),
-            child: MaterialButton(onPressed: (){
-                Get.to(const OnboardingScreen2());
-            },
-            color: Colors.orange.shade800,
-            height: 50,
-            minWidth: double.infinity,
-            child:const  Text("NEXT",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w500),),),
-          ),
-          const   SizedBox(height: 10,),
-            Padding(
-            padding: const EdgeInsets.all(10),
-            child: MaterialButton(onPressed: (){
-            
-            },
-            color: Colors.white,
-            height: 50,
-            minWidth: double.infinity,
-            child:const  Text("SKIP",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w500),),),
-          ),
-          ],
-        ),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.9),
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.2),
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(constraints.maxWidth * 0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      "All your favorites ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: constraints.maxWidth * 0.1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                   Text(
+                      "Get all your loved foods in one once place,you just place the orer we do the rest",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: constraints.maxWidth * 0.03,
+                        fontWeight: FontWeight.bold,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: const LinearGradient(
+                          colors: [Colors.orange, Colors.yellow],
+                        ),
+                      ),
+                      child: MaterialButton(
+                        onPressed: () {
+                           Get.to(OnboardingScreen2());
+                        },
+                        child: const Text(
+                          "Start",
+                          style: TextStyle(fontSize: 19),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                      child: Text(
+                        "Now delivery to Your Door 24/7",
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: constraints.maxWidth * 0.025,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
-    );
-  }
-}
+    );}}

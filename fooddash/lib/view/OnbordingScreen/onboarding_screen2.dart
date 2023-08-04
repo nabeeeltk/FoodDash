@@ -2,59 +2,105 @@ import 'package:flutter/material.dart';
 import 'package:fooddash/view/Auth/user/user_log_in.dart';
 import 'package:get/get.dart';
 
-class OnboardingScreen2 extends StatelessWidget {
-  const OnboardingScreen2({super.key});
+class OnboardingScreen2 extends StatefulWidget {
+  const OnboardingScreen2({Key? key}) : super(key: key);
+  @override
+  State<OnboardingScreen2> createState() => _OnboardingScreen2State();
+}
 
+class _OnboardingScreen2State extends State<OnboardingScreen2> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-          const   SizedBox(height: 100,),
-            Center(
-              child: Container(
-                height: 250,
-                width:200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey.shade600
-                    ),
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("image/noodiles.jpeg"),
+                fit: BoxFit.cover,
               ),
             ),
-           const  SizedBox(height: 20,),
-
-          const  Text("All your favorites",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),
-          ),
-          const  Text("Get all your loved foods in one once place \n  you just place the orer we do the rest",
-          style: TextStyle(fontSize: 18)),
-         const  SizedBox(height: 30,),
-            Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-
-              onPressed: (){
-                 Get.to(const UserLogin());
-            },
-            color: Colors.orange.shade800,
-            height: 50,
-            minWidth: double.infinity,
-            child:const  Text("NEXT",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w500),),),
-          ),
-          const   SizedBox(height: 10,),
-            Padding(
-            padding: const EdgeInsets.all(10),
-            child: MaterialButton(onPressed: (){
-           
-            },
-            color: Colors.white,
-            height: 50,
-            minWidth: double.infinity,
-            child:const  Text("SKIP2",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w500),),),
-          ),
-          ],
-        ),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.3),
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(constraints.maxWidth * 0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      "Taking order for Delivery",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: constraints.maxWidth * 0.1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Get all your loved foods in one once place,you just place the orer we do the rest",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: constraints.maxWidth * 0.03,
+                        fontWeight: FontWeight.bold,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.orange.shade900,
+                            Colors.yellow.shade500
+                          ],
+                        ),
+                      ),
+                      child: MaterialButton(
+                        onPressed: () {
+                          Get.to(const UserLogin());
+                        },
+                        child: const Text(
+                          " Get Start",
+                          style: TextStyle(fontSize: 19),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                      child: Text(
+                        "Now delivery to Your Door 24/7",
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: constraints.maxWidth * 0.035,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
