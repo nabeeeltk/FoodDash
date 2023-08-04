@@ -11,14 +11,16 @@ class LineChartWidget extends StatelessWidget {
    const  FlSpot(5, 7),
   ];
 
+  LineChartWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return  Padding(
-        padding: EdgeInsets.all(16.0),
+        padding:const EdgeInsets.all(16.0),
         child: LineChart(
           LineChartData(
-            gridData: FlGridData(show: false),
-            titlesData: FlTitlesData(show: false),
+            gridData:const FlGridData(show: false),
+            titlesData:const FlTitlesData(show: false),
             borderData: FlBorderData(show: false),
             minX: 0,
             maxX: 5,
@@ -29,7 +31,7 @@ class LineChartWidget extends StatelessWidget {
                 spots: data,
                 isCurved: true,
                 color: Colors.amber,
-                dotData: FlDotData(show: false),
+                dotData:const FlDotData(show: false),
                 belowBarData: BarAreaData(show: false),
               ),
             ],

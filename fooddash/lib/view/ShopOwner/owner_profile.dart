@@ -25,7 +25,7 @@ class OwnerProfil extends StatelessWidget {
               ),
               child:  Column(
                 children: [
-                const   SizedBox(height: 20,),
+                const   SizedBox(height: 10,),
                  const  Text("Available Balance",style: TextStyle(color: Colors.white,fontSize: 20),),
                  const   Text("₹ 30000",style: TextStyle(color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold),),
 
@@ -45,11 +45,47 @@ class OwnerProfil extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                          Text("Withdraw",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        
                       ],
                     ),
-                   )
+                   ),
+                  
+                    
                 ],
-              ))
+              )),
+            
+           
+            ListTile(
+              leading: const Icon(Icons.shopping_cart),
+              title: const Text('Order history'),
+              onTap: () {
+              
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.reviews),
+              title: const Text('User Review'),
+              onTap: () {
+               
+              },
+            ),
+           const Divider(),
+            ListTile(
+              leading: const Icon(Icons.bar_chart),
+              title:const  Text('Statics'),
+              onTap: () {
+                
+              },
+            ),
+           const  Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Log Out'),
+              onTap: () {
+               
+              },
+            ),
           ],
         ),
       ),

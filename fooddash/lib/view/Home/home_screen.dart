@@ -20,11 +20,11 @@ const HomeScreen({super.key});
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                
                   children: [
                     GestureDetector(
                       onTap: () {
-                   Get.to( const UserProfilePage());
+                   Get.to(const UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
@@ -36,25 +36,8 @@ const HomeScreen({super.key});
                         ),
                       ),
                     ),
-                    // Image.asset(
-                    //   "image/fooddash.jpg",
-                    //   width: 100,
-                    //   height: 80,
-                    // ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //    Get.to(UserOrderPage());
-                    //   },
-                    //   child: const CircleAvatar(
-                    //     backgroundColor: Colors.black,
-                    //     radius: 25,
-                    //     child: Icon(
-                    //       Icons.shopping_cart,
-                    //       size: 30,
-                    //       color: Colors.white,
-                    //     ),
-                    //   ),
-                    // )
+                    const SizedBox(width: 20,),
+                  const  Text("Location",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold,fontSize: 18),)
                   ],
                 ),
               ),

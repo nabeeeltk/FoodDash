@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:fooddash/view/Payment/payment_succses_page.dart';
+import 'package:get/get.dart';
 
 class PaymentPage extends StatelessWidget {
   final TextEditingController cardHolderController = TextEditingController();
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController cvvCodeController = TextEditingController();
+
+  PaymentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +42,13 @@ class PaymentPage extends StatelessWidget {
                   cardHolderDecoration:const  InputDecoration(
                     labelText: 'Card Holder',
                   ),
-                  cardNumberDecoration: InputDecoration(
+                  cardNumberDecoration: const InputDecoration(
                     labelText: 'Card Number',
                   ),
-                  expiryDateDecoration: InputDecoration(
+                  expiryDateDecoration: const InputDecoration(
                     labelText: 'Expiration Date',
                   ),
-                  cvvCodeDecoration: InputDecoration(
+                  cvvCodeDecoration: const InputDecoration(
                     labelText: 'CVV',
                   ),
                   onCreditCardModelChange: (CreditCardModel creditCard) {
@@ -52,33 +56,33 @@ class PaymentPage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 20),
-              Text('Billing Address', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+              const SizedBox(height: 20),
+              const Text('Billing Address', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: cardHolderController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextFormField(
                 controller: cardNumberController,
-                decoration: InputDecoration(labelText: 'Address'),
+                decoration: const InputDecoration(labelText: 'Address'),
               ),
               TextFormField(
                 controller: expiryDateController,
-                decoration: InputDecoration(labelText: 'City'),
+                decoration: const InputDecoration(labelText: 'City'),
               ),
               TextFormField(
                 controller: cvvCodeController,
-                decoration: InputDecoration(labelText: 'ZIP Code'),
+                decoration: const InputDecoration(labelText: 'ZIP Code'),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
 
               MaterialButton(
                 color: Colors.orange.shade800,
                 minWidth: double.infinity,
                 height: 50,
-                child: Text("Pay Now",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white)),
+                child: const Text("Pay Now",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white)),
                 onPressed: (){
-       
+                          Get.to( const PaymentSuccessPage());
                 })
             ],
           ),

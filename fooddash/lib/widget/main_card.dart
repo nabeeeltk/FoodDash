@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 class CardCarousel extends StatelessWidget {
   final List<String> cardAssetPaths = [
-    "image/Resturent1.jpg",
   "image/Resturent1.jpg",
-  "image/Resturent1.jpg",    // Add more asset paths here
+  "image/Banner2.jpeg",
+  "image/Banner1.jpeg",   
   ];
+ CardCarousel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +27,21 @@ class CardCarousel extends StatelessWidget {
                     cardAssetPaths[index],
                     fit: BoxFit.cover,
                   ),
+                  
                 ),
+              
               );
             },
             options: CarouselOptions(
-              viewportFraction: 0.8, // Adjust the card width
+
+              viewportFraction: 0.8, 
               enlargeCenterPage: true,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3), // Adjust the auto-play interval
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval:const  Duration(seconds: 3), 
+              autoPlayAnimationDuration:const  Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
-              aspectRatio: 2.0, // Adjust the aspect ratio of the carousel
+              aspectRatio: 2.0, 
               onPageChanged: (index, reason) {
-                // Handle page change event if needed
               },
             ),
           ),

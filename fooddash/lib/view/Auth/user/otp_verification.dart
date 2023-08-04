@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:fooddash/view/Home/home_screen.dart';
+import 'package:fooddash/view/Location/accsess_location.dart';
 import 'package:get/get.dart';
 
 class OtpVerification extends StatelessWidget {
@@ -71,21 +71,7 @@ class OtpVerification extends StatelessWidget {
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
 
-                    // onSubmit: (String verificationCode) {
-                    // //   showDialog(
-
-                    // //       context: context,
-                    // //       builder: (context) {
-                    // //         return AlertDialog(
-                              
-                    // //           title: Text("Verification Code"),
-                    // //           content:
-                    // //               Text('Code entered is $verificationCode'),
-                    // //         );
-                          
-                    // //       }
-                    // //       );
-                    // // }, // end onSubmit
+                  
                   ),
                   const SizedBox(
                     height: 20,
@@ -98,7 +84,7 @@ class OtpVerification extends StatelessWidget {
                       minWidth: double.infinity,
                       color: Colors.orange.shade800,
                       onPressed: () {
-                        Get.to( const HomeScreen());
+                        Get.to( const AcsessLocation());
                       },
                       child: const Text(
                         "Submit",

@@ -36,7 +36,7 @@ class MyCart extends StatelessWidget {
             LayoutBuilder(
               builder: (context, constraints) {
                 return ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics:const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return buildCard(context, constraints);

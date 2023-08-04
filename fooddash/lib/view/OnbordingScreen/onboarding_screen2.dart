@@ -35,7 +35,7 @@ class OnboardingScreen2 extends StatelessWidget {
             child: MaterialButton(
 
               onPressed: (){
-                 Get.to(UserLogin());
+                 Get.to(const UserLogin());
             },
             color: Colors.orange.shade800,
             height: 50,

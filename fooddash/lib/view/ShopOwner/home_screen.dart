@@ -10,13 +10,24 @@ class ShopeHomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
               height: 50,
             ),
-            const Text(
-              "RestuarentName",
-              style: TextStyle(fontSize: 25),
+           const  Padding(
+              padding:  EdgeInsets.all(8.0),
+              child: Text(
+                "Welcome",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          const   Padding(
+              padding:  EdgeInsets.only(left:8.0),
+              child: Text(
+                "Shope Owner",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             const SizedBox(
               height: 30,

@@ -33,7 +33,7 @@ class FoodItemList extends StatelessWidget {
                               fit: BoxFit.cover)),
                     ),
                     onTap: () {
-                      Get.to(FoodDetailsPage());
+                      Get.to( const FoodDetailsPage());
                     },
                     trailing: const Column(
                       children: [

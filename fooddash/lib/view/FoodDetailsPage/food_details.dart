@@ -7,7 +7,7 @@ import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../Payment/payment_page.dart';
 
 class FoodDetailsPage extends StatelessWidget {
-  FoodDetailsPage({super.key});
+ const  FoodDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class FoodDetailsPage extends StatelessWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                     color: Colors.blueGrey,
-                    // image:  DecorationImage(
-                    //     image: AssetImage("image/pizza1.jpg"),
-                    //     fit: BoxFit.cover),
+                    image:  DecorationImage(
+                        image: AssetImage("image/Banner1.jpeg"),
+                        fit: BoxFit.cover),
                     borderRadius: BorderRadiusDirectional.only(
                         bottomEnd: Radius.circular(30),
                         bottomStart: Radius.circular(30))),
@@ -106,12 +106,14 @@ class FoodDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
+               const  SizedBox(height: 50,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
+                       
                         height: 40,
                         onPressed: () {
                           Get.to(PaymentPage());
@@ -123,6 +125,7 @@ class FoodDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(

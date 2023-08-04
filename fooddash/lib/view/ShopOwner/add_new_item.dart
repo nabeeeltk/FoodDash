@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class AddNewItem extends StatelessWidget {
-  AddNewItem({super.key});
+  const AddNewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
