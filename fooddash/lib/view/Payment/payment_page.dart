@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:fooddash/view/Payment/payment_succses_page.dart';
+import 'package:fooddash/view/payment/payment_succses_page.dart';
 import 'package:get/get.dart';
 
 class PaymentPage extends StatelessWidget {

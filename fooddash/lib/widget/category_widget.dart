@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/FoodDetailsPage/food_details.dart';
+import 'package:fooddash/view/food_details_page/food_details.dart';
 import 'package:get/get.dart';
 
 class AllCategoryWidget extends StatelessWidget {

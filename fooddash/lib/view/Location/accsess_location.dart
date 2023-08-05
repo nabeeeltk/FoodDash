@@ -38,12 +38,19 @@ class AcsessLocation extends StatelessWidget {
                     color: Colors.blueGrey),
               ),
             ),
-           const  SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text(
-                "DFOOD WILL ACCESS YOUR LOCATION\nONLY WHILE USING THE APP",
-                style: TextStyle(color: Colors.black, fontSize: 20,),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                    "DFOOD WILL ACCESS YOUR LOCATION ONLY WHILE USING THE APP",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    )),
               ),
             ),
             Padding(

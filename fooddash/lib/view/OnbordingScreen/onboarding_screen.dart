@@ -73,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       child: MaterialButton(
                         onPressed: () {
-                           Get.to(OnboardingScreen2());
+                           Get.to(const OnboardingScreen2());
                         },
                         child: const Text(
                           "Start",

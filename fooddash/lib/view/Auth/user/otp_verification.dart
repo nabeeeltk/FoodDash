@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:fooddash/view/Location/accsess_location.dart';
+import 'package:fooddash/view/location/accsess_location.dart';
 import 'package:get/get.dart';
 
 class OtpVerification extends StatelessWidget {

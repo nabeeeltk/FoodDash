@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/ShopOwner/add_new_item.dart';
-import 'package:fooddash/view/ShopOwner/home_screen.dart';
-import 'package:fooddash/view/ShopOwner/owner_profile.dart';
+import 'package:fooddash/view/shop_owner/add_new_item.dart';
+import 'package:fooddash/view/shop_owner/home_screen.dart';
+import 'package:fooddash/view/shop_owner/owner_profile.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});

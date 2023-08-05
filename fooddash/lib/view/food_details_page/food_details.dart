@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/MyCart/my_cart.dart';
+
 import 'package:get/get.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
-import '../Payment/payment_page.dart';
+import '../payment/payment_page.dart';
+import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
  const  FoodDetailsPage({super.key});
@@ -93,7 +94,7 @@ class FoodDetailsPage extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
-                    "Ingrdiance",
+                    "ingredients",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),

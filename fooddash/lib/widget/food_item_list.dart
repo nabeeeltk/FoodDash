@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../view/FoodDetailsPage/food_details.dart';
+import '../view/food_details_page/food_details.dart';
 
 class FoodItemList extends StatelessWidget {
   const FoodItemList({super.key});

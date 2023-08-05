@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/UserProfile/user_address.dart';
-import 'package:fooddash/view/UserProfile/user_profile_edit.dart';
+import 'package:fooddash/view/user_profile/user_address.dart';
+import 'package:fooddash/view/user_profile/user_profile_edit.dart';
 import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:get/get.dart';
 

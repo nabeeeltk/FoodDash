@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/UserProfile/user_profile.dart';
+import 'package:fooddash/view/user_profile/user_profile.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
 
 import 'package:get/get.dart';
+
 class HomeScreen extends StatelessWidget {
-const HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +17,13 @@ const HomeScreen({super.key});
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                
                   children: [
                     GestureDetector(
                       onTap: () {
-                   Get.to(const UserProfilePage());
+                        Get.to(const UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
@@ -36,8 +35,16 @@ const HomeScreen({super.key});
                         ),
                       ),
                     ),
-                    const SizedBox(width: 20,),
-                  const  Text("Location",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold,fontSize: 18),)
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Text(
+                      "Location",
+                      style: TextStyle(
+                          color: Colors.orange,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )
                   ],
                 ),
               ),
@@ -73,33 +80,19 @@ const HomeScreen({super.key});
                   ),
                 ),
               ),
-              // call  all categorywidget
-              // const Padding(
-              //   padding: EdgeInsets.only(left: 8),
-              //   child: Text(
-              //     "All Items",
-              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              //   ),
-              // ),
-              // const AllCategoryWidget(),
-
-              // //  call all  Restuarent
-              // const Padding(
-              //   padding: EdgeInsets.only(left: 8),
-              //   child: Text(
-              //     " All Restaurants",
-              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              //   ),
-              // ),
-              // const RestuarentWidget(),
-              
+            //widget
             CardCarousel(),
-           const  SizedBox(height: 10,),
-          const   Padding(
-              padding:EdgeInsets.all(8.0),
-              child: Text("Populer Item", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-            ),
-          const   FoodItemList()
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Populer Item",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+              const FoodItemList()
             ],
           ),
         ),
