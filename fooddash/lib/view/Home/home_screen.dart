@@ -5,6 +5,8 @@ import 'package:fooddash/widget/main_card.dart';
 
 import 'package:get/get.dart';
 
+import '../food_details_page/all_food_item.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -85,12 +87,20 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Populer Item",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
+              Row(
+                mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Populer Item",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                  TextButton(onPressed: (){
+                   Get.to(AllFoodItem());
+                  }, child: Text("veiw All"))
+                ],
               ),
               const FoodItemList()
             ],
