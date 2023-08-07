@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:get/get.dart';
 
 class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+  final ctrl =Get.put(Authcontroller());
+   ForgotPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class ForgotPassword extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
-
+                    controller: ctrl.userresetemail,
                     decoration: InputDecoration(
                       hintText: "Enter Your Email",
                       prefixIcon: const Icon(Icons.email,color: Colors.black,),
@@ -73,12 +75,16 @@ class ForgotPassword extends StatelessWidget {
                const  SizedBox(height: 20,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.orange.shade700,
-                    onPressed: (){},
-                  child:const  Text("SEND CODE",style: TextStyle(color: Colors.white,fontSize: 20),),),
+                  child: Obx(
+                    () =>  MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.orange.shade700,
+                      onPressed: (){
+                        ctrl.resetpassword();
+                      },
+                    child:ctrl.loading.value?const CircularProgressIndicator(color: Colors.black,) :const Text("SEND CODE",style: TextStyle(color: Colors.white,fontSize: 20),),),
+                  ),
                 )
               ],
             ),

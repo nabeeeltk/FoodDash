@@ -85,7 +85,7 @@ class OwnerLogin extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Get.to(const ForgotPassword());
+                            Get.to( ForgotPassword());
                           },
                           child: Text(
                             "Forgot Password?",

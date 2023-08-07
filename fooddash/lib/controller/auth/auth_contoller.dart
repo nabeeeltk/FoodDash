@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/model/user_model.dart';
+import 'package:fooddash/view/Auth/user/user_log_in.dart';
+
 import 'package:fooddash/view/Home/home_screen.dart';
 import 'package:get/get.dart';
+
 
 class Authcontroller extends GetxController{
   FirebaseAuth  auth = FirebaseAuth.instance;
@@ -51,7 +56,7 @@ class Authcontroller extends GetxController{
     loading.value=true;
     try{
           await auth.signInWithEmailAndPassword(email: userloginemail.text, password: userPassword.text);
-          Get.to(HomeScreen());
+          Get.to( const HomeScreen());
           loading.value=false;
 
     }catch(e){
@@ -64,5 +69,20 @@ class Authcontroller extends GetxController{
     await auth.currentUser?.sendEmailVerification();
 
     Get.snackbar("email", "send");
+  }
+
+  resetpassword()async{
+    loading.value=true;
+    try{
+      await auth.sendPasswordResetEmail(email: userresetemail.text);
+      Get.snackbar("Email", "send successfully");
+      Get.to(()=>UserSignIn());
+      loading.value=false;
+    }catch(e){
+      Get.snackbar("Error", "$e");
+      log("$e");
+      loading.value=false;
+
+    }
   }
 }
