@@ -1,14 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:fooddash/utile/constents.dart';
-import 'package:fooddash/view/Auth/user/user_log_in.dart';
 import 'package:get/get.dart';
 
 import '../../../widget/social_media_icon.dart';
 
 class UserSignUp extends StatelessWidget {
-  const UserSignUp({Key? key}) : super(key: key);
+  final ctrl = Get.put(Authcontroller());
+  UserSignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +54,20 @@ class UserSignUp extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              
               decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius:const  BorderRadius.only(topLeft: Radius.circular(30),
-                topRight: Radius.circular(30))
-              ),
+                  color: Colors.grey.shade100,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                  const   SizedBox(height: 30,),
+                    const SizedBox(
+                      height: 30,
+                    ),
                     TextField(
+                      controller: ctrl.username,
                       decoration: InputDecoration(
                         fillColor: Colors.blueGrey.shade100,
                         filled: true,
@@ -81,6 +84,7 @@ class UserSignUp extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: ctrl.email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         fillColor: Colors.blueGrey.shade100,
@@ -98,6 +102,7 @@ class UserSignUp extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: ctrl.password,
                       obscureText: true,
                       decoration: InputDecoration(
                         fillColor: Colors.blueGrey.shade100,
@@ -141,20 +146,26 @@ class UserSignUp extends StatelessWidget {
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        onPressed: () {
-                          Get.to(const UserLogin());
-                        },
-                        color:appColor.themcolor,
-                        height: 50,
-                        minWidth: double.infinity,
-                        child: const Text(
-                          "SIGN UP",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      child: Obx(
+                        () => MaterialButton(
+                          onPressed: () {
+                            ctrl.signup();
+                          },
+                          color: appColor.themcolor,
+                          height: 50,
+                          minWidth: double.infinity,
+                          child: ctrl.loading.value
+                              ? const CircularProgressIndicator(
+                                  color: Colors.black,
+                                )
+                              : const Text(
+                                  "SIGN UP",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                         ),
                       ),
                     ),
@@ -174,12 +185,16 @@ class UserSignUp extends StatelessWidget {
                             log("Open Facebook");
                           },
                         ),
-                      const   SizedBox(width: 15,),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         SocialMediaIcon(
                           imagePath: "image/twitericon.png",
                           onTap: () {},
                         ),
-                         const SizedBox(width: 15,),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         SocialMediaIcon(
                           imagePath: "image/googleicon - Copy.png",
                           onTap: () {},

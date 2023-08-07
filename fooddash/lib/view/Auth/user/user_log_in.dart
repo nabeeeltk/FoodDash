@@ -1,16 +1,16 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:fooddash/utile/constents.dart';
 import 'package:fooddash/view/Auth/ShopeOwner/owner_login.dart';
 import 'package:fooddash/view/Auth/user/forgot_password.dart';
-import 'package:fooddash/view/Auth/user/otp_verification.dart';
 import 'package:fooddash/view/Auth/user/user_sign_up.dart';
 import 'package:fooddash/widget/social_media_icon.dart';
 import 'package:get/get.dart';
 
-class UserLogin extends StatelessWidget {
-  const UserLogin({Key? key}) : super(key: key);
+class UserSignIn extends StatelessWidget {
+  final ctrl = Get.put(Authcontroller());
+   UserSignIn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +50,8 @@ class UserLogin extends StatelessWidget {
                   children: [
                    const  SizedBox(height: 30,),
                     TextField(
+                      controller: ctrl.userloginemail,
+
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -65,6 +67,7 @@ class UserLogin extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     TextField(
+                      controller: ctrl.userPassword,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -102,16 +105,18 @@ class UserLogin extends StatelessWidget {
                   
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        onPressed: () {
-                          Get.to(const OtpVerification());
-                        },
-                        color: appColor.themcolor,
-                        height: 50,
-                        minWidth: double.infinity,
-                        child: const Text(
-                          "LOG IN",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                      child: Obx(
+                        () =>  MaterialButton(
+                          onPressed: () {
+                           ctrl.signin();
+                          },
+                          color: appColor.themcolor,
+                          height: 50,
+                          minWidth: double.infinity,
+                          child: ctrl.loading.value?const CircularProgressIndicator(color: Colors.black,):const  Text(
+                            "LOG IN",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
@@ -125,7 +130,7 @@ class UserLogin extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(const UserSignUp());
+                            Get.to( UserSignUp());
                           },
                           child:const  Text(
                             "SIGN UP",

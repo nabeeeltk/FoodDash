@@ -155,6 +155,7 @@ class FoodDetailsPage extends StatelessWidget {
     QuickAlert.show(
       context: context,
       type: quickAlertType,
+      text: "",
       confirmBtnColor: Colors.orange.shade800,
       onConfirmBtnTap: () {
         Get.to(MyCart());
