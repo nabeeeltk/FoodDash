@@ -56,7 +56,7 @@ class PaymentSuccessPage extends StatelessWidget {
               height: 50,
               child:const  Text("Back to home", style: TextStyle(fontSize: 20,color: Colors.black),),
               onPressed: (){
-                Get.to(const HomeScreen());
+                Get.to( HomeScreen());
               }),
           )
           ],

@@ -7,8 +7,15 @@ import 'package:get/get.dart';
 
 import '../food_details_page/all_food_item.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
+  List  itemCategory =[
+       "Veg"
+       "non Veg"
+  ];
+  
+   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

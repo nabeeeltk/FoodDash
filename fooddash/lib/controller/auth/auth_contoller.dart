@@ -19,7 +19,8 @@ class Authcontroller extends GetxController{
   TextEditingController  userloginemail =TextEditingController();
   TextEditingController  userPassword =TextEditingController();
   TextEditingController  userresetemail =TextEditingController();
-    TextEditingController  username =TextEditingController();
+  TextEditingController  username =TextEditingController();
+  TextEditingController userOtp =TextEditingController();
 
    var  loading=false.obs;
 
@@ -28,7 +29,8 @@ class Authcontroller extends GetxController{
       loading.value=true;
     await auth.createUserWithEmailAndPassword(email: email.text, password: password.text);
     await verifyemail();
-    Get.to(()=>const HomeScreen());
+    
+    Get.to(()=> HomeScreen());
     loading.value=false;
     }catch(e){
       Get.snackbar(
@@ -56,7 +58,7 @@ class Authcontroller extends GetxController{
     loading.value=true;
     try{
           await auth.signInWithEmailAndPassword(email: userloginemail.text, password: userPassword.text);
-          Get.to( const HomeScreen());
+          Get.to(  HomeScreen());
           loading.value=false;
 
     }catch(e){

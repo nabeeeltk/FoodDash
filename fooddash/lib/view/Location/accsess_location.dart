@@ -60,7 +60,7 @@ class AcsessLocation extends StatelessWidget {
                 minWidth: double.infinity,
                 color: Colors.orange.shade800,
                 onPressed: () {
-                  Get.to(const HomeScreen());
+                  Get.to(HomeScreen());
                 },
                 child: const Text(
                   "Access Location",

@@ -16,7 +16,7 @@ class _RootScreenState extends State<RootScreen> {
   final List<Widget> _screens = [
    const  ShopeHomeScreen(),
      Container(), 
-    const  AddNewItem(),
+      AddNewItem(),
    const OwnerProfil()
      ];
   @override
