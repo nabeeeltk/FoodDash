@@ -109,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                   }, child: Text("veiw All"))
                 ],
               ),
-              const FoodItemList()
+               FoodItemList()
             ],
           ),
         ),

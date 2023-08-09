@@ -1,36 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable    
 class AddNewItem extends StatelessWidget {
-  final TextEditingController itemNameController = TextEditingController();
-  final TextEditingController itemPriceController = TextEditingController();
-  final TextEditingController itemDescriptionController = TextEditingController();
-  final TextEditingController ingredientsController = TextEditingController();
-
-  final RxBool isVeg = true.obs; // Default to Veg
-
-  // ignore: unused_field
-  File? _image;
-
-  AddNewItem({super.key});
-
- void chooseImage() async {
-  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-  if (pickedFile != null) {
-    _image = File(pickedFile.path);
-  }
-}
-
-
-  void addItem() {
-    // Implement your logic to add the item to Firebase
-    // Use the controllers and other data as needed
-  }
-
+   FirebaseFirestore db = FirebaseFirestore.instance;
+   final _controller = Get.put(AddNewItemcontrller());
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +28,11 @@ class AddNewItem extends StatelessWidget {
         child: Column(
           children: [
             Padding(
+              
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: itemNameController,
+                
+                controller: _controller.itemNameController,
                 decoration: const InputDecoration(
                   hintText: "Enter new item name",
                   border: OutlineInputBorder(),
@@ -63,7 +42,7 @@ class AddNewItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: itemPriceController,
+                controller: _controller.itemPriceController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText: "Enter new item Price",
@@ -74,7 +53,7 @@ class AddNewItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: itemDescriptionController,
+                controller: _controller.itemDescriptionController,
                 decoration: const InputDecoration(
                   hintText: "Enter new item Description",
                   border: OutlineInputBorder(),
@@ -84,7 +63,7 @@ class AddNewItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: ingredientsController,
+                controller: _controller.ingredientsController,
                 decoration: const InputDecoration(
                   hintText: "Ingredients",
                   border: OutlineInputBorder(),
@@ -95,17 +74,17 @@ class AddNewItem extends StatelessWidget {
               () => Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Category:"),
+                const   Text("Category:"),
                   Radio(
                     value: true,
-                    groupValue: isVeg.value,
-                    onChanged: (value) => isVeg.value = value as bool,
+                    groupValue:_controller. isVeg.value,
+                    onChanged: (value) =>_controller. isVeg.value = value as bool,
                   ),
                   const Text("Vegetable"),
                   Radio(
                     value: false,
-                    groupValue: isVeg.value,
-                    onChanged: (value) => isVeg.value = value as bool,
+                    groupValue: _controller.isVeg.value,
+                    onChanged: (value) =>_controller.isVeg.value = value as bool,
                   ),
                   const Text("Nonvegetable"),
                 ],
@@ -117,7 +96,7 @@ class AddNewItem extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.grey.shade400),
 
               child: TextButton(
-                onPressed: chooseImage,
+                onPressed: _controller.chooseImage,
                 child:const Text("Choose Image",style: TextStyle(color: Colors.black),),
               ),
             ),
@@ -127,7 +106,7 @@ class AddNewItem extends StatelessWidget {
                 height: 50,
                 minWidth: double.infinity,
                 color: Colors.orange.shade800,
-                onPressed: addItem,
+                onPressed: _controller.addItem,
                 child: const Text(
                   "ADD NEW ITEM",
                   style: TextStyle(color: Colors.white, fontSize: 20),

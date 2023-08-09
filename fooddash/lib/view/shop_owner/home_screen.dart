@@ -112,7 +112,7 @@ class ShopeHomeScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const FoodItemList()
+           FoodItemList()
           ],
         ),
       ),

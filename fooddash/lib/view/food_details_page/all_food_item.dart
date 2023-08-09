@@ -14,7 +14,7 @@ class AllFoodItem extends StatelessWidget {
           Get.back();
          }, icon:const Icon(Icons.arrow_back_ios,size: 30,)),
       ),
-      body:const Column(
+      body: Column(
         children: [
                FoodItemList()
         ],

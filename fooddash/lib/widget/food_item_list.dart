@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/owner/add_item_cotroller.dart';
 import '../view/food_details_page/food_details.dart';
 
 class FoodItemList extends StatelessWidget {
-  const FoodItemList({super.key});
+
+    final _controller = Get.put(AddNewItemcontrller());
+  FoodItemList({super.key});
 
   @override
   Widget build(BuildContext context) {

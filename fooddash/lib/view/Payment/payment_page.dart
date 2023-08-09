@@ -14,14 +14,18 @@ class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:Colors.black,
       appBar: AppBar(
-        title:const  Text('Payment'),
-        leading: IconButton(onPressed: (){}, 
-        icon:const  Icon(Icons.arrow_back_ios_new,size: 30,)),
+          backgroundColor:Colors.black,
+        title: const Text('Payment',style: TextStyle(color: Colors.white),),
+        leading: IconButton(
+          onPressed: () {},
+          icon:const  Icon(Icons.arrow_back_ios_new, size: 30,color: Colors.white,),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:const  EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,27 +33,35 @@ class PaymentPage extends StatelessWidget {
                 height: 280,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(30)
+                  gradient:const  LinearGradient(
+                    colors: [Colors.yellow, Colors.orange],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 child: CreditCardForm(
-                  cardHolderName: "Nabeel",
-                  cardNumber: "65545631232",
+                  cardHolderName: "",
+                  cardNumber: "6554 5631 2320",
                   cvvCode: "851",
-                  expiryDate: "12/5/2024",
-                  themeColor: Colors.red,
+                  expiryDate: "12/24",
+                  themeColor: Colors.white,
                   formKey: GlobalKey(),
-                  cardHolderDecoration:const  InputDecoration(
+                  cardHolderDecoration: const InputDecoration(
                     labelText: 'Card Holder',
+                    labelStyle: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                   cardNumberDecoration: const InputDecoration(
                     labelText: 'Card Number',
+                    labelStyle: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                   expiryDateDecoration: const InputDecoration(
                     labelText: 'Expiration Date',
+                    labelStyle: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                   cvvCodeDecoration: const InputDecoration(
                     labelText: 'CVV',
+                    labelStyle: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                   onCreditCardModelChange: (CreditCardModel creditCard) {
                     // Handle card details change
@@ -57,42 +69,59 @@ class PaymentPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text('Billing Address', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+              const Text(
+                'Billing Address',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.orange),
+              ),
               TextFormField(
                 controller: cardHolderController,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
               ),
               TextFormField(
                 controller: cardNumberController,
-                decoration: const InputDecoration(labelText: 'Address'),
+                decoration: const InputDecoration(
+                  labelText: 'Address',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
               ),
               TextFormField(
                 controller: expiryDateController,
-                decoration: const InputDecoration(labelText: 'City'),
+                decoration: const InputDecoration(
+                  labelText: 'City',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
               ),
-              TextFormField(
-                controller: cvvCodeController,
-                decoration: const InputDecoration(labelText: 'ZIP Code'),
-              ),
-              const SizedBox(height: 20,),
+              
+              const SizedBox(height: 20),
 
               MaterialButton(
                 color: Colors.orange.shade800,
                 minWidth: double.infinity,
                 height: 50,
-                child: const Text("Pay Now",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white)),
-                onPressed: (){
-                          Get.to( const PaymentSuccessPage());
-                })
+                child: const Text(
+                  "Pay Now",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  Get.to(const PaymentSuccessPage());
+                },
+              )
             ],
           ),
         ),
       ),
 
       // String cardHolder = cardHolderController.text;
-      //    String cardNumber = cardNumberController.text;
-      //     String expiryDate = expiryDateController.text;
-      //    String cvvCode = cvvCodeController.text;
+      // String cardNumber = cardNumberController.text;
+      // String expiryDate = expiryDateController.text;
+      // String cvvCode = cvvCodeController.text;
     );
   }
 }

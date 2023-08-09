@@ -8,83 +8,102 @@ import 'package:fooddash/view/Auth/user/user_log_in.dart';
 
 import 'package:fooddash/view/Home/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+class Authcontroller extends GetxController {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-class Authcontroller extends GetxController{
-  FirebaseAuth  auth = FirebaseAuth.instance;
-  FirebaseFirestore  db =FirebaseFirestore.instance;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController userloginemail = TextEditingController();
+  TextEditingController userPassword = TextEditingController();
+  TextEditingController userresetemail = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController userOtp = TextEditingController();
 
-  TextEditingController  email =TextEditingController();
-  TextEditingController  password =TextEditingController();
-  TextEditingController  userloginemail =TextEditingController();
-  TextEditingController  userPassword =TextEditingController();
-  TextEditingController  userresetemail =TextEditingController();
-  TextEditingController  username =TextEditingController();
-  TextEditingController userOtp =TextEditingController();
+  var loading = false.obs;
 
-   var  loading=false.obs;
+  signup() async {
+    try {
+      loading.value = true;
+      await auth.createUserWithEmailAndPassword(
+          email: email.text, password: password.text);
+      await verifyemail();
 
-  signup()async{
-    try{
-      loading.value=true;
-    await auth.createUserWithEmailAndPassword(email: email.text, password: password.text);
-    await verifyemail();
-    
-    Get.to(()=> HomeScreen());
-    loading.value=false;
-    }catch(e){
-      Get.snackbar(
-      backgroundColor: Colors.white,
-      
-        "error", "$e");
+      Get.to(() => HomeScreen());
+      loading.value = false;
+    } catch (e) {
+      Get.snackbar(backgroundColor: Colors.white, "error", "$e");
       print("$e");
-      loading.value=false;
+      loading.value = false;
     }
   }
 
-  adduser()async{
-
-    UserModel user = UserModel(
-      email: auth.currentUser?.email,
-      username: username.text
-    );
-    await db.collection("user").doc(auth.currentUser?.uid).collection("profile").add(user.tomap());
+  adduser() async {
+    UserModel user =
+        UserModel(email: auth.currentUser?.email, username: username.text);
+    await db
+        .collection("user")
+        .doc(auth.currentUser?.uid)
+        .collection("profile")
+        .add(user.tomap());
   }
 
-  signout()async{
+  signout() async {
     await auth.signOut();
+    await _googleSignIn.signOut();
   }
-  signin()async{
-    loading.value=true;
-    try{
-          await auth.signInWithEmailAndPassword(email: userloginemail.text, password: userPassword.text);
-          Get.to(  HomeScreen());
-          loading.value=false;
 
-    }catch(e){
-          loading.value=false;
-          Get.snackbar("error", "please register or check email");
-
+  signin() async {
+    loading.value = true;
+    try {
+      await auth.signInWithEmailAndPassword(
+          email: userloginemail.text, password: userPassword.text);
+      Get.to(HomeScreen());
+      loading.value = false;
+    } catch (e) {
+      loading.value = false;
+      Get.snackbar("error", "please register or check email");
     }
   }
-  verifyemail()async{
+
+  verifyemail() async {
     await auth.currentUser?.sendEmailVerification();
 
     Get.snackbar("email", "send");
   }
 
-  resetpassword()async{
-    loading.value=true;
-    try{
+  resetpassword() async {
+    loading.value = true;
+    try {
       await auth.sendPasswordResetEmail(email: userresetemail.text);
       Get.snackbar("Email", "send successfully");
-      Get.to(()=>UserSignIn());
-      loading.value=false;
-    }catch(e){
+      Get.to(() => UserSignIn());
+      loading.value = false;
+    } catch (e) {
       Get.snackbar("Error", "$e");
       log("$e");
-      loading.value=false;
+      loading.value = false;
+    }
+  }
 
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuth =
+            await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuth.accessToken,
+          idToken: googleSignInAuth.idToken,
+        );
+        await auth.signInWithCredential(credential);
+      }
+    } catch (error) {
+      print("Google Sign-In Error: $error");
     }
   }
 }

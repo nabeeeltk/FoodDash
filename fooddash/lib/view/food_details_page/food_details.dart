@@ -109,6 +109,8 @@ class FoodDetailsPage extends StatelessWidget {
                 ),
                const  SizedBox(height: 50,),
                 Row(
+                  
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Padding(
@@ -117,11 +119,13 @@ class FoodDetailsPage extends StatelessWidget {
                        
                         height: 40,
                         onPressed: () {
+
+                          
                           Get.to(PaymentPage());
                         },
                         color: Colors.black,
                         child: const Text(
-                          "BUY NOW",
+                          "   BUY NOW   ",
                           style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ),
@@ -142,7 +146,9 @@ class FoodDetailsPage extends StatelessWidget {
                       ),
                     )
                   ],
+
                 ),
+                
               ],
             )
           ],

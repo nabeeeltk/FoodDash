@@ -197,7 +197,9 @@ class UserSignUp extends StatelessWidget {
                         ),
                         SocialMediaIcon(
                           imagePath: "image/googleicon - Copy.png",
-                          onTap: () {},
+                          onTap: () {
+                            ctrl.signInWithGoogle();
+                          },
                         ),
                       ],
                     ),
