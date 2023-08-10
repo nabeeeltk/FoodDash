@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/food_details_page/add_review.dart';
 
 import 'package:get/get.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -13,7 +14,7 @@ class FoodDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +59,7 @@ class FoodDetailsPage extends StatelessWidget {
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "pizza calzone european",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
               ),
             ),
             const Padding(
@@ -67,19 +68,22 @@ class FoodDetailsPage extends StatelessWidget {
                 "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
                 style: TextStyle(
                   fontSize: 18,
+                  color: Colors.white
                 ),
               ),
             ),
             Row(
               children: [
                 TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                        showDialog(context: context, builder: (context) => AddReview(),);
+                    },
                     icon: const Icon(
                       Icons.star,
                       color: Colors.amber,
                     ),
-                    label: const Text("4.7")),
-                TextButton.icon(
+                    label: const Text("4.0")),
+                TextButton.icon( 
                     onPressed: () {},
                     icon: const Icon(
                       Icons.delivery_dining,
@@ -95,7 +99,8 @@ class FoodDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
                     "ingredients",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                    color: Colors.white),
                   ),
                 ),
                 const Padding(
@@ -104,6 +109,7 @@ class FoodDetailsPage extends StatelessWidget {
                     "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.Prosciutto e funghi is a pizza variety that is topped with tomato sauce",
                     style: TextStyle(
                       fontSize: 12,
+                      color: Colors.white
                     ),
                   ),
                 ),
@@ -123,10 +129,10 @@ class FoodDetailsPage extends StatelessWidget {
                           
                           Get.to(PaymentPage());
                         },
-                        color: Colors.black,
+                        color: Colors.white,
                         child: const Text(
                           "   BUY NOW   ",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
                     ),

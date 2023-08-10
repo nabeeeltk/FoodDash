@@ -19,12 +19,16 @@ class FoodItemList extends StatelessWidget {
                     title: const Text(
                       "Burger Ferguson ",
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18,
+                          height: 0,
+                           fontWeight: FontWeight.bold,
+                           color: Colors.orange),
                     ),
                     subtitle: const Text(
                       "Spicy restaurant  ",
                       style: TextStyle(
                         fontSize: 15,
+                        color: Colors.white
                       ),
                     ),
                     leading: Container(
@@ -41,16 +45,19 @@ class FoodItemList extends StatelessWidget {
                     trailing: const Column(
                       children: [
                         Text(
-                          "#300",
+                          "₹300",
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                            color: Colors.green,
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
+                        
                       ],
-                    ));
+                    ),
+                    );
               },
               separatorBuilder: (context, index) {
                 return const Divider(
-                    height: 50, thickness: 0, color: Colors.black);
+                    height: 50, thickness: 0, color: Colors.white);
               },
               itemCount: 5,
             );

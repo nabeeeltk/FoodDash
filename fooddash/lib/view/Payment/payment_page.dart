@@ -19,7 +19,9 @@ class PaymentPage extends StatelessWidget {
           backgroundColor:Colors.black,
         title: const Text('Payment',style: TextStyle(color: Colors.white),),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
           icon:const  Icon(Icons.arrow_back_ios_new, size: 30,color: Colors.white,),
         ),
       ),

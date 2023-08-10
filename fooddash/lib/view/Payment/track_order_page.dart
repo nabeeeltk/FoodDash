@@ -11,14 +11,14 @@ class TrackOrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: Colors.black,
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon: const Icon(Icons.arrow_back_ios_new)),
+        }, icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)),
         elevation: 0,
-        title:const  Text('Track Order'),
+        title:const  Text('Track Order',style: TextStyle( color: Colors.white,),),
       ),
       body: Padding(
         padding:const  EdgeInsets.all(20.0),
@@ -28,26 +28,35 @@ class TrackOrderPage extends StatelessWidget {
             children: [
               Text(
                 'Order ID: $orderId',
-                style:const  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:const  TextStyle(
+                  color: Colors.orange,
+                  fontSize: 20, fontWeight: FontWeight.bold),
               ),
              const  SizedBox(height: 10),
               Text(
                 'Status: $orderStatus',
-                style:const  TextStyle(fontSize: 18),
+                style:const  TextStyle(
+                  color: Colors.white,
+                  fontSize: 18),
               ),
            const    SizedBox(height: 20),
             const   Text(
                 'Estimated Delivery Date:',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,
+                 color: Colors.white,
+                ),
               ),
             const   Text(
                 'August 10, 2023',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18,
+                 color: Colors.white,
+                 fontWeight: FontWeight.bold),
               ),
              const  SizedBox(height: 10),
              const Text(
                 'Order Details:',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,
+                 color: Colors.white,),
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -56,24 +65,25 @@ class TrackOrderPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   
                   return ListTile(
-                    title: Text('Product Name ${index + 1}'),
-                    subtitle:const  Text('Quantity: 2, Price: \$20'),
+                    title: Text('Product Name ${index + 1}',style: TextStyle( color: Colors.white,),),
+                    subtitle:const  Text('Quantity: 2, Price: \$20',style: TextStyle( color: Colors.white,),),
                   );
                 },
               ),
             const   SizedBox(height: 10),
              const  Text(
                 'Order Timeline:',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,
+                 color: Colors.orange,),
               ),
              const  SizedBox(height: 10),
-              buildTimelineTile('Order Placed', '', isDeliveryStep: false),
-              buildTimelineTile('Processing', 'August 2, 2023', isDeliveryStep: false),
-              buildTimelineTile('Shipped', 'August 5, 2023', isDeliveryStep: false),
-              buildTimelineTile('Out for Delivery', 'August 8, 2023', isDeliveryStep: true),
-              buildTimelineTile('Delivered', 'August 10, 2023', isDeliveryStep: false),
+              buildTimelineTile('Order Placed', '', isDeliveryStep: false,),
+              buildTimelineTile('Processing', '', isDeliveryStep: false),
+              buildTimelineTile('Shipped', '', isDeliveryStep: false),
+              buildTimelineTile('Out for Delivery', '', isDeliveryStep: true),
+              buildTimelineTile('Delivered', '', isDeliveryStep: false),
             ],
-          ),
+          )
         ),
       ),
     );
@@ -82,7 +92,7 @@ class TrackOrderPage extends StatelessWidget {
   Widget buildTimelineTile(String title, String date, {required bool isDeliveryStep}) {
     return TimelineTile(
       alignment: TimelineAlign.manual,
-      lineXY: 0.1,
+      lineXY: 0.2,
       indicatorStyle: IndicatorStyle(
         width: 30,
         color: isDeliveryStep ? Colors.blue : Colors.green,
@@ -96,7 +106,7 @@ class TrackOrderPage extends StatelessWidget {
         padding:const  EdgeInsets.symmetric(vertical: 10.0),
         child: Text(
           title,
-          style:const  TextStyle(fontSize: 16),
+          style:const  TextStyle(fontSize: 16,color: Colors.white),
         ),
       ),
       afterLineStyle: LineStyle(color: isDeliveryStep ? Colors.blue : Colors.green),

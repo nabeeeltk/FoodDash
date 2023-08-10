@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,9 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
                   "Hay User",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                   fontSize: 18,
+                   color: Colors.white),
                 ),
               ),
               Padding(
@@ -75,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                     cursorHeight: 25,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                        hintText: "Search dishes, restaurants,",
+                        hintText: "Search dishes",
                         hintStyle: const TextStyle(fontSize: 18),
                         fillColor: const Color.fromARGB(179, 209, 207, 207),
                         filled: true,
@@ -101,7 +103,9 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       "Populer Item",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(fontWeight: FontWeight.bold,
+                       fontSize: 20,
+                       color: Colors.white),
                     ),
                   ),
                   TextButton(onPressed: (){
