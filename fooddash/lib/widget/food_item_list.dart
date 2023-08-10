@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controller/owner/add_item_cotroller.dart';
 import '../view/food_details_page/food_details.dart';
 
 class FoodItemList extends StatelessWidget {
-
+          
     final _controller = Get.put(AddNewItemcontrller());
   FoodItemList({super.key});
 
@@ -14,9 +13,10 @@ class FoodItemList extends StatelessWidget {
     return  ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
+                // final name = _controller.menuItems[index];
                 return ListTile(
                     horizontalTitleGap: 5,
-                    title: const Text(
+                    title: const  Text(
                       "Burger Ferguson ",
                       style:
                           TextStyle(fontSize: 18,
@@ -59,7 +59,8 @@ class FoodItemList extends StatelessWidget {
                 return const Divider(
                     height: 50, thickness: 0, color: Colors.white);
               },
-              itemCount: 5,
+              itemCount: 2
+              // _controller.menuItems.length,
             );
   }
 }

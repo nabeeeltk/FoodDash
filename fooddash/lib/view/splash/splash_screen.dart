@@ -13,12 +13,13 @@ class SplashScren extends StatelessWidget {
         Get.to( const OnboardingScreen());
     });
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: Image.asset(
-              "image/FoodDashLopg.png",
+              "image/foodDashlogo2.png",
               width: 250,
             ),
           ),
@@ -27,11 +28,10 @@ class SplashScren extends StatelessWidget {
             height: 30,
             child:  LoadingIndicator(
               indicatorType:
-                  Indicator.lineScalePulseOutRapid, // Choose your desired indicator type
+                  Indicator. lineScalePulseOutRapid,
               colors: [
                 Colors.orange,
-                Colors.black,
-
+                Colors.white,
               ],
               strokeWidth: 4,
             ),

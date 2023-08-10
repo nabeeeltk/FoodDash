@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 class CardCarousel extends StatelessWidget {
   final List<String> cardAssetPaths = [
-  "image/Resturent1.jpg",
+  "image/Banner2.jpeg",
   "image/Banner2.jpeg",
   "image/Banner1.jpeg",   
   ];

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:get/get.dart';
 
-// ignore: must_be_immutable    
+// ignore: must_be_immutable
 class AddNewItem extends StatelessWidget {
-   FirebaseFirestore db = FirebaseFirestore.instance;
-   final _controller = Get.put(AddNewItemcontrller());
- 
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  final _controller = Get.put(AddNewItemcontrller());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +28,8 @@ class AddNewItem extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                
                 controller: _controller.itemNameController,
                 decoration: const InputDecoration(
                   hintText: "Enter new item name",
@@ -74,17 +72,19 @@ class AddNewItem extends StatelessWidget {
               () => Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                const   Text("Category:"),
+                  const Text("Category:"),
                   Radio(
                     value: true,
-                    groupValue:_controller. isVeg.value,
-                    onChanged: (value) =>_controller. isVeg.value = value as bool,
+                    groupValue: _controller.isVeg.value,
+                    onChanged: (value) =>
+                        _controller.isVeg.value = value as bool,
                   ),
                   const Text("Vegetable"),
                   Radio(
                     value: false,
                     groupValue: _controller.isVeg.value,
-                    onChanged: (value) =>_controller.isVeg.value = value as bool,
+                    onChanged: (value) =>
+                        _controller.isVeg.value = value as bool,
                   ),
                   const Text("Nonvegetable"),
                 ],
@@ -94,10 +94,12 @@ class AddNewItem extends StatelessWidget {
               height: 40,
               width: 150,
               decoration: BoxDecoration(color: Colors.grey.shade400),
-
               child: TextButton(
                 onPressed: _controller.chooseImage,
-                child:const Text("Choose Image",style: TextStyle(color: Colors.black),),
+                child: const Text(
+                  "Choose Image",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ),
             Padding(
@@ -106,7 +108,9 @@ class AddNewItem extends StatelessWidget {
                 height: 50,
                 minWidth: double.infinity,
                 color: Colors.orange.shade800,
-                onPressed: _controller.addItem,
+                onPressed: () {
+                  _controller.addItem();
+                },
                 child: const Text(
                   "ADD NEW ITEM",
                   style: TextStyle(color: Colors.white, fontSize: 20),
