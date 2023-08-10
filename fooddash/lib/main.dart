@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/OnbordingScreen/onboarding_screen.dart';
+import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const OnboardingScreen(),
+        home: const SplashScren(),
         );
   }
 }

@@ -10,6 +10,8 @@ import '../../../widget/social_media_icon.dart';
 class UserSignUp extends StatelessWidget {
   final ctrl = Get.put(Authcontroller());
   UserSignUp({Key? key}) : super(key: key);
+ 
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,7 @@ class UserSignUp extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      
                     ),
                     const SizedBox(height: 20),
                     TextField(
