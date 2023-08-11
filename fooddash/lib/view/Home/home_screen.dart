@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/shop_owner/home_screen.dart';
 import 'package:fooddash/view/user_profile/user_profile.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
@@ -12,13 +11,12 @@ import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-
-  List  itemCategory =[
-       "Veg"
-       "non Veg"
+  List itemCategory = [
+    "Veg"
+        "non Veg"
   ];
-  
-   HomeScreen({super.key});
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to( UserProfilePage());
+                        Get.to(UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
@@ -57,10 +55,11 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
-
-                    IconButton(onPressed: (){
-                      Get.to(RootScreen());
-                    }, icon:Icon(Icons.home))
+                    IconButton(
+                        onPressed: () {
+                          Get.to( const RootScreen());
+                        },
+                        icon:const  Icon(Icons.home))
                   ],
                 ),
               ),
@@ -71,9 +70,10 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
                   "Hay User",
-                  style: TextStyle(fontWeight: FontWeight.bold,
-                   fontSize: 18,
-                   color: Colors.white),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white),
                 ),
               ),
               Padding(
@@ -102,36 +102,46 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                    CategoryButton(text: "ALL",),
-                    CategoryButton(text: "Veg",),
-                    CategoryButton(text: "Non Veg",)
-
+                  CategoryButton(
+                    text: "ALL",
+                  ),
+                  CategoryButton(
+                    text: "Veg",
+                  ),
+                  CategoryButton(
+                    text: "Non Veg",
+                  )
                 ],
               ),
-              SizedBox(height: 10,),
-            //widget
-            CardCarousel(),
+              SizedBox(
+                height: 10,
+              ),
+              //widget
+              CardCarousel(),
               const SizedBox(
                 height: 10,
               ),
               Row(
-                mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       "Populer Item",
-                      style: TextStyle(fontWeight: FontWeight.bold,
-                       fontSize: 20,
-                       color: Colors.white),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white),
                     ),
                   ),
-                  TextButton(onPressed: (){
-                   Get.to(AllFoodItem());
-                  }, child: Text("veiw All"))
+                  TextButton(
+                      onPressed: () {
+                        Get.to(AllFoodItem());
+                      },
+                      child: Text("veiw All"))
                 ],
               ),
-               FoodItemList()
+              FoodItemList()
             ],
           ),
         ),

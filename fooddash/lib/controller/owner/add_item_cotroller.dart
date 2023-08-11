@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -11,7 +12,8 @@ class AddNewItemcontrller extends GetxController {
   FirebaseFirestore itemdb = FirebaseFirestore.instance;
   final TextEditingController itemNameController = TextEditingController();
   final TextEditingController itemPriceController = TextEditingController();
-  final TextEditingController itemDescriptionController = TextEditingController();
+  final TextEditingController itemDescriptionController =
+      TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
   final RxBool isVeg = true.obs; // Default to Veg
@@ -25,7 +27,7 @@ class AddNewItemcontrller extends GetxController {
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
     // if (pickedFile != null) {
-      // _image = File(pickedFile.path);
+    // _image = File(pickedFile.path);
     // }
   }
 
@@ -56,18 +58,32 @@ class AddNewItemcontrller extends GetxController {
     }
   }
 
-  Future<void> getMenuItems() async {
-    try {
+  // Future<List<ItemModel>> getMenuItems() async {
+  //   List<ItemModel> modeldata = [];
+  //   try {
+  //     final QuerySnapshot querySnapshot =
+  //         await itemdb.collection('menuItems').get();
+  //     modeldata = querySnapshot.docs.map((doc) {
+  //       return ItemModel(
+  //         id: doc.id,
+  //         itemname: doc['itemName'],
+  //         itemDescription: doc['itemDescription'],
+  //         ingredients: doc['ingredients'],
+  //         itemPrice: doc['itemPrice'],
+  //       );
+  //     }).toList();
+  //   } catch (e) {
+  //     // Handle error
+  //     print('Error fetching menu items: $e');
+  //   }
+  //   return modeldata;
+  // }
+   Future <void> getMenuItems() async {
+   try {
       final QuerySnapshot querySnapshot =
           await itemdb.collection('menuItems').get();
       menuItems.value = querySnapshot.docs.map((doc) {
-        return ItemModel(
-          id: doc.id,
-          itemname: doc['itemName'],
-          itemDescription: doc['itemDescription'],
-          ingredients: doc['ingredients'],
-          itemPrice: doc['itemPrice'],
-        );
+        return ItemModel.fromMap(doc);
       }).toList();
     } catch (e) {
       // Handle error
