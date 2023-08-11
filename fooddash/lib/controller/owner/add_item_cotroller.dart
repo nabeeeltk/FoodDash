@@ -23,61 +23,47 @@ class AddNewItemcontrller extends GetxController {
   // String? image;
 
   void chooseImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  final pickedFile =
+      await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    // if (pickedFile != null) {
-    // _image = File(pickedFile.path);
-    // }
+  if (pickedFile != null) {
+    _image = File(pickedFile.path);
   }
+}
+
 
   Future<void> addItem() async {
-    try {
-      if (_image != null) {
-        final Reference storageRef = FirebaseStorage.instance
-            .ref()
-            .child('menu_images/${itemNameController.text}.jpg');
-        final UploadTask uploadTask = storageRef.putFile(_image!);
-        final TaskSnapshot storageSnapshot =
-            await uploadTask.whenComplete(() {});
-        final String imageUrl = await storageSnapshot.ref.getDownloadURL();
-        // image = imageUrl;
-      }
+  try {
+    String imageUrl = ""; 
+    if (_image != null) {
+      final Reference storageRef = FirebaseStorage.instance
+          .ref()
+          .child('menu_images/${itemNameController.text}.jpg');
+      final UploadTask uploadTask = storageRef.putFile(_image!);
+      final TaskSnapshot storageSnapshot =
+          await uploadTask.whenComplete(() {});
+      imageUrl = await storageSnapshot.ref.getDownloadURL();
+      log(imageUrl.toString());
 
-      await itemdb.collection('menuItems').add({
-        "itemName": itemNameController.text,
-        "itemDescription": itemDescriptionController.text,
-        "ingredients": ingredientsController.text,
-        "itemPrice": itemPriceController.text,
-        // "category": item.category,
-        "imageUrl": _image
-      });
-    } catch (e) {
-      // Handle error
-      print('Error adding item: $e');
+      
+
     }
-  }
 
-  // Future<List<ItemModel>> getMenuItems() async {
-  //   List<ItemModel> modeldata = [];
-  //   try {
-  //     final QuerySnapshot querySnapshot =
-  //         await itemdb.collection('menuItems').get();
-  //     modeldata = querySnapshot.docs.map((doc) {
-  //       return ItemModel(
-  //         id: doc.id,
-  //         itemname: doc['itemName'],
-  //         itemDescription: doc['itemDescription'],
-  //         ingredients: doc['ingredients'],
-  //         itemPrice: doc['itemPrice'],
-  //       );
-  //     }).toList();
-  //   } catch (e) {
-  //     // Handle error
-  //     print('Error fetching menu items: $e');
-  //   }
-  //   return modeldata;
-  // }
+    await itemdb.collection('menuItems').add({
+      "itemName": itemNameController.text,
+      "itemDescription": itemDescriptionController.text,
+      "ingredients": ingredientsController.text,
+      "itemPrice": itemPriceController.text,
+      "imageUrl": imageUrl, // Update imageUrl
+    });
+  } catch (e) {
+    // Handle error
+    print('Error adding item: $e');
+  }
+}
+
+
+
    Future <void> getMenuItems() async {
    try {
       final QuerySnapshot querySnapshot =

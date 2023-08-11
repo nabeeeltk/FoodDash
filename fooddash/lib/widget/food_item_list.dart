@@ -1,10 +1,7 @@
 import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/owner/add_item_cotroller.dart';
-import '../model/Item_model.dart';
 import '../view/food_details_page/food_details.dart';
 
 class FoodItemList extends StatelessWidget {
@@ -14,19 +11,6 @@ class FoodItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    // try {
-    //   if (_controller.menuItems.isEmpty) {
-    //     return const Center(
-    //         child: Text("No data", style: TextStyle(color: Colors.white)));
-    //   } else {
-    //     // Rest of your list view code...
-    //   }
-    // } catch (e) {
-    //   print("Exception occurred: $e");
-    //   return const Center(
-    //       child:
-    //           Text("An error occurred", style: TextStyle(color: Colors.white)));
-    // }
     return FutureBuilder(
         future:_controller. getMenuItems(),
         builder: (context, snapshot) {

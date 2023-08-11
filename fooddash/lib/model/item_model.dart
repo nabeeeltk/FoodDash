@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemModel {
-  String? id, itemname, itemDescription, ingredients;
+  String? id, itemname, itemDescription, ingredients, imageUrl;
   int? itemPrice;
 
   ItemModel({
@@ -10,6 +10,7 @@ class ItemModel {
     this.itemPrice,
     this.itemDescription,
     this.itemname,
+    this.imageUrl,
   });
 
   factory ItemModel.fromMap(DocumentSnapshot map) {
@@ -19,6 +20,7 @@ class ItemModel {
       itemPrice: int.tryParse(map['itemPrice'] ?? ''),
       ingredients: map["ingredients"],
       itemDescription: map["itemDescription"],
+      imageUrl: map["imageUrl"],
     );
   }
 
@@ -28,6 +30,7 @@ class ItemModel {
       "itemPrice": itemPrice,
       "ingredients": ingredients,
       "itemDescription": itemDescription,
+      "imageUrl": imageUrl,
     };
   }
 }
