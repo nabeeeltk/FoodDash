@@ -7,6 +7,7 @@ import 'package:fooddash/model/user_model.dart';
 import 'package:fooddash/view/Auth/user/user_log_in.dart';
 
 import 'package:fooddash/view/Home/home_screen.dart';
+import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -25,6 +26,14 @@ class Authcontroller extends GetxController {
 
   var loading = false.obs;
 
+
+
+
+   void checkUserLoggedIn() async {
+    if (auth.currentUser != null) {
+      Get.offAll(() => HomeScreen()); 
+    }
+  }
   signup() async {
     try {
       loading.value = true;
@@ -54,6 +63,7 @@ class Authcontroller extends GetxController {
   signout() async {
     await auth.signOut();
     await _googleSignIn.signOut();
+    await Get.to(SplashScren());
   }
 
   signin() async {

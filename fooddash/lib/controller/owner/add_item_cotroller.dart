@@ -11,23 +11,22 @@ class AddNewItemcontrller extends GetxController {
   FirebaseFirestore itemdb = FirebaseFirestore.instance;
   final TextEditingController itemNameController = TextEditingController();
   final TextEditingController itemPriceController = TextEditingController();
-  final TextEditingController itemDescriptionController =
-      TextEditingController();
+  final TextEditingController itemDescriptionController = TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
   final RxBool isVeg = true.obs; // Default to Veg
 
   // ignore: unused_field
   File? _image;
-  String? image;
+  // String? image;
 
   void chooseImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      _image = File(pickedFile.path);
-    }
+    // if (pickedFile != null) {
+      // _image = File(pickedFile.path);
+    // }
   }
 
   Future<void> addItem() async {
@@ -40,7 +39,7 @@ class AddNewItemcontrller extends GetxController {
         final TaskSnapshot storageSnapshot =
             await uploadTask.whenComplete(() {});
         final String imageUrl = await storageSnapshot.ref.getDownloadURL();
-        image = imageUrl;
+        // image = imageUrl;
       }
 
       await itemdb.collection('menuItems').add({
@@ -49,7 +48,7 @@ class AddNewItemcontrller extends GetxController {
         "ingredients": ingredientsController.text,
         "itemPrice": itemPriceController.text,
         // "category": item.category,
-        "imageUrl": image ??= null,
+        "imageUrl": _image
       });
     } catch (e) {
       // Handle error

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
@@ -110,6 +112,7 @@ class AddNewItem extends StatelessWidget {
                 color: Colors.orange.shade800,
                 onPressed: () {
                   _controller.addItem();
+                  log(_controller.ingredientsController.text);
                 },
                 child: const Text(
                   "ADD NEW ITEM",

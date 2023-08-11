@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/shop_owner/home_screen.dart';
 import 'package:fooddash/view/user_profile/user_profile.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
+import 'package:fooddash/widget/root_screen.dart';
 
 import 'package:get/get.dart';
 
+import '../../widget/cetagory_button.dart';
 import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
@@ -32,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(const UserProfilePage());
+                        Get.to( UserProfilePage());
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.grey.shade300,
@@ -53,7 +56,11 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
-                    )
+                    ),
+
+                    IconButton(onPressed: (){
+                      Get.to(RootScreen());
+                    }, icon:Icon(Icons.home))
                   ],
                 ),
               ),
@@ -91,6 +98,17 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                    CategoryButton(text: "ALL",),
+                    CategoryButton(text: "Veg",),
+                    CategoryButton(text: "Non Veg",)
+
+                ],
+              ),
+              SizedBox(height: 10,),
             //widget
             CardCarousel(),
               const SizedBox(

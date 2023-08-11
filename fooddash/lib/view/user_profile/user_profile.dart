@@ -4,9 +4,11 @@ import 'package:fooddash/view/user_profile/user_profile_edit.dart';
 import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:get/get.dart';
 
-class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
+// import '../../controller/owner/add_item_cotroller.dart';
 
+class UserProfilePage extends StatelessWidget {
+   UserProfilePage({super.key});
+// final _controller = Get.put(AddNewItemcontrller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +74,8 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.logout),
               title: const Text('Log Out'),
               onTap: () {
-               
+            //  _controller.signout();
+
               },
             ),
             
