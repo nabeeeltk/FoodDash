@@ -36,9 +36,9 @@ class FoodItemList extends StatelessWidget {
                   leading: Container(
                     height: 100,
                     width: 80,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("image/pizza1.jpg"),
+                            image: NetworkImage(item.imageUrl.toString()),
                             fit: BoxFit.cover)),
                   ),
                   onTap: () {
