@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/Home/home_screen.dart';
+import 'package:fooddash/view/home/home_screen.dart';
 import 'package:fooddash/view/payment/track_order_page.dart';
 import 'package:get/get.dart';
 

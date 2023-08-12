@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/utile/constents.dart';
-import 'package:fooddash/view/Auth/user/forgot_password.dart';
+import 'package:fooddash/view/auth/user/forgot_password.dart';
 import 'package:fooddash/widget/root_screen.dart';
 import 'package:fooddash/widget/social_media_icon.dart';
 import 'package:get/get.dart';

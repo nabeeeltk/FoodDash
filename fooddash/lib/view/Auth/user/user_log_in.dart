@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:fooddash/utile/constents.dart';
-import 'package:fooddash/view/Auth/ShopeOwner/owner_login.dart';
-import 'package:fooddash/view/Auth/user/forgot_password.dart';
-import 'package:fooddash/view/Auth/user/user_sign_up.dart';
+import 'package:fooddash/view/auth/ShopeOwner/owner_login.dart';
+import 'package:fooddash/view/auth/user/forgot_password.dart';
+import 'package:fooddash/view/auth/user/user_sign_up.dart';
 import 'package:fooddash/widget/social_media_icon.dart';
 import 'package:get/get.dart';
 

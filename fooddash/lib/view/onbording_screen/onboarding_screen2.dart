@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/OnbordingScreen/onboarding_screen2.dart';
-import 'package:get/route_manager.dart';
+import 'package:fooddash/view/auth/user/user_log_in.dart';
+import 'package:get/get.dart';
 
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
-
+class OnboardingScreen2 extends StatefulWidget {
+  const OnboardingScreen2({Key? key}) : super(key: key);
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  State<OnboardingScreen2> createState() => _OnboardingScreen2State();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreen2State extends State<OnboardingScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +17,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           return Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("image/bg3.jpeg"),
+                image: AssetImage("image/noodiles.jpeg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -28,9 +27,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.9),
                     Colors.black.withOpacity(0.8),
-                    Colors.black.withOpacity(0.2),
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.3),
                   ],
                 ),
               ),
@@ -41,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
-                      "All your favorites ",
+                      "Taking order for Delivery",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: constraints.maxWidth * 0.1,
@@ -51,7 +50,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                   Text(
+                    Text(
                       "Get all your loved foods in one once place,you just place the orer we do the rest",
                       style: TextStyle(
                         color: Colors.white,
@@ -67,16 +66,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        gradient: const LinearGradient(
-                          colors: [Colors.orange, Colors.yellow],
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.orange.shade900,
+                            Colors.yellow.shade500
+                          ],
                         ),
                       ),
                       child: MaterialButton(
                         onPressed: () {
-                           Get.to(const OnboardingScreen2());
+                          Get.to( UserSignIn());
                         },
                         child: const Text(
-                          "Start",
+                          " Get Start",
                           style: TextStyle(fontSize: 19),
                         ),
                       ),
@@ -89,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         "Now delivery to Your Door 24/7",
                         style: TextStyle(
                           color: Colors.white70,
-                          fontSize: constraints.maxWidth * 0.025,
+                          fontSize: constraints.maxWidth * 0.035,
                         ),
                       ),
                     ),
@@ -100,4 +102,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           );
         },
       ),
-    );}}
+    );
+  }
+}

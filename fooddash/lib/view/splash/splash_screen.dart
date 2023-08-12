@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:fooddash/view/OnbordingScreen/onboarding_screen.dart';
-import 'package:fooddash/view/Home/home_screen.dart';  // Import your HomeScreen
+import 'package:fooddash/view/onbording_screen/onboarding_screen.dart';
+import 'package:fooddash/view/home/home_screen.dart';  // Import your HomeScreen
 import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
