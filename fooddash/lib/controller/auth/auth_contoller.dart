@@ -26,14 +26,12 @@ class Authcontroller extends GetxController {
 
   var loading = false.obs;
 
-
-
-
-   void checkUserLoggedIn() async {
+  void checkUserLoggedIn() async {
     if (auth.currentUser != null) {
-      Get.offAll(() => HomeScreen()); 
+      Get.offAll(() => HomeScreen());
     }
   }
+
   signup() async {
     try {
       loading.value = true;
@@ -75,7 +73,9 @@ class Authcontroller extends GetxController {
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      Get.snackbar("error", "please register or check email");
+      Get.snackbar(
+        backgroundColor: Colors.white,
+        "error", "please register or check email: $e");
     }
   }
 
@@ -93,7 +93,8 @@ class Authcontroller extends GetxController {
       Get.to(() => UserSignIn());
       loading.value = false;
     } catch (e) {
-      Get.snackbar("Error", "$e");
+      Get.snackbar(backgroundColor: Colors.white,
+        "Error", "$e");
       log("$e");
       loading.value = false;
     }

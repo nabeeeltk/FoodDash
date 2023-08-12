@@ -1,14 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/auth_contoller.dart';
+import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:fooddash/view/user_profile/user_profile_edit.dart';
 import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:get/get.dart';
 
-// import '../../controller/owner/add_item_cotroller.dart';
+
 
 class UserProfilePage extends StatelessWidget {
    UserProfilePage({super.key});
-// final _controller = Get.put(AddNewItemcontrller());
+ final ctrl = Get.put(Authcontroller);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +76,17 @@ class UserProfilePage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Log Out'),
-              onTap: () {
-            //  _controller.signout();
+              onTap: ()async {
+                User? user = FirebaseAuth.instance.currentUser;
+
+                if(user!=null){
+                  
+                await FirebaseAuth.instance.signOut();
+
+                await Get.to(SplashScren());
+                }
+                
+
 
               },
             ),

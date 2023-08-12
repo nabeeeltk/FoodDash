@@ -20,6 +20,7 @@ class FoodItemList extends StatelessWidget {
                 var item = _controller.menuItems[index];
                 log(_controller.menuItems.length.toString());
                 return ListTile(
+                  
                   horizontalTitleGap: 5,
                   title: Text(
                     item.itemname.toString(),
@@ -41,8 +42,9 @@ class FoodItemList extends StatelessWidget {
                             image: NetworkImage(item.imageUrl.toString()),
                             fit: BoxFit.cover)),
                   ),
+                  
                   onTap: () {
-                    Get.to(const FoodDetailsPage());
+                    Get.to( FoodDetailsPage());
                   },
                   trailing: Column(
                     children: [
@@ -53,6 +55,7 @@ class FoodItemList extends StatelessWidget {
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
+                     
                     ],
                   ),
                 );

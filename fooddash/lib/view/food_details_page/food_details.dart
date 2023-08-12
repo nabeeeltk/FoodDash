@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
 
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ import '../payment/payment_page.dart';
 import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
- const  FoodDetailsPage({super.key});
+  FoodDetailsPage({super.key});
+  final _controller = Get.put(AddNewItemcontrller());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class FoodDetailsPage extends StatelessWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                     color: Colors.blueGrey,
-                    image:  DecorationImage(
+                    image: DecorationImage(
                         image: AssetImage("image/Banner1.jpeg"),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadiusDirectional.only(
@@ -34,7 +36,7 @@ class FoodDetailsPage extends StatelessWidget {
                         bottomStart: Radius.circular(30))),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -48,6 +50,38 @@ class FoodDetailsPage extends StatelessWidget {
                             size: 30,
                           )),
                     ),
+                    IconButton(
+                      onPressed: () {
+                        showMenu(
+                          context: context,
+                          position: const RelativeRect.fromLTRB(
+                              100, 100, 0, 0), // Adjust the position as needed
+                          items: [
+                            const PopupMenuItem(
+                              value: 'edit',
+                              child: ListTile(
+                                title: Text('Edit'),
+                                leading: Icon(Icons.edit),
+                              ),
+                            ),
+                            const PopupMenuItem(
+                              value: 'delete',
+                              child: ListTile(
+                                title: Text('Delete'),
+                                leading: Icon(Icons.delete),
+                              ),
+                            ),
+                          ],
+                          elevation: 8.0,
+                        ).then((value) {
+                          if (value == 'edit') {
+                            // Handle edit action
+                          } else if (value == 'delete') {}
+                        });
+                      },
+                      icon: const Icon(Icons.more_vert,
+                          color: Colors.black, size: 30),
+                    )
                   ],
                 ),
               ),
@@ -59,31 +93,34 @@ class FoodDetailsPage extends StatelessWidget {
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "pizza calzone european",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white
-                ),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
             Row(
               children: [
                 TextButton.icon(
                     onPressed: () {
-                        showDialog(context: context, builder: (context) => AddReview(),);
+                      showDialog(
+                        context: context,
+                        builder: (context) => AddReview(),
+                      );
                     },
                     icon: const Icon(
                       Icons.star,
                       color: Colors.amber,
                     ),
                     label: const Text("4.0")),
-                TextButton.icon( 
+                TextButton.icon(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.delivery_dining,
@@ -99,34 +136,31 @@ class FoodDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
                     "ingredients",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
                     "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.Prosciutto e funghi is a pizza variety that is topped with tomato sauce",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
-               const  SizedBox(height: 50,),
+                const SizedBox(
+                  height: 50,
+                ),
                 Row(
-                  
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
-                       
                         height: 40,
                         onPressed: () {
-
-                          
                           Get.to(PaymentPage());
                         },
                         color: Colors.white,
@@ -136,7 +170,6 @@ class FoodDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
@@ -152,9 +185,7 @@ class FoodDetailsPage extends StatelessWidget {
                       ),
                     )
                   ],
-
                 ),
-                
               ],
             )
           ],

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/shop_owner/home_screen.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,9 +45,6 @@ class AddNewItemcontrller extends GetxController {
           await uploadTask.whenComplete(() {});
       imageUrl = await storageSnapshot.ref.getDownloadURL();
       log(imageUrl.toString());
-
-      
-
     }
 
     await itemdb.collection('menuItems').add({
@@ -56,6 +54,8 @@ class AddNewItemcontrller extends GetxController {
       "itemPrice": itemPriceController.text,
       "imageUrl": imageUrl, // Update imageUrl
     });
+
+    Get.to( const ShopeHomeScreen());
   } catch (e) {
     // Handle error
     print('Error adding item: $e');
@@ -74,6 +74,15 @@ class AddNewItemcontrller extends GetxController {
     } catch (e) {
       // Handle error
       print('Error fetching menu items: $e');
+    }
+  }
+   Future<void> deleteItem(String itemId) async {
+    try {
+      await itemdb.collection('menuItems').doc(itemId).delete();
+      print('Item deleted successfully');
+    } catch (e) {
+      // Handle error
+      print('Error deleting item: $e');
     }
   }
 }
