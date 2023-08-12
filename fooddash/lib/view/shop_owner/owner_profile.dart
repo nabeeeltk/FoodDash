@@ -6,6 +6,7 @@ class OwnerProfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("My Profile",style: TextStyle(color: Colors.white),),
         leading: Icon(Icons.abc,color: Colors.orange.shade800,),
@@ -57,7 +58,7 @@ class OwnerProfil extends StatelessWidget {
            
             ListTile(
               leading: const Icon(Icons.shopping_cart),
-              title: const Text('Order history'),
+              title: const Text('Order history',style: TextStyle(color: Colors.white),),
               onTap: () {
               
               },
@@ -65,7 +66,7 @@ class OwnerProfil extends StatelessWidget {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.reviews),
-              title: const Text('User Review'),
+              title: const Text('User Review',style: TextStyle(color: Colors.white)),
               onTap: () {
                
               },
@@ -73,7 +74,7 @@ class OwnerProfil extends StatelessWidget {
            const Divider(),
             ListTile(
               leading: const Icon(Icons.bar_chart),
-              title:const  Text('Statics'),
+              title:const  Text('Statics',style: TextStyle(color: Colors.white)),
               onTap: () {
                 
               },
@@ -81,7 +82,7 @@ class OwnerProfil extends StatelessWidget {
            const  Divider(),
             ListTile(
               leading: const Icon(Icons.logout),
-              title: const Text('Log Out'),
+              title: const Text('Log Out',style: TextStyle(color: Colors.white)),
               onTap: () {
                
               },
