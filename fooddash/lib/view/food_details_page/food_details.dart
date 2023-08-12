@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
 
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   FoodDetailsPage({super.key});
-  final _controller = Get.put(AddNewItemcontrller());
+ 
 
   @override
   Widget build(BuildContext context) {

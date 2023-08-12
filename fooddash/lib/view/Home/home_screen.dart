@@ -7,7 +7,6 @@ import 'package:fooddash/widget/root_screen.dart';
 
 import 'package:get/get.dart';
 
-import '../../widget/cetagory_button.dart';
 import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
