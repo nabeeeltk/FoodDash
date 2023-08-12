@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/OnbordingScreen/onboarding_screen.dart';
 import 'package:fooddash/view/Home/home_screen.dart';  // Import your HomeScreen
@@ -46,15 +48,15 @@ class SplashScren extends StatelessWidget {
 
   // Function to determine where to navigate based on user authentication status
 void determineDestination() async {
-  print("Checking user authentication...");
+  log("Checking user authentication...");
   await Future.delayed(const Duration(seconds: 4));
 
   if (_authController.auth.currentUser != null) {
-    print("User is authenticated. Navigating to HomeScreen.");
+    log("User is authenticated. Navigating to HomeScreen.");
     Get.off(() => HomeScreen());
   } else {
-    print("User is not authenticated. Navigating to OnboardingScreen.");
-    Get.off(() => OnboardingScreen());
+    log("User is not authenticated. Navigating to OnboardingScreen.");
+    Get.off(() =>const  OnboardingScreen());
   }
 }
 

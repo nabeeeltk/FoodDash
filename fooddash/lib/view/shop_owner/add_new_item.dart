@@ -10,6 +10,8 @@ class AddNewItem extends StatelessWidget {
   FirebaseFirestore db = FirebaseFirestore.instance;
   final _controller = Get.put(AddNewItemcontrller());
 
+  AddNewItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 class AddReview extends StatelessWidget {
+  const AddReview({super.key});
+
   @override
   Widget build(BuildContext context) {
     double userRating = 0.0;
@@ -58,7 +62,7 @@ class AddReview extends StatelessWidget {
           onPressed: () {
             Get.back();
             // You can implement logic here to handle the user's rating
-            print('User rated: $userRating');
+            log('User rated: $userRating');
           },
           child: const Text(
             'Submit',

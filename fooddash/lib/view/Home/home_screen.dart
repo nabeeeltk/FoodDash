@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/user_profile/user_profile.dart';
+import 'package:fooddash/widget/Search_filtter.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
 import 'package:fooddash/widget/root_screen.dart';
@@ -11,10 +12,8 @@ import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  List itemCategory = [
-    "Veg"
-        "non Veg"
-  ];
+  List<String> itemCategory = ["All", "Veg", "Non-Veg"];
+  String selectedCategory = "All";
 
   HomeScreen({super.key});
 
@@ -49,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                       width: 20,
                     ),
                     const Text(
-                      "Location",
+                      "@username",
                       style: TextStyle(
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
@@ -63,57 +62,8 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "Hay User",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.white),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 50,
-                  child: TextField(
-                    cursorHeight: 25,
-                    cursorColor: Colors.black,
-                    decoration: InputDecoration(
-                        hintText: "Search dishes",
-                        hintStyle: const TextStyle(fontSize: 18),
-                        fillColor: const Color.fromARGB(179, 209, 207, 207),
-                        filled: true,
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          size: 30,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none)),
-                  ),
-                ),
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CategoryButton(
-                    text: "ALL",
-                  ),
-                  CategoryButton(
-                    text: "Veg",
-                  ),
-                  CategoryButton(
-                    text: "Non Veg",
-                  )
-                ],
-              ),
-              SizedBox(
+            const  SearchWidget(),
+             const  SizedBox(
                 height: 10,
               ),
               //widget
@@ -136,11 +86,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.to(AllFoodItem());
+                        Get.to( const AllFoodItem());
                       },
-                      child: Text("veiw All"))
+                      child:const  Text("veiw All"))
                 ],
               ),
+              
               FoodItemList()
             ],
           ),

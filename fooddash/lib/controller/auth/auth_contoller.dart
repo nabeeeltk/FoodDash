@@ -43,7 +43,7 @@ class Authcontroller extends GetxController {
       loading.value = false;
     } catch (e) {
       Get.snackbar(backgroundColor: Colors.white, "error", "$e");
-      print("$e");
+      log("$e");
       loading.value = false;
     }
   }
@@ -114,7 +114,7 @@ class Authcontroller extends GetxController {
         await auth.signInWithCredential(credential);
       }
     } catch (error) {
-      print("Google Sign-In Error: $error");
+      log("Google Sign-In Error: $error");
     }
   }
 }

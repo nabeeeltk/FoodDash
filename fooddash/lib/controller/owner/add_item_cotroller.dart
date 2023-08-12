@@ -58,7 +58,7 @@ class AddNewItemcontrller extends GetxController {
     Get.to( const ShopeHomeScreen());
   } catch (e) {
     // Handle error
-    print('Error adding item: $e');
+    log('Error adding item: $e');
   }
 }
 
@@ -73,16 +73,16 @@ class AddNewItemcontrller extends GetxController {
       }).toList();
     } catch (e) {
       // Handle error
-      print('Error fetching menu items: $e');
+      log('Error fetching menu items: $e');
     }
   }
    Future<void> deleteItem(String itemId) async {
     try {
       await itemdb.collection('menuItems').doc(itemId).delete();
-      print('Item deleted successfully');
+      log('Item deleted successfully');
     } catch (e) {
       // Handle error
-      print('Error deleting item: $e');
+      log('Error deleting item: $e');
     }
   }
 }

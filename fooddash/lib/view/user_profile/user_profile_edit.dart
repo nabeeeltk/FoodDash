@@ -18,12 +18,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
          leading: IconButton(onPressed: (){
           Get.back();
          }, 
-        icon:const  Icon(Icons.arrow_back_ios_new,size: 30,)),
-        title: const Text('Edit Profile'),
+        icon:const  Icon(Icons.arrow_back_ios_new,size: 30,color: Colors.white)),
+        title: const Text('Edit Profile',style: TextStyle(color: Colors.white),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -32,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           children: [
              CircleAvatar(
               radius: 70,
-              backgroundImage:const AssetImage('image/fooddash.jpg'),
+              backgroundImage:const AssetImage('image/profileimg.png',),
               child: IconButton(onPressed: () {
                 
               }, icon:const Icon(Icons.camera_alt)), // Replace with the user's profile picture

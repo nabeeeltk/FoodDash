@@ -18,7 +18,7 @@ class CategoryButton extends StatelessWidget {
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(30)
                         ),
-                        child: Center(child: Text(text,style: TextStyle(fontSize: 18,
+                        child: Center(child: Text(text,style:const  TextStyle(fontSize: 18,
                         fontWeight: FontWeight.bold,color: Colors.white),)),
                        ),
                      );

@@ -112,7 +112,7 @@ class FoodDetailsPage extends StatelessWidget {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        builder: (context) => AddReview(),
+                        builder: (context) =>const  AddReview(),
                       );
                     },
                     icon: const Icon(
