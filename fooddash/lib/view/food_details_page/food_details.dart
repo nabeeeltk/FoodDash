@@ -9,12 +9,13 @@ import '../payment/payment_page.dart';
 import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
-  FoodDetailsPage({super.key});
+ const  FoodDetailsPage({super.key});
  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(

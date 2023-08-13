@@ -7,10 +7,12 @@ class UserAdress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
-           
+            
           children: [
+           
                    const SizedBox(height: 30,),
                    Padding(
                      padding: const EdgeInsets.all(8.0),
@@ -26,11 +28,12 @@ class UserAdress extends StatelessWidget {
                           icon: const Icon(Icons.arrow_back_ios)),
                                      ),
                            const SizedBox(width: 20,),
-                          const Text("My Address")
+                          const Text("My Address",style: TextStyle(fontSize: 20,color: Colors.white),)
                       ],
 
                      ),
                    ),
+                     
 
 
           ],

@@ -8,7 +8,6 @@ class OwnerProfil extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("My Profile",style: TextStyle(color: Colors.white),),
         leading: Icon(Icons.abc,color: Colors.orange.shade800,),
         backgroundColor: Colors.orange.shade800,
       ),

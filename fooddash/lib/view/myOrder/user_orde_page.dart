@@ -8,13 +8,13 @@ class UserOrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
+        backgroundColor: Colors.black,
       appBar: AppBar(
-       
-        title:const Text("My Order"),
+        backgroundColor: Colors.black,
+        title:const Text("My Order",style: TextStyle(color: Colors.white),),
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon:const  Icon(Icons.arrow_back_ios,size: 30,)),
+        }, icon:const  Icon(Icons.arrow_back_ios,size: 30,color: Colors.white,)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -23,6 +23,7 @@ class UserOrderPage extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
               return Card(
+                color: Colors.grey.shade200,
                   child: Column(
                     children: [
                       Row(

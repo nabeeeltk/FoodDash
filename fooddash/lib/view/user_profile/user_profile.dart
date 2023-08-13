@@ -104,6 +104,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.logout),
               title: const Text('Log Out',style: TextStyle(color: Colors.white)),
               onTap: ()async {
+                
                 User? user = FirebaseAuth.instance.currentUser;
 
                 if(user!=null){
