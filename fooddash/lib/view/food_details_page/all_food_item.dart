@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/widget/Search_filtter.dart';
+import 'package:fooddash/widget/search_filtter.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:get/get.dart';
 

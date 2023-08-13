@@ -20,7 +20,7 @@ class AllCategoryWidget extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10),
               child: InkWell(
                 onTap: () {
-                  Get.to( FoodDetailsPage());
+                  Get.to(const  FoodDetailsPage());
                 },
                 child: Container(
                   width: 150,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/user_profile/user_profile.dart';
-import 'package:fooddash/widget/Search_filtter.dart';
+import 'package:fooddash/widget/search_filtter.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
 import 'package:fooddash/widget/root_screen.dart';

@@ -9,7 +9,7 @@ import 'package:loading_indicator/loading_indicator.dart';
 import '../../controller/auth/auth_contoller.dart';
 
 class SplashScren extends StatelessWidget {
- SplashScren({Key? key});
+  SplashScren({Key? key});
 
     final Authcontroller _authController = Authcontroller();
 

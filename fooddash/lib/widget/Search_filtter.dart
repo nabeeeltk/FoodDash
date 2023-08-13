@@ -67,7 +67,7 @@ class SearchWidget extends StatelessWidget {
                           ]).then((value) {
                         if (value == "All") {
                         } else if (value == "Vegetable") {
-                        } else if (value == "Non Vegetable") ;
+                        } else if (value == "Non Vegetable");
                       });
                     },
                     icon: const Icon(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooddash/widget/Search_filtter.dart';
+import 'package:fooddash/widget/search_filtter.dart';
 
 import '../../widget/food_item_list.dart';
 
@@ -113,7 +113,7 @@ class ShopeHomeScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            SearchWidget(),
+           const  SearchWidget(),
            FoodItemList()
           ],
         ),
