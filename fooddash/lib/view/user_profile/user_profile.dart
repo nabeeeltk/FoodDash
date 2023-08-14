@@ -80,7 +80,7 @@ class UserProfilePage extends StatelessWidget {
             ),
               const Divider(),
             ListTile(
-              leading: const Icon(Icons.shopping_basket),
+              leading: const Icon(Icons.shopping_cart),
               title: const Text('My Cart',
                   style: TextStyle(color: Colors.white)),
               onTap: () {

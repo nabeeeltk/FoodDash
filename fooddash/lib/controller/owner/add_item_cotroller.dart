@@ -62,9 +62,6 @@ class AddNewItemcontrller extends GetxController {
     log('Error adding item: $e');
   }
 }
-
-
-
    Future <void> getMenuItems() async {
    try {
       final QuerySnapshot querySnapshot =

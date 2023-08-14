@@ -21,7 +21,7 @@ class FoodItemList extends StatelessWidget {
                 return ListTile(
                   horizontalTitleGap: 5,
                   title: Text(
-                    item.itemname.toString(),
+                     "₹ ${item.itemname.toString()}",
                     style: const TextStyle(
                         fontSize: 18,
                         height: 0,

@@ -9,7 +9,7 @@ class MyCardController extends GetxController {
 
    RxList<ItemModel> mycartItems = <ItemModel>[].obs;
   RxInt itemCount = 1.obs;
-  Rx<ItemModel?> selectedCartItem = Rx<ItemModel?>(null); 
+ 
   void  increaseItemCount() {
     itemCount++;
     
