@@ -1,8 +1,16 @@
+
+
+import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:get/get.dart';
 
+import '../model/Item_model.dart';
+
 class MyCardController extends GetxController {
-  RxInt itemCount = 1.obs; 
-  void increaseItemCount() {
+
+   RxList<ItemModel> mycartItems = <ItemModel>[].obs;
+  RxInt itemCount = 1.obs;
+  Rx<ItemModel?> selectedCartItem = Rx<ItemModel?>(null); 
+  void  increaseItemCount() {
     itemCount++;
     
   }
@@ -12,4 +20,13 @@ class MyCardController extends GetxController {
       itemCount--;
     }
   }
+  
+  void addItemToCart(ItemModel item) async {
+    
+      mycartItems.add(item);
+      
+      await Get.to(MyCart());
+   
+  }
+  
 }

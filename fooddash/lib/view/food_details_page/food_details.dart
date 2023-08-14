@@ -1,18 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
+import 'package:fooddash/view/shop_owner/edit_item_page.dart';
 
 import 'package:get/get.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../../model/Item_model.dart';
 import '../payment/payment_page.dart';
-import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final ItemModel pitem; // Receive the item data
 
-  const FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
+  final _cartController = Get.put(MyCardController());
+
+  FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,7 @@ class FoodDetailsPage extends StatelessWidget {
                           elevation: 8.0,
                         ).then((value) {
                           if (value == 'edit') {
-                            // Handle edit action
+                            Get.to(EditItemPage());
                           } else if (value == 'delete') {}
                         });
                       },
@@ -91,20 +94,20 @@ class FoodDetailsPage extends StatelessWidget {
               height: 10,
             ),
             Padding(
-              padding: EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 pitem.itemname.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 pitem.itemDescription.toString(),
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: const TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
             Row(
@@ -147,7 +150,7 @@ class FoodDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
                     pitem.ingredients.toString(),
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: const TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
                 const SizedBox(
@@ -176,7 +179,8 @@ class FoodDetailsPage extends StatelessWidget {
                       child: MaterialButton(
                         height: 40,
                         onPressed: () {
-                          showAlert(context, QuickAlertType.success);
+                          _cartController.addItemToCart(pitem);
+                          log(pitem.toString());
                         },
                         color: Colors.orange.shade800,
                         child: const Text(
@@ -192,18 +196,6 @@ class FoodDetailsPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void showAlert(BuildContext context, QuickAlertType quickAlertType) {
-    QuickAlert.show(
-      context: context,
-      type: quickAlertType,
-      text: "",
-      confirmBtnColor: Colors.orange.shade800,
-      onConfirmBtnTap: () {
-        Get.to(MyCart());
-      },
     );
   }
 }

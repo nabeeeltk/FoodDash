@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/shop_owner/home_screen.dart';
+import 'package:fooddash/widget/root_screen.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -55,7 +56,7 @@ class AddNewItemcontrller extends GetxController {
       "imageUrl": imageUrl, // Update imageUrl
     });
 
-    Get.to( const ShopeHomeScreen());
+    Get.to( const RootScreen());
   } catch (e) {
     // Handle error
     log('Error adding item: $e');
@@ -83,6 +84,34 @@ class AddNewItemcontrller extends GetxController {
     } catch (e) {
       // Handle error
       log('Error deleting item: $e');
+    }
+  }
+   Future<void> editItem(String itemId) async {
+    try {
+      String imageUrl = "";
+      if (_image != null) {
+        final Reference storageRef = FirebaseStorage.instance
+            .ref()
+            .child('menu_images/${itemNameController.text}.jpg');
+        final UploadTask uploadTask = storageRef.putFile(_image!);
+        final TaskSnapshot storageSnapshot =
+            await uploadTask.whenComplete(() {});
+        imageUrl = await storageSnapshot.ref.getDownloadURL();
+        log(imageUrl.toString());
+      }
+
+      await itemdb.collection('menuItems').doc(itemId).update({
+        "itemName": itemNameController.text,
+        "itemDescription": itemDescriptionController.text,
+        "ingredients": ingredientsController.text,
+        "itemPrice": itemPriceController.text,
+        "imageUrl": imageUrl, // Update imageUrl
+      });
+
+      Get.to(const ShopeHomeScreen());
+    } catch (e) {
+      // Handle error
+      log('Error editing item: $e');
     }
   }
 }

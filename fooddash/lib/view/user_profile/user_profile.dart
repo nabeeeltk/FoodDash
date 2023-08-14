@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/auth/auth_contoller.dart';
+import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:fooddash/view/user_profile/user_profile_edit.dart';
@@ -76,6 +77,15 @@ class UserProfilePage extends StatelessWidget {
               title: const Text('Help& Support',
                   style: TextStyle(color: Colors.white)),
               onTap: () {},
+            ),
+              const Divider(),
+            ListTile(
+              leading: const Icon(Icons.shopping_basket),
+              title: const Text('My Cart',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Get.to(MyCart());
+              },
             ),
             const Divider(),
             ListTile(

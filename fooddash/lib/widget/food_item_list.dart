@@ -60,6 +60,7 @@ class FoodItemList extends StatelessWidget {
                 return const Divider(thickness: 0, color: Colors.black);
               },
               itemCount: _controller.menuItems.length);
-        });
+        }
+        );
   }
 }

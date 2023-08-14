@@ -1,12 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/payment/payment_page.dart';
+
 import 'package:get/get.dart';
 
 import '../../controller/car_controller.dart';
-import '../../widget/build_card.dart';
+
+import '../food_details_page/food_details.dart';
 
 class MyCart extends StatelessWidget {
-  final MyCardController controller = Get.put(MyCardController());
+  final MyCardController _cardController = Get.put(MyCardController());
+  final AddNewItemcontrller  _controller = Get.put(AddNewItemcontrller());
   MyCart({super.key});
 
   @override
@@ -33,23 +39,59 @@ class MyCart extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            LayoutBuilder(
-              builder: (context, constraints) {
-                return ListView.separated(
-                  physics:const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return buildCard(context, constraints);
-                  },
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 1,
-                    );
-                  },
-                  itemCount: 3,
-                );
-              },
-            ),
+           Obx(() {
+             final cartItems = _cardController.mycartItems;
+            return
+             ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  var item = _controller.menuItems[index];
+                  log(_controller.menuItems.length.toString());
+                  return ListTile(
+                    horizontalTitleGap: 5,
+                    title: Text(
+                      item.itemname.toString(),
+                      style: const TextStyle(
+                          fontSize: 18,
+                          height: 0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange),
+                    ),
+                    subtitle: Text(
+                      item.itemDescription.toString(),
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                    leading: Container(
+                      height: 100,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(item.imageUrl.toString()),
+                              fit: BoxFit.cover)),
+                    ),
+                    onTap: () {
+                      Get.to( FoodDetailsPage(pitem: item,));
+                    },
+                    trailing: Column(
+                      children: [
+                        Text(
+                          item.itemPrice.toString(),
+                          style: const TextStyle(
+                              color: Colors.green,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider(thickness: 0, color: Colors.black);
+                },
+                itemCount: cartItems.length);
+           },
+              
+           ),
             Container(
               height: 150,
               width: double.infinity,
