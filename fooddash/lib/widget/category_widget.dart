@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fooddash/view/food_details_page/food_details.dart';
 import 'package:get/get.dart';
 
+import '../controller/owner/add_item_cotroller.dart';
+
 class AllCategoryWidget extends StatelessWidget {
-  const AllCategoryWidget({Key? key}) : super(key: key);
+   final _controller = Get.put(AddNewItemcontrller());
+ AllCategoryWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +16,16 @@ class AllCategoryWidget extends StatelessWidget {
         // Remove the height constraint, so the ListView can expand to fit the available space.
         height: 200,
         child: ListView.builder(
+          
           scrollDirection: Axis.horizontal,
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
+            var item = _controller.menuItems[index];
             return Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding:  EdgeInsets.only(right: 10),
               child: InkWell(
                 onTap: () {
-                  Get.to(const  FoodDetailsPage());
+                  Get.to( FoodDetailsPage(pitem:item ,));
                 },
                 child: Container(
                   width: 150,

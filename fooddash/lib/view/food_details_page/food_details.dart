@@ -5,17 +5,18 @@ import 'package:get/get.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
+import '../../model/Item_model.dart';
 import '../payment/payment_page.dart';
 import '../my_cart/my_cart.dart';
 
 class FoodDetailsPage extends StatelessWidget {
- const  FoodDetailsPage({super.key});
- 
+  final ItemModel pitem; // Receive the item data
+
+  const FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
@@ -26,12 +27,12 @@ class FoodDetailsPage extends StatelessWidget {
               child: Container(
                 height: 300,
                 width: double.infinity,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     color: Colors.blueGrey,
                     image: DecorationImage(
-                        image: AssetImage("image/Banner1.jpeg"),
+                        image: NetworkImage(pitem.imageUrl.toString()),
                         fit: BoxFit.cover),
-                    borderRadius: BorderRadiusDirectional.only(
+                    borderRadius: const BorderRadiusDirectional.only(
                         bottomEnd: Radius.circular(30),
                         bottomStart: Radius.circular(30))),
                 child: Row(
@@ -89,20 +90,20 @@ class FoodDetailsPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                "pizza calzone european",
+                pitem.itemname.toString(),
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.",
+                pitem.itemDescription.toString(),
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
@@ -112,7 +113,7 @@ class FoodDetailsPage extends StatelessWidget {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        builder: (context) =>const  AddReview(),
+                        builder: (context) => const AddReview(),
                       );
                     },
                     icon: const Icon(
@@ -142,10 +143,10 @@ class FoodDetailsPage extends StatelessWidget {
                         color: Colors.white),
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
-                    "Prosciutto e funghi is a pizza variety that is topped with tomato sauce.Prosciutto e funghi is a pizza variety that is topped with tomato sauce",
+                    pitem.ingredients.toString(),
                     style: TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
