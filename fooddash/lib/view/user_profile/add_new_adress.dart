@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddNewAddress extends StatelessWidget {
-  const AddNewAddress({super.key});
+const AddNewAddress({super.key});
 
   @override
   Widget build(BuildContext context) {

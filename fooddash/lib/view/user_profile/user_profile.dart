@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
+   User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

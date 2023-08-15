@@ -25,45 +25,45 @@ class AddNewItemcontrller extends GetxController {
   // String? image;
 
   void chooseImage() async {
-  final pickedFile =
-      await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
-  if (pickedFile != null) {
-    _image = File(pickedFile.path);
+    if (pickedFile != null) {
+      _image = File(pickedFile.path);
+    }
   }
-}
-
 
   Future<void> addItem() async {
-  try {
-    String imageUrl = ""; 
-    if (_image != null) {
-      final Reference storageRef = FirebaseStorage.instance
-          .ref()
-          .child('menu_images/${itemNameController.text}.jpg');
-      final UploadTask uploadTask = storageRef.putFile(_image!);
-      final TaskSnapshot storageSnapshot =
-          await uploadTask.whenComplete(() {});
-      imageUrl = await storageSnapshot.ref.getDownloadURL();
-      log(imageUrl.toString());
+    try {
+      String imageUrl = "";
+      if (_image != null) {
+        final Reference storageRef = FirebaseStorage.instance
+            .ref()
+            .child('menu_images/${itemNameController.text}.jpg');
+        final UploadTask uploadTask = storageRef.putFile(_image!);
+        final TaskSnapshot storageSnapshot =
+            await uploadTask.whenComplete(() {});
+        imageUrl = await storageSnapshot.ref.getDownloadURL();
+        log(imageUrl.toString());
+      }
+
+      await itemdb.collection('menuItems').add({
+        "itemName": itemNameController.text,
+        "itemDescription": itemDescriptionController.text,
+        "ingredients": ingredientsController.text,
+        "itemPrice": itemPriceController.text,
+        "imageUrl": imageUrl, // Update imageUrl
+      });
+
+      await Get.to(const RootScreen());
+    } catch (e) {
+      // Handle error
+      log('Error adding item: $e');
     }
-
-    await itemdb.collection('menuItems').add({
-      "itemName": itemNameController.text,
-      "itemDescription": itemDescriptionController.text,
-      "ingredients": ingredientsController.text,
-      "itemPrice": itemPriceController.text,
-      "imageUrl": imageUrl, // Update imageUrl
-    });
-
-    Get.to( const RootScreen());
-  } catch (e) {
-    // Handle error
-    log('Error adding item: $e');
   }
-}
-   Future <void> getMenuItems() async {
-   try {
+
+  Future<void> getMenuItems() async {
+    try {
       final QuerySnapshot querySnapshot =
           await itemdb.collection('menuItems').get();
       menuItems.value = querySnapshot.docs.map((doc) {
@@ -74,16 +74,19 @@ class AddNewItemcontrller extends GetxController {
       log('Error fetching menu items: $e');
     }
   }
-   Future<void> deleteItem(String itemId) async {
+
+  Future<void> deleteItem(String itemId) async {
     try {
       await itemdb.collection('menuItems').doc(itemId).delete();
       log('Item deleted successfully');
+      await Get.to(const ShopeHomeScreen());
     } catch (e) {
       // Handle error
       log('Error deleting item: $e');
     }
   }
-   Future<void> editItem(String itemId) async {
+
+  Future<void> editItem(String itemId) async {
     try {
       String imageUrl = "";
       if (_image != null) {
@@ -105,7 +108,7 @@ class AddNewItemcontrller extends GetxController {
         "imageUrl": imageUrl, // Update imageUrl
       });
 
-      Get.to(const ShopeHomeScreen());
+      Get.to(const RootScreen());
     } catch (e) {
       // Handle error
       log('Error editing item: $e');

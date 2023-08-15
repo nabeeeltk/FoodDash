@@ -21,7 +21,7 @@ class FoodItemList extends StatelessWidget {
                 return ListTile(
                   horizontalTitleGap: 5,
                   title: Text(
-                     "₹ ${item.itemname.toString()}",
+                     item.itemname.toString(),
                     style: const TextStyle(
                         fontSize: 18,
                         height: 0,
@@ -46,7 +46,7 @@ class FoodItemList extends StatelessWidget {
                   trailing: Column(
                     children: [
                       Text(
-                        item.itemPrice.toString(),
+                       "₹ ${item.itemPrice.toString()}",
                         style: const TextStyle(
                             color: Colors.green,
                             fontSize: 20,
