@@ -23,10 +23,12 @@ class FoodDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      
       body: Column(
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-     
+          SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.all(0),
             child: Container(

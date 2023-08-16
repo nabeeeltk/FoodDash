@@ -11,12 +11,19 @@ import '../../controller/car_controller.dart';
 import '../food_details_page/food_details.dart';
 
 class MyCart extends StatelessWidget {
+
   final MyCardController _cardController = Get.put(MyCardController());
   final AddNewItemcontrller  _controller = Get.put(AddNewItemcontrller());
+   
+    
   MyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
+     double totalPrize = 0.0;
+      for (var item in _cardController.mycartItems) {
+    totalPrize += double.parse(item.itemPrice.toString()); // Assuming itemPrice is a String
+  }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -75,7 +82,7 @@ class MyCart extends StatelessWidget {
                     trailing: Column(
                       children: [
                         Text(
-                          item.itemPrice.toString(),
+                        "₹ ${item.itemPrice.toString()}",
                           style: const TextStyle(
                               color: Colors.green,
                               fontSize: 20,
@@ -103,12 +110,13 @@ class MyCart extends StatelessWidget {
                 ),
               ),
               child: Column(
+                
                 children: [
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
-                    "TOTAL PRIZE :900 ",
+                  Text(
+                   "TOTAL PRIZE: ${totalPrize.toStringAsFixed(2)}", 
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                   Padding(

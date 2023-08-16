@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
-   User? user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,11 +79,11 @@ class UserProfilePage extends StatelessWidget {
                   style: TextStyle(color: Colors.white)),
               onTap: () {},
             ),
-              const Divider(),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.shopping_cart),
-              title: const Text('My Cart',
-                  style: TextStyle(color: Colors.white)),
+              title:
+                  const Text('My Cart', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Get.to(MyCart());
               },
