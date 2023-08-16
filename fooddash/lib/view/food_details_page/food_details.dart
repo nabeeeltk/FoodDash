@@ -1,22 +1,22 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
+import 'package:fooddash/model/review_model.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
 import 'package:fooddash/view/shop_owner/edit_item_page.dart';
-
 import 'package:get/get.dart';
-
+import '../../controller/review_controller.dart';
 import '../../model/Item_model.dart';
 import '../payment/payment_page.dart';
 
 class FoodDetailsPage extends StatelessWidget {
-  final ItemModel pitem; // Receive the item data
+final ItemModel pitem; // Receive the item data
 
   final _cartController = Get.put(MyCardController());
   final controller = Get.put(AddNewItemcontrller());
 
+//  final ReviewController _reviewController = Get.put(ReviewController());
   FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class FoodDetailsPage extends StatelessWidget {
 
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
+         const  SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.all(0),
             child: Container(
@@ -64,7 +64,7 @@ class FoodDetailsPage extends StatelessWidget {
                       showMenu(
                         context: context,
                         position: const RelativeRect.fromLTRB(
-                            100, 100, 0, 0), // Adjust the position as needed
+                            100, 100, 0, 0), 
                         items: [
                           const PopupMenuItem(
                             value: 'edit',
@@ -139,7 +139,18 @@ class FoodDetailsPage extends StatelessWidget {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (context) => const AddReview(),
+                      builder: (context) => AddReview(
+          // onAddReview: (double rating, String comment) {
+          //   // Create a ReviewModel object
+          //   ReviewModel review = ReviewModel(
+          //     username: 'User', // You can replace with the actual username
+          //     rating: rating.toInt(),
+          //     comment: comment,
+          //   );
+          //   // Add the review to the ReviewController
+          //   _reviewController.addReview(review);
+          // },
+        )
                     );
                   },
                   icon: const Icon(

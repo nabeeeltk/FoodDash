@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/shop_owner/user_review.dart';
+import 'package:get/get.dart';
 
 class OwnerProfil extends StatelessWidget {
   const OwnerProfil({super.key});
@@ -67,7 +69,7 @@ class OwnerProfil extends StatelessWidget {
               leading: const Icon(Icons.reviews),
               title: const Text('User Review',style: TextStyle(color: Colors.white)),
               onTap: () {
-               
+                Get.to(UserReview());
               },
             ),
            const Divider(),

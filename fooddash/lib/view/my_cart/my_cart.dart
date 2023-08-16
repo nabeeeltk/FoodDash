@@ -102,12 +102,12 @@ class MyCart extends StatelessWidget {
             Container(
               height: 150,
               width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
+              decoration:  BoxDecoration(
+                color: Colors.orange.shade800,
+                // borderRadius: BorderRadius.only(
+                //   topLeft: Radius.circular(20),
+                //   topRight: Radius.circular(20),
+                // ),
               ),
               child: Column(
                 
@@ -116,13 +116,13 @@ class MyCart extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                   "TOTAL PRIZE: ${totalPrize.toStringAsFixed(2)}", 
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                   "TOTAL AMOUNT: ${totalPrize.toStringAsFixed(2)}", 
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.white),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MaterialButton(
-                      color: Colors.orange.shade800,
+                      color: Colors.black,
                       minWidth: 300,
                       height: 60,
                       shape: RoundedRectangleBorder(

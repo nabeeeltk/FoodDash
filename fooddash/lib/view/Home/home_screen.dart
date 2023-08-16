@@ -33,15 +33,23 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         Get.to(UserProfilePage());
                       },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey.shade300,
+                      child: const CircleAvatar(
+                        
+                        backgroundColor: Colors.orange,
+                        
                         radius: 25,
-                        child: const Icon(
-                          Icons.person,
-                          size: 30,
-                          color: Colors.black,
+                        child: CircleAvatar(
+                          radius: 23,
+                            backgroundColor: Colors.black,
+                          child:  Icon(
+                            Icons.person,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                         ),
+                        
                       ),
+                      
                     ),
                     const SizedBox(
                       width: 20,
