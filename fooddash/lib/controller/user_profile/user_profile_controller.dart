@@ -1,18 +1,13 @@
-
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'dart:io';
-
 class UserProfileController extends GetxController {
   File? _profileImage;
    String? _profileImageUrl; 
   // String? image;
-   File? get profileImage => _profileImage;
-  String? get profileImageUrl => _profileImageUrl;
-
+   
 
   void chooseImage() async {
     final pickedFile =
@@ -26,7 +21,7 @@ class UserProfileController extends GetxController {
 
   Future<void> uploadImageToFirebase(String userId) async {
     if (_profileImage == null) {
-      print("No image selected.");
+      log("No image selected.");
       return;
     }
 
@@ -37,13 +32,13 @@ class UserProfileController extends GetxController {
       await ref.putFile(_profileImage!);
 
       String profileimageUrl = await ref.getDownloadURL();
-      print("Image uploaded to Firebase Storage: $profileimageUrl");
+      log("Image uploaded to Firebase Storage: $profileimageUrl");
 
       // You can save the `imageUrl` in your Firestore user profile document
       // or perform any other necessary actions with it.
 
     } catch (e) {
-      print("Error uploading image to Firebase Storage: $e");
+    log("Error uploading image to Firebase Storage: $e");
     }
   }
    Future<String?> fetchProfileImageUrl(String userId) async {
@@ -56,7 +51,7 @@ class UserProfileController extends GetxController {
       return _profileImageUrl;
       
     } catch (e) {
-      print("Error fetching profile image URL: $e");
+      log("Error fetching profile image URL: $e");
       return null;
     }
   }

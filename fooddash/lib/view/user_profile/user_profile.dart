@@ -13,7 +13,7 @@ class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
-  final pimage= Get.put(UserProfileController());
+  final pimage = Get.put(UserProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +40,36 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10),
-           const CircleAvatar(
+            const  CircleAvatar(
               radius: 70,
-              // backgroundImage:NetworkImage(pimage.profileImageUrl.toString())
-              
+             backgroundImage:AssetImage("image/profileimg.png")
             ),
-           
-           const  SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Container(
-                height: 40,
-                width: 150,
-                decoration: BoxDecoration(color: Colors.grey.shade300),
-                child: TextButton(
-                  onPressed: (){
-                    pimage.chooseImage();
-                  },
-                  child: const Text(
-                    "Choose Image",
-                    style: TextStyle(color: Colors.black),
-                  ),
+              height: 40,
+              width: 150,
+              decoration: BoxDecoration(color: Colors.grey.shade300),
+              child: TextButton(
+                onPressed: () {
+                  pimage.chooseImage();
+                },
+                child: const Text(
+                  "Choose Image",
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
-              
+            ),
             const SizedBox(height: 10),
             Text(
               user!.email.toString(),
-              style:const  TextStyle(
-                  fontSize: 20,
+              
+              style: const TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.orange),
             ),
-           
             const SizedBox(height: 30),
             ListTile(
               leading: const Icon(Icons.person),

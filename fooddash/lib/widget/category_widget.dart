@@ -22,7 +22,7 @@ class AllCategoryWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             var item = _controller.menuItems[index];
             return Padding(
-              padding:  EdgeInsets.only(right: 10),
+              padding: const  EdgeInsets.only(right: 10),
               child: InkWell(
                 onTap: () {
                   Get.to( FoodDetailsPage(pitem:item ,));
