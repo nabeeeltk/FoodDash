@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/view/user_profile/user_profile.dart';
 import 'package:fooddash/widget/search_filtter.dart';
@@ -11,6 +12,7 @@ import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
+   User? user = FirebaseAuth.instance.currentUser;
   List<String> itemCategory = ["All", "Veg", "Non-Veg"];
   String selectedCategory = "All";
 
@@ -54,12 +56,12 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    const Text(
-                      "@username",
-                      style: TextStyle(
+                     Text(
+                      user!.email.toString(),
+                      style:const TextStyle(
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                          fontSize: 10),
                     ),
                     IconButton(
                         onPressed: () {

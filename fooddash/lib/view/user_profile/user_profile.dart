@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/auth/auth_contoller.dart';
+import 'package:fooddash/controller/user_profile/user_profile_controller.dart';
 import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
@@ -12,6 +13,8 @@ class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
+  final pimage= Get.put(UserProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,23 +40,37 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10),
-            const CircleAvatar(
+           const CircleAvatar(
               radius: 70,
-              backgroundImage: AssetImage('image/profileimg.png'),
+              // backgroundImage:NetworkImage(pimage.profileImageUrl.toString())
+              
             ),
+           
+           const  SizedBox(height: 10,),
+            Container(
+                height: 40,
+                width: 150,
+                decoration: BoxDecoration(color: Colors.grey.shade300),
+                child: TextButton(
+                  onPressed: (){
+                    pimage.chooseImage();
+                  },
+                  child: const Text(
+                    "Choose Image",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              
             const SizedBox(height: 10),
-            const Text(
-              'User Name',
-              style: TextStyle(
-                  fontSize: 24,
+            Text(
+              user!.email.toString(),
+              style:const  TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.orange),
             ),
-            const SizedBox(height: 10),
-            const Text(
-              'user@example.com',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
+           
             const SizedBox(height: 30),
             ListTile(
               leading: const Icon(Icons.person),

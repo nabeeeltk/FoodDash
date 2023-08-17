@@ -38,6 +38,7 @@ class Authcontroller extends GetxController {
       await auth.createUserWithEmailAndPassword(
           email: email.text, password: password.text);
       await verifyemail();
+      await adduser();
 
       Get.to(() => HomeScreen());
       loading.value = false;
@@ -49,14 +50,27 @@ class Authcontroller extends GetxController {
   }
 
   adduser() async {
-    UserModel user =
-        UserModel(email: auth.currentUser?.email, username: username.text);
-    await db
-        .collection("user")
-        .doc(auth.currentUser?.uid)
-        .collection("profile")
-        .add(user.tomap());
+  if (auth.currentUser != null) {
+    String userEmail = auth.currentUser?.email ?? "";
+    String userName = username.text ?? "";
+
+    if (userEmail.isNotEmpty && userName.isNotEmpty) {
+      UserModel user = UserModel(email: userEmail, username: userName);
+      await db
+          .collection("user")
+          .doc(auth.currentUser!.uid)
+          .collection("profile")
+          .add(user.tomap());
+      
+      // The 'toMap()' function should be defined in your 'UserModel' class.
+    } else {
+      print("Email and username must not be empty.");
+    }
+  } else {
+    print("User is not authenticated.");
   }
+}
+
 
   signout() async {
     await auth.signOut();
