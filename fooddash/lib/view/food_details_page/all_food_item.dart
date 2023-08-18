@@ -24,7 +24,7 @@ class AllFoodItem extends StatelessWidget {
       ),
       body: Column(
         children: [
-           const SearchWidget(),
+           SearchWidget(),
             FoodItemList()],
       ),
     );

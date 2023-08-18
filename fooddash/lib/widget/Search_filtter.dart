@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key});
+   final SearchController _searchController = Get.put(SearchController());
+   SearchWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class SearchWidget extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+               
                 textAlign: TextAlign.start,
                 cursorHeight: 25,
                 cursorColor: Colors.black,

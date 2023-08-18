@@ -50,6 +50,9 @@ dependencies:
   google_sign_in: ^6.1.4
   flutter_rating_bar: ^4.0.1
   loading_indicator: ^3.1.1
+  flutter_stripe: ^9.3.0
+
+  http: ^1.1.0
 
 
 
