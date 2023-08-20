@@ -11,19 +11,23 @@ import '../../controller/car_controller.dart';
 import '../food_details_page/food_details.dart';
 
 class MyCart extends StatelessWidget {
-
   final MyCardController _cardController = Get.put(MyCardController());
-  final AddNewItemcontrller  _controller = Get.put(AddNewItemcontrller());
-   
-    
+  final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
+
   MyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
-     double totalPrize = 0.0;
-      for (var item in _cardController.mycartItems) {
-    totalPrize += double.parse(item.itemPrice.toString()); // Assuming itemPrice is a String
+    double calculateTotalPrice() {
+  double totalPrize = 0.0;
+  for (var item in _cardController.mycartItems) {
+    int itemCount = _cardController.itemCount.toInt();// Get the item count for this specific item
+    double itemPrice = double.parse(item.itemPrice.toString());
+    totalPrize += itemCount * itemPrice;
   }
+  return totalPrize;
+}
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -46,78 +50,104 @@ class MyCart extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           Obx(() {
-             final cartItems = _cardController.mycartItems;
-            return
-             ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  var item = _controller.menuItems[index];
-                  log(_controller.menuItems.length.toString());
-                  return ListTile(
-                    horizontalTitleGap: 5,
-                    title: Text(
-                      item.itemname.toString(),
-                      style: const TextStyle(
-                          fontSize: 18,
-                          height: 0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange),
-                    ),
-                    subtitle: Text(
-                      item.itemDescription.toString(),
-                      style: const TextStyle(fontSize: 15, color: Colors.white),
-                    ),
-                    leading: Container(
-                      height: 100,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(item.imageUrl.toString()),
-                              fit: BoxFit.cover)),
-                    ),
-                    onTap: () {
-                      Get.to( FoodDetailsPage(pitem: item,));
-                    },
-                    trailing: Column(
-                      children: [
-                        Text(
-                        "₹ ${item.itemPrice.toString()}",
+            Obx(
+              () {
+                final cartItems = _cardController.mycartItems;
+                return ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var item = _controller.menuItems[index];
+                      log(_controller.menuItems.length.toString());
+                    
+                      return ListTile(
+                        horizontalTitleGap: 5,
+                        title: Text(
+                          item.itemname.toString(),
                           style: const TextStyle(
-                              color: Colors.green,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              height: 0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange),
                         ),
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider(thickness: 0, color: Colors.black);
-                },
-                itemCount: cartItems.length);
-           },
-              
-           ),
+                        subtitle: Text(
+                          item.itemDescription.toString(),
+                          style: const TextStyle(
+                              fontSize: 15, color: Colors.white),
+                        ),
+                        leading: Container(
+                          height: 100,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(item.imageUrl.toString()),
+                                  fit: BoxFit.cover)),
+                        ),
+                        onTap: () {
+                          Get.to(FoodDetailsPage(
+                            pitem: item,
+                          ));
+                        },
+                        trailing: Column(
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon:const  Icon(Icons.remove,color: Colors.grey,),
+                                  onPressed: () {
+                                   _cardController.decreaseItemCount();
+                                  },
+                                ),
+                                Text(
+                                _cardController.itemCount.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.add,color: Colors.grey,),
+                                  onPressed: () {
+                                    _cardController.increaseItemCount();
+                                  },
+                                ),
+                                Text(
+                                  "₹ ${item.itemPrice.toString()}",
+                                  style: const TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const Divider(thickness: 0, color: Colors.black);
+                    },
+                    itemCount: cartItems.length);
+              },
+            ),
             Container(
               height: 150,
               width: double.infinity,
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.orange.shade800,
-                // borderRadius: BorderRadius.only(
-                //   topLeft: Radius.circular(20),
-                //   topRight: Radius.circular(20),
-                // ),
               ),
               child: Column(
-                
                 children: [
                   const SizedBox(
                     height: 20,
                   ),
                   Text(
-                   "TOTAL AMOUNT: ${totalPrize.toStringAsFixed(2)}", 
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.white),
+                    "TOTAL AMOUNT: ${calculateTotalPrice().toStringAsFixed(2)}",
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -136,7 +166,7 @@ class MyCart extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                       Get.to(PaymentPage()) ;
+                        Get.to(PaymentPage());
                       },
                     ),
                   )

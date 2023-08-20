@@ -11,6 +11,7 @@ class ItemModel {
     this.itemDescription,
     this.itemname,
     this.imageUrl,
+   
   });
 
   factory ItemModel.fromMap(DocumentSnapshot map) {
