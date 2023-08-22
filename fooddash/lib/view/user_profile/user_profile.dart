@@ -110,7 +110,7 @@ class UserProfilePage extends StatelessWidget {
               title: const Text('Address Book',
                   style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to(const UserAdress());
+              Get.to(  UserAdress());
               },
             ),
             const Divider(),
@@ -118,7 +118,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.list),
               title: const Text('About', style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to(const UserAdress());
+               
               },
             ),
             const Divider(),
@@ -127,7 +127,7 @@ class UserProfilePage extends StatelessWidget {
               title: const Text('Security &privecy',
                   style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to(const UserAdress());
+                
               },
             ),
             const Divider(),
@@ -135,7 +135,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.share),
               title: const Text('Share', style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to(const UserAdress());
+               
               },
             ),
             const Divider(),

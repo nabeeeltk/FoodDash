@@ -1,12 +1,17 @@
+
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/payment/payment_cotroller.dart';
+import 'package:fooddash/controller/user_adress_controller.dart';
 import 'package:fooddash/view/user_profile/add_new_adress.dart';
 import 'package:get/get.dart';
 
 class UserAdress extends StatelessWidget {
-  const UserAdress({Key? key}) : super(key: key);
-
+   UserAdress({Key? key}) : super(key: key);
+final UserAddressController  _addressController  =Get.put(UserAddressController());
+   final PaymentController  _paymentController = Get.put(PaymentController());
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -36,64 +41,100 @@ class UserAdress extends StatelessWidget {
               ),
             ),
           const   SizedBox(height: 20),
-            ListView.separated(
-              physics:const  NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                     
-                        Image.asset("image/profileimg.png",width: 50,),
-                        Text(
-                          "Address ${index + 1}", 
-                          style:const  TextStyle(fontSize: 16),
-                        ),
-                      const   Text(
-                          "City, Postal Code", 
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      const   SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+        FutureBuilder(
+          future: _addressController.fetchAddresses(),
+          builder: (context, snapshot) => 
+           ListView.separated(
+            physics:const  NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+            final adresitem= _addressController.addresses[index];
+              return  Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(adresitem.name.toString(),
+                          style: const TextStyle(color: Colors.black,fontSize: 18,
+                          fontWeight: FontWeight.bold),),
+                           IconButton(onPressed: (){
+                            showDialog(context: context, builder:(context) {
+                              return AlertDialog(content: const Text("Delete?"),
+                              title:const  Text("Are You Sure"),
+                              actions: [
+                                 TextButton(onPressed: (){
+                                  Get.back();
+                                }, child:const  Text("Cancel")),
+                                TextButton(onPressed: (){
+                                   _addressController.deleteAddress(adresitem);
+                                }, child:const  Text("ok")),
+                               
+                              ],
+                              );
+                            },);
+                           
+                           }, icon:const  Icon(Icons.cancel)),
+                        ],
+                       ),
+                        Text(adresitem.city.toString()),
+                       
+                        Text(adresitem.address.toString()),
+              
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextButton(
-                              onPressed: () {
-                               
-                              },
-                              child:const  Text('Edit'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                               
-                              },
-                              child:const  Text('Delete'),
-                            ),
+                            Text(adresitem. phoneNumber.toString()),
+                            
+                             Obx(()=>
+                               Checkbox(
+                                  value:
+                                      _addressController.selectedCheckboxes[index].value,
+                                  onChanged: (newValue) {
+                                    _addressController.handleCheckboxChange(
+                                        index, newValue!);
+                                  },
+                                ),
+                             ),
                           ],
-                        ),
-                      ],
-                    ),
+                        )
+              
+                    ],
                   ),
-                );
-              
-              },
-              
-              separatorBuilder: (context, index) => const Divider(thickness: 1, color: Colors.black),
-              itemCount: 2, // Replace with the actual number of addresses
-            ),
+                ),
+              );
+            
+            },
+            
+            separatorBuilder: (context, index) => const Divider(thickness: 1, color: Colors.black),
+            itemCount: _addressController.addresses.length, // Replace with the actual number of addresses
+          ),
+        ),
              const  SizedBox(height: 20,),
             MaterialButton(
+              minWidth: 250,
               height: 40,
-              color: Colors.orange,
-              child:const  Text("ADD NEW ADDRESS +",style: TextStyle(fontSize: 18,color: Colors.white),),
+              
+              color: Colors.green,
+              child:const  Text("Confirm Order",style: TextStyle(fontSize: 18,color: Colors.white),),
               onPressed: (){
-                Get.to( const AddNewAddress());
-              })
+                _paymentController.initiatePayment();
+              }),
+               MaterialButton(
+              minWidth: 250,
+              height: 40,
+              
+              color: Colors.orange,
+              child:const  Text("Add New Adress",style: TextStyle(fontSize: 18,color: Colors.white),),
+              onPressed: (){
+                Get.to(  AddNewAddress());
+              }),
+
           ],
         ),
       ),

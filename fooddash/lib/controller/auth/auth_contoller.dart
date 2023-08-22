@@ -50,27 +50,24 @@ class Authcontroller extends GetxController {
   }
 
   adduser() async {
-  if (auth.currentUser != null) {
-    String userEmail = auth.currentUser?.email ?? "";
-    String userName = username.text ?? "";
+    if (auth.currentUser != null) {
+      String userEmail = auth.currentUser?.email ?? "";
+      String userName = username.text ?? "";
 
-    if (userEmail.isNotEmpty && userName.isNotEmpty) {
-      UserModel user = UserModel(email: userEmail, username: userName);
-      await db
-          .collection("user")
-          .doc(auth.currentUser!.uid)
-          .collection("profile")
-          .add(user.tomap());
-      
-      // The 'toMap()' function should be defined in your 'UserModel' class.
+      if (userEmail.isNotEmpty && userName.isNotEmpty) {
+        UserModel user = UserModel(email: userEmail, username: userName);
+        await db
+            .collection("user")
+            .doc(auth.currentUser!.uid)
+            .collection("profile")
+            .add(user.tomap());
+      } else {
+        log("Email and username must not be empty.");
+      }
     } else {
-      print("Email and username must not be empty.");
+      log("User is not authenticated.");
     }
-  } else {
-    print("User is not authenticated.");
   }
-}
-
 
   signout() async {
     await auth.signOut();
@@ -88,8 +85,9 @@ class Authcontroller extends GetxController {
     } catch (e) {
       loading.value = false;
       Get.snackbar(
-        backgroundColor: Colors.white,
-        "error", "please register or check email: $e");
+          backgroundColor: Colors.white,
+          "error",
+          "please register or check email: $e");
     }
   }
 
@@ -107,8 +105,7 @@ class Authcontroller extends GetxController {
       Get.to(() => UserSignIn());
       loading.value = false;
     } catch (e) {
-      Get.snackbar(backgroundColor: Colors.white,
-        "Error", "$e");
+      Get.snackbar(backgroundColor: Colors.white, "Error", "$e");
       log("$e");
       loading.value = false;
     }

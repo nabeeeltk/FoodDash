@@ -108,17 +108,23 @@ class AddNewItem extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                height: 50,
-                minWidth: double.infinity,
-                color: Colors.orange.shade800,
-                onPressed: () {
-                  _controller.addItem();
-                  log(_controller.ingredientsController.text);
-                },
-                child: const Text(
-                  "ADD NEW ITEM",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+              child: Obx(
+                () => MaterialButton(
+                  height: 50,
+                  minWidth: double.infinity,
+                  color: Colors.orange.shade800,
+                  onPressed: () {
+                    _controller.addItem();
+                    log(_controller.ingredientsController.text);
+                  },
+                  child: _controller.loading.value
+                      ? const CircularProgressIndicator(
+                          color: Colors.black,
+                        )
+                      : const Text(
+                          "ADD NEW ITEM",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                 ),
               ),
             ),

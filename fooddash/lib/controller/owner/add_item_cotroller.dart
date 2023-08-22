@@ -18,12 +18,13 @@ class AddNewItemcontrller extends GetxController {
       TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
-  final RxBool isVeg = true.obs; // Default to Veg
+  final RxBool isVeg = true.obs; 
+  var loading = false.obs;
+
+  // Default to Veg
 
   // ignore: unused_field
   File? _image;
-  // String? image;
-
   void chooseImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -35,6 +36,7 @@ class AddNewItemcontrller extends GetxController {
 
   Future<void> addItem() async {
     try {
+       loading.value = true;
       String imageUrl = "";
       if (_image != null) {
         final Reference storageRef = FirebaseStorage.instance
@@ -55,10 +57,12 @@ class AddNewItemcontrller extends GetxController {
         "imageUrl": imageUrl, // Update imageUrl
       });
 
-      await Get.to(const RootScreen());
+      await Get.to(const ShopeHomeScreen());
+       loading.value = false;
     } catch (e) {
       // Handle error
       log('Error adding item: $e');
+       loading.value = false;
     }
   }
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/payment/payment_page.dart';
+import 'package:fooddash/view/user_profile/user_address.dart';
 
 import 'package:get/get.dart';
 
@@ -53,82 +54,89 @@ class MyCart extends StatelessWidget {
             Obx(
               () {
                 final cartItems = _cardController.mycartItems;
-                return ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      var item = _controller.menuItems[index];
-                      log(_controller.menuItems.length.toString());
-                    
-                      return ListTile(
-                        horizontalTitleGap: 5,
-                        title: Text(
-                          item.itemname.toString(),
-                          style: const TextStyle(
-                              fontSize: 18,
-                              height: 0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.orange),
-                        ),
-                        subtitle: Text(
-                          item.itemDescription.toString(),
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.white),
-                        ),
-                        leading: Container(
-                          height: 100,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(item.imageUrl.toString()),
-                                  fit: BoxFit.cover)),
-                        ),
-                        onTap: () {
-                          Get.to(FoodDetailsPage(
-                            pitem: item,
-                          ));
-                        },
-                        trailing: Column(
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
+                return Card(
+                  elevation: 8,
+                  shadowColor: Colors.amber,
+                 
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        var item = _controller.menuItems[index];
+                        log(_controller.menuItems.length.toString());
+                      
+                        return Obx(() => 
+                           ListTile(
+                            horizontalTitleGap: 5,
+                            title: Text(
+                              item.itemname.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  height: 0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orange),
+                            ),
+                            subtitle: Text(
+                              item.itemDescription.toString(),
+                              style: const TextStyle(
+                                  fontSize: 15, color: Colors.black),
+                            ),
+                            leading: Container(
+                              height: 100,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(item.imageUrl.toString()),
+                                      fit: BoxFit.cover)),
+                            ),
+                            onTap: () {
+                              Get.to(FoodDetailsPage(
+                                pitem: item,
+                              ));
+                            },
+                            trailing: Column(
                               children: [
-                                IconButton(
-                                  icon:const  Icon(Icons.remove,color: Colors.grey,),
-                                  onPressed: () {
-                                   _cardController.decreaseItemCount();
-                                  },
-                                ),
-                                Text(
-                                _cardController.itemCount.toString(),
-                                  style: const TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.add,color: Colors.grey,),
-                                  onPressed: () {
-                                    _cardController.increaseItemCount();
-                                  },
-                                ),
-                                Text(
-                                  "₹ ${item.itemPrice.toString()}",
-                                  style: const TextStyle(
-                                      color: Colors.green,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon:const  Icon(Icons.remove,color: Colors.grey,),
+                                      onPressed: () {
+                                       _cardController.decreaseItemCount();
+                                      },
+                                    ),
+                                    Text(
+                                    _cardController.itemCount.toString(),
+                                      style: const TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.add,color: Colors.grey,),
+                                      onPressed: () {
+                                        _cardController.increaseItemCount();
+                                      },
+                                    ),
+                                    Text(
+                                      "₹ ${item.itemPrice.toString()}",
+                                      style: const TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const Divider(thickness: 0, color: Colors.black);
-                    },
-                    itemCount: cartItems.length);
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return const Divider(thickness: 0, color: Colors.black);
+                      },
+                      itemCount: cartItems.length),
+                );
               },
             ),
             Container(
@@ -142,12 +150,14 @@ class MyCart extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "TOTAL AMOUNT: ${calculateTotalPrice().toStringAsFixed(2)}",
-                    style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
+                  Obx(() => 
+                   Text(
+                      "TOTAL AMOUNT: ${calculateTotalPrice().toStringAsFixed(2)}",
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -158,7 +168,7 @@ class MyCart extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: const Text(
-                        "PLACE ORDER",
+                        "CHECK OUT",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -166,7 +176,7 @@ class MyCart extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Get.to(PaymentPage());
+                        Get.to(UserAdress());
                       },
                     ),
                   )
