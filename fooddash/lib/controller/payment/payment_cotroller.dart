@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:fooddash/controller/car_controller.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -23,7 +24,11 @@ class PaymentController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     // Payment failed, handle error
-    Get.snackbar('Payment Error', 'Payment failed: ${response.message}');
+    Get.snackbar(
+    
+      'Payment Error', 'Payment failed: ${response.message}',
+      backgroundColor: Colors.white
+      );
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
@@ -34,8 +39,8 @@ class PaymentController extends GetxController {
     final options = {
       'key': 'rzp_test_SNZ3CCn30y0Aq3',
       'amount': 1000,
-      'name': 'Your App Name',
-      'description': 'Test Payment',
+      'name': 'FoodDash',
+      'description': 'Order Payment',
       'prefill': {'contact': '1234567890', 'email': 'test@example.com'},
       'external': {
         'wallets': ['paytm']

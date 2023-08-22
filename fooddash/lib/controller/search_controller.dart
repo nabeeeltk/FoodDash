@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
 
 class SearchController extends GetxController {
-  var searchText = ''.obs;
+  RxString searchQuery = RxString('');
 
-  void setSearchText(String text) {
-    searchText.value = text;
+  void updateSearchQuery(String query) {
+    searchQuery.value = query;
   }
 }
-
