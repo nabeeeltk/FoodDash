@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/model/review_model.dart';
@@ -26,17 +28,21 @@ class ReviewController extends GetxController {
   }
 
   Future<void> addReview(ReviewModel review) async {
-    try {
-      await firestore.collection('reviews').add({
-        'username': review.username,
-        'rating': review.rating,
-        'comment': review.comment,
-        'timestamp': FieldValue.serverTimestamp(),
-      });
-    } catch (e) {
-      print('Error adding review: $e');
-    }
+  try {
+    await firestore.collection('reviews').add({
+      'username': review.username,
+      'rating': review.rating,
+      'comment': review.comment, // Make sure this is populated correctly
+      'timestamp': FieldValue.serverTimestamp(),
+      
+    });
+    log(review.comment);
+     Get.back();
+  } catch (e) {
+    log('Error adding review: $e');
   }
+}
+
 
   Future<void> getReviews() async {
     try {
@@ -51,7 +57,7 @@ class ReviewController extends GetxController {
       }).toList();
       reviews.assignAll(fetchedReviews);
     } catch (e) {
-      print('Error getting reviews: $e');
+      log('Error getting reviews: $e');
     }
   }
 }

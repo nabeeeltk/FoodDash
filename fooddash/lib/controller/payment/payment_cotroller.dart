@@ -26,14 +26,22 @@ class PaymentController extends GetxController {
 }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    // Payment successful, store payment data in Firebase
-    await _firestore.collection('payments').add({
-      'amount': response.paymentId,
-      'timestamp': Timestamp.now(),
-    });
+  double paymentAmount = calculateTotalPrice(); // Calculate payment amount
 
-    Get.to(const PaymentSuccessPage());
-  }
+  // Get the current payment count from Firestore
+  DocumentSnapshot paymentCountDoc = await _firestore.collection('meta').doc('payment_count').get();
+  int currentPaymentCount = paymentCountDoc.get('count') ?? 0;
+  int newPaymentCount = currentPaymentCount + 1;
+  await _firestore.collection('payments').add({
+    'amount': paymentAmount,
+    'paymentCount': newPaymentCount,
+    'timestamp': Timestamp.now(),
+  });
+  await _firestore.collection('meta').doc('payment_count').set({'count': newPaymentCount});
+
+  Get.to(const PaymentSuccessPage());
+}
+
  Stream<double> getTotalRevenueStream() {
   return _firestore
       .collection('payments')
@@ -41,16 +49,19 @@ class PaymentController extends GetxController {
       .map((querySnapshot) {
         double sum = 0.0;
         for (QueryDocumentSnapshot document in querySnapshot.docs) {
-          double paymentAmount = document.get('amount') ?? 0.0;
+          double paymentAmount = document.get('amount') ;
           sum += paymentAmount;
         }
-        log(sum.toString());
         return sum;
       });
 }
 
-     
-
+Future<int> getPaymentCount() async {
+  DocumentSnapshot snapshot = await _firestore.collection('meta').doc('payment_count').get();
+  int paymentCount = snapshot.get('count') ?? 0;
+  return paymentCount;
+}
+  
   void _handlePaymentError(PaymentFailureResponse response) {
     // Payment failed, handle error
     Get.snackbar(
@@ -74,7 +85,7 @@ class PaymentController extends GetxController {
       'amount': calculateTotalPrice()*100,
       'name': 'FoodDash',
       'description': 'Order Payment',
-      'prefill': {'contact': '1234567890', 'email': user.email}, // Use user's email
+      'prefill': {'contact': '9638527410', 'email': user.email}, 
       'external': {
         'wallets': ['paytm']
       }

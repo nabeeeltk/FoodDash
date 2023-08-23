@@ -46,8 +46,9 @@ class AddReview extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const TextField(
-              decoration: InputDecoration(
+             TextField(
+              controller: reviewctrl.reviewcomment,
+              decoration:const  InputDecoration(
                   hintText: "Write Here", border: OutlineInputBorder()),
             )
           ],

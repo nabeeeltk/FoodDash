@@ -57,7 +57,7 @@ class AddNewItemcontrller extends GetxController {
         "imageUrl": imageUrl, // Update imageUrl
       });
 
-      await Get.to(const ShopeHomeScreen());
+      await Get.to( ShopeHomeScreen());
        loading.value = false;
     } catch (e) {
       // Handle error
@@ -83,7 +83,7 @@ class AddNewItemcontrller extends GetxController {
     try {
       await itemdb.collection('menuItems').doc(itemId).delete();
       log('Item deleted successfully');
-      await Get.to(const ShopeHomeScreen());
+      await Get.to( ShopeHomeScreen());
     } catch (e) {
       // Handle error
       log('Error deleting item: $e');
