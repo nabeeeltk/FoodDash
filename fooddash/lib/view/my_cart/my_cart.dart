@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
-import 'package:fooddash/view/payment/payment_page.dart';
+
 import 'package:fooddash/view/user_profile/user_address.dart';
 
 import 'package:get/get.dart';
@@ -20,14 +20,15 @@ class MyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double calculateTotalPrice() {
-  double totalPrize = 0.0;
-  for (var item in _cardController.mycartItems) {
-    int itemCount = _cardController.itemCount.toInt();// Get the item count for this specific item
-    double itemPrice = double.parse(item.itemPrice.toString());
-    totalPrize += itemCount * itemPrice;
-  }
-  return totalPrize;
-}
+      double totalPrize = 0.0;
+      for (var item in _cardController.mycartItems) {
+        int itemCount = _cardController.itemCount
+            .toInt(); // Get the item count for this specific item
+        double itemPrice = double.parse(item.itemPrice.toString());
+        totalPrize += itemCount * itemPrice;
+      }
+      return totalPrize;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -57,15 +58,14 @@ class MyCart extends StatelessWidget {
                 return Card(
                   elevation: 8,
                   shadowColor: Colors.amber,
-                 
                   child: ListView.separated(
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         var item = _controller.menuItems[index];
                         log(_controller.menuItems.length.toString());
-                      
-                        return Obx(() => 
-                           ListTile(
+
+                        return Obx(
+                          () => ListTile(
                             horizontalTitleGap: 5,
                             title: Text(
                               item.itemname.toString(),
@@ -85,7 +85,8 @@ class MyCart extends StatelessWidget {
                               width: 80,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: NetworkImage(item.imageUrl.toString()),
+                                      image: NetworkImage(
+                                          item.imageUrl.toString()),
                                       fit: BoxFit.cover)),
                             ),
                             onTap: () {
@@ -99,13 +100,16 @@ class MyCart extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     IconButton(
-                                      icon:const  Icon(Icons.remove,color: Colors.grey,),
+                                      icon: const Icon(
+                                        Icons.remove,
+                                        color: Colors.grey,
+                                      ),
                                       onPressed: () {
-                                       _cardController.decreaseItemCount();
+                                        _cardController.decreaseItemCount();
                                       },
                                     ),
                                     Text(
-                                    _cardController.itemCount.toString(),
+                                      _cardController.itemCount.toString(),
                                       style: const TextStyle(
                                         color: Colors.red,
                                         fontSize: 18,
@@ -113,7 +117,10 @@ class MyCart extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
-                                      icon: const Icon(Icons.add,color: Colors.grey,),
+                                      icon: const Icon(
+                                        Icons.add,
+                                        color: Colors.grey,
+                                      ),
                                       onPressed: () {
                                         _cardController.increaseItemCount();
                                       },
@@ -150,8 +157,8 @@ class MyCart extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Obx(() => 
-                   Text(
+                  Obx(
+                    () => Text(
                       "TOTAL AMOUNT: ${calculateTotalPrice().toStringAsFixed(2)}",
                       style: const TextStyle(
                           fontSize: 18,

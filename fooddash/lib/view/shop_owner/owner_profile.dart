@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/view/shop_owner/user_review.dart';
@@ -7,7 +6,7 @@ import 'package:get/get.dart';
 class OwnerProfil extends StatelessWidget {
   OwnerProfil({super.key});
   final PaymentController _paymentController = Get.put(PaymentController());
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {

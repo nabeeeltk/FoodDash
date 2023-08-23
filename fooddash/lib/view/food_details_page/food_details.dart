@@ -2,11 +2,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
-import 'package:fooddash/model/review_model.dart';
+
 import 'package:fooddash/view/food_details_page/add_review.dart';
 import 'package:fooddash/view/shop_owner/edit_item_page.dart';
 import 'package:get/get.dart';
-import '../../controller/review_controller.dart';
+
 import '../../model/Item_model.dart';
 import '../payment/payment_page.dart';
 
