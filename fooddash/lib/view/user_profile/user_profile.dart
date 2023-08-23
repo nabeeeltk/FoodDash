@@ -13,7 +13,8 @@ class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
-  final pimage = Get.put(UserProfileController());
+  final UserProfileController pimage = Get.put(UserProfileController());
+
 
   @override
   Widget build(BuildContext context) {

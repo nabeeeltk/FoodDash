@@ -17,7 +17,7 @@ class _RootScreenState extends State<RootScreen> {
    const  ShopeHomeScreen(),
      Container(), 
       AddNewItem(),
-   const OwnerProfil()
+    OwnerProfil()
      ];
   @override
   Widget build(BuildContext context) {

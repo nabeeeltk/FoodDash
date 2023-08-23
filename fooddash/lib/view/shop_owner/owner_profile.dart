@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/view/shop_owner/user_review.dart';
 import 'package:get/get.dart';
 
 class OwnerProfil extends StatelessWidget {
-  const OwnerProfil({super.key});
+   OwnerProfil({super.key});
+  final PaymentController _paymentController = Get.put(PaymentController());
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,19 @@ class OwnerProfil extends StatelessWidget {
                 children: [
                 const   SizedBox(height: 10,),
                  const  Text("Available Balance",style: TextStyle(color: Colors.white,fontSize: 20),),
-                 const   Text("₹ 30000",style: TextStyle(color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold),),
+                    StreamBuilder<double>(
+                      stream: _paymentController.getTotalRevenueStream(),
+                      builder: (context, snapshot) {
+                         if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+                       double availableBalance = snapshot.data ?? 0.0;
+                      return   Text(availableBalance.toStringAsFixed(2),style: const 
+                      TextStyle(color: Colors.white,fontSize: 50,fontWeight: FontWeight.bold),);
+                      }
+                      
+                      
+                       ),
 
                    Container(
                     height: 50,
