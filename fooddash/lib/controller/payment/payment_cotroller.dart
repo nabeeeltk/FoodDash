@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,6 @@ class PaymentController extends GetxController {
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
   double paymentAmount = calculateTotalPrice(); // Calculate payment amount
 
-  // Get the current payment count from Firestore
   DocumentSnapshot paymentCountDoc = await _firestore.collection('meta').doc('payment_count').get();
   int currentPaymentCount = paymentCountDoc.get('count') ?? 0;
   int newPaymentCount = currentPaymentCount + 1;
@@ -36,6 +37,7 @@ class PaymentController extends GetxController {
     'paymentCount': newPaymentCount,
     'timestamp': Timestamp.now(),
   });
+  log(paymentAmount.toString());
   await _firestore.collection('meta').doc('payment_count').set({'count': newPaymentCount});
 
   Get.to(const PaymentSuccessPage());
@@ -48,12 +50,14 @@ class PaymentController extends GetxController {
       .map((querySnapshot) {
         double sum = 0.0;
         for (QueryDocumentSnapshot document in querySnapshot.docs) {
-          double paymentAmount = document.get('amount') ;
+          String paymentAmountString = document.get('amount');
+          double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
           sum += paymentAmount;
         }
         return sum;
       });
 }
+
 
 Future<int> getPaymentCount() async {
   DocumentSnapshot snapshot = await _firestore.collection('meta').doc('payment_count').get();

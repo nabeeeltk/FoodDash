@@ -16,7 +16,7 @@ class SearchWidget extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-            
+                 
                 textAlign: TextAlign.start,
                 cursorHeight: 25,
                 cursorColor: Colors.black,

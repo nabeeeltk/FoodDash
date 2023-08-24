@@ -3,13 +3,17 @@ import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/view/shop_owner/user_review.dart';
 import 'package:get/get.dart';
 
+import '../../controller/owner/add_item_cotroller.dart';
+
 class OwnerProfil extends StatelessWidget {
   OwnerProfil({super.key});
   final PaymentController _paymentController = Get.put(PaymentController());
+   final _controller = Get.put(AddNewItemcontrller());
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(

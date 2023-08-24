@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/widget/search_filtter.dart';
 import 'package:get/get.dart';
-
 import '../../widget/food_item_list.dart';
 
 class ShopeHomeScreen extends StatelessWidget {
@@ -74,7 +73,7 @@ class ShopeHomeScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Text(
                             "Total Order",
@@ -105,7 +104,7 @@ class ShopeHomeScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 8.0, top: 8),
                           child: Text(
-                            "1000",
+                            "20",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 40),
                           ),
