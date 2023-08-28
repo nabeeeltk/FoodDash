@@ -1,20 +1,16 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
+import 'package:fooddash/view/shop_owner/edit_item_page.dart';
 import 'package:get/get.dart';
 import '../../model/Item_model.dart';
-import '../payment/payment_page.dart';
 
-class FoodDetailsPage extends StatelessWidget {
+class OwnerFoodDetailsPage extends StatelessWidget {
   final ItemModel pitem; // Receive the item data
-
-  final _cartController = Get.put(MyCardController());
   final controller = Get.put(AddNewItemcontrller());
 
 //  final ReviewController _reviewController = Get.put(ReviewController());
-  FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
+  OwnerFoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +52,43 @@ class FoodDetailsPage extends StatelessWidget {
                         )),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon:
-                        const Icon(Icons.favorite, color: Colors.red, size: 30),
+                    onPressed: () {
+                      showMenu(
+                        context: context,
+                        position: const RelativeRect.fromLTRB(100, 100, 0, 0),
+                        items: [
+                          const PopupMenuItem(
+                            value: 'edit',
+                            child: ListTile(
+                              title: Text('Edit'),
+                              leading: Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 'delete',
+                            child: ListTile(
+                              title: Text('Delete'),
+                              leading: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ],
+                        elevation: 8.0,
+                      ).then((value) {
+                        if (value == 'edit') {
+                          Get.to(EditItemPage());
+                        } else if (value == 'delete') {
+                          controller.deleteItem(pitem.id!);
+                        } else if (value == 'Wish List') {}
+                      });
+                    },
+                    icon: const Icon(Icons.more_vert,
+                        color: Colors.black, size: 30),
                   )
                 ],
               ),
@@ -89,19 +119,7 @@ class FoodDetailsPage extends StatelessWidget {
               TextButton.icon(
                   onPressed: () {
                     showDialog(
-                        context: context,
-                        builder: (context) => AddReview(
-                            // onAddReview: (double rating, String comment) {
-                            //   // Create a ReviewModel object
-                            //   ReviewModel review = ReviewModel(
-                            //     username: 'User', // You can replace with the actual username
-                            //     rating: rating.toInt(),
-                            //     comment: comment,
-                            //   );
-                            //   // Add the review to the ReviewController
-                            //   _reviewController.addReview(review);
-                            // },
-                            ));
+                        context: context, builder: (context) => AddReview());
                   },
                   icon: const Icon(
                     Icons.star,
@@ -140,34 +158,6 @@ class FoodDetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MaterialButton(
-                height: 40,
-                onPressed: () {
-                  Get.to(PaymentPage());
-                },
-                color: Colors.white,
-                child: const Text(
-                  "BUY NOW",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-              ),
-              MaterialButton(
-                height: 40,
-                onPressed: () {
-                  _cartController.addItemToCart(pitem);
-                  log(pitem.toString());
-                },
-                color: Colors.orange.shade800,
-                child: const Text(
-                  "ADD TO CART",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              )
             ],
           ),
         ],

@@ -14,6 +14,7 @@ import '../food_details_page/food_details.dart';
 class MyCart extends StatelessWidget {
   final MyCardController _cardController = Get.put(MyCardController());
   final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
+   RxInt itemCount = 1.obs;
 
   MyCart({super.key});
 
@@ -96,6 +97,7 @@ class MyCart extends StatelessWidget {
                             },
                             trailing: Column(
                               children: [
+                              
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -140,9 +142,14 @@ class MyCart extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return const Divider(thickness: 0, color: Colors.black);
+                        return const Divider(
+                          height: 50,
+                          color: Colors.black,
+                          thickness: 5,
+                        );
                       },
                       itemCount: cartItems.length),
+                      
                 );
               },
             ),

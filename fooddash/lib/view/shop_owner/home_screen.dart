@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
+import 'package:fooddash/view/shop_owner/owner_food_item_list.dart';
 import 'package:fooddash/widget/search_filtter.dart';
 import 'package:get/get.dart';
 import '../../widget/food_item_list.dart';
@@ -126,7 +127,7 @@ class ShopeHomeScreen extends StatelessWidget {
               height: 10,
             ),
             SearchWidget(),
-            FoodItemList()
+            OwnerFoodItemList()
           ],
         ),
       ),
