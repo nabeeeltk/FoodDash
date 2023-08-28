@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:get/get.dart';
 
 class SearchWidget extends StatelessWidget {
    SearchWidget({super.key});
+   final  AddNewItemcontrller _addNewItemcontrller =Get.put(AddNewItemcontrller());
    final SearchController _searchController = Get.put(SearchController());
+   
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +73,9 @@ class SearchWidget extends StatelessWidget {
                           ]).then((value) {
                         if (value == "All") {
                         } else if (value == "Vegetable") {
+                          if(_addNewItemcontrller.isVeg.isTrue){
+                            return _addNewItemcontrller.filteredItems;
+                          }
                         } else if (value == "Non Vegetable");
                       });
                     },

@@ -57,18 +57,19 @@ class ShopeHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FutureBuilder(
-                          future: _paymentController.getPaymentCount(),
+                          // future: _paymentController.getPaymentCount(),
                           builder: (context, countSnapshot) {
                             if (countSnapshot.connectionState ==
                                 ConnectionState.waiting) {
                               const CircularProgressIndicator();
                             }
-                            int paymentCount = countSnapshot.data ?? 0;
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 8.0, top: 8),
+                            // int paymentCount = countSnapshot.data ?? 0;
+                            return const Padding(
+                              padding: EdgeInsets.only(left: 8.0, top: 8),
                               child: Text(
-                                paymentCount.toString(),
-                                style: const TextStyle(
+                               
+                               "00",
+                                style:  TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 40),
                               ),
                             );
@@ -99,18 +100,22 @@ class ShopeHomeScreen extends StatelessWidget {
                               spreadRadius: 2)
                         ],
                         color: Colors.white),
-                    child: const Column(
+                    child:  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 8.0, top: 8),
-                          child: Text(
-                            "20",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 40),
+                          padding:const  EdgeInsets.only(left: 8.0, top: 8),
+                          child: StreamBuilder(
+                            stream: _paymentController.getTotalRevenueStream(),
+                            builder: (context, snapshot) => 
+                             Text(
+                            "00",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 40),
+                            ),
                           ),
                         ),
-                        Padding(
+                      const   Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Text(
                             "Total Revenue",

@@ -18,7 +18,8 @@ class AddNewItemcontrller extends GetxController {
       TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
-  final RxBool isVeg = true.obs; 
+  List<ItemModel> filteredItems = []; // Store fi
+  final RxBool isVeg = true.obs;
   var loading = false.obs;
 
   // Default to Veg
@@ -36,7 +37,7 @@ class AddNewItemcontrller extends GetxController {
 
   Future<void> addItem() async {
     try {
-       loading.value = true;
+      loading.value = true;
       String imageUrl = "";
       if (_image != null) {
         final Reference storageRef = FirebaseStorage.instance
@@ -54,15 +55,16 @@ class AddNewItemcontrller extends GetxController {
         "itemDescription": itemDescriptionController.text,
         "ingredients": ingredientsController.text,
         "itemPrice": itemPriceController.text,
-        "imageUrl": imageUrl, // Update imageUrl
+        "imageUrl": imageUrl,
+       // Update imageUrl
       });
 
-      await Get.to( ShopeHomeScreen());
-       loading.value = false;
+      await Get.to(ShopeHomeScreen());
+      loading.value = false;
     } catch (e) {
       // Handle error
       log('Error adding item: $e');
-       loading.value = false;
+      loading.value = false;
     }
   }
 
@@ -83,7 +85,7 @@ class AddNewItemcontrller extends GetxController {
     try {
       await itemdb.collection('menuItems').doc(itemId).delete();
       log('Item deleted successfully');
-      await Get.to( ShopeHomeScreen());
+      await Get.to(ShopeHomeScreen());
     } catch (e) {
       // Handle error
       log('Error deleting item: $e');
@@ -109,13 +111,25 @@ class AddNewItemcontrller extends GetxController {
         "itemDescription": itemDescriptionController.text,
         "ingredients": ingredientsController.text,
         "itemPrice": itemPriceController.text,
-        "imageUrl": imageUrl, // Update imageUrl
+        "imageUrl": imageUrl,
+       
       });
 
       Get.to(const RootScreen());
     } catch (e) {
-      // Handle error
       log('Error editing item: $e');
     }
   }
+
+  // void getFilteredItems(String query) {
+  //   if (query.isEmpty) {
+  //     filteredItems = menuItems;
+  //   } else {
+  //     filteredItems = menuItems
+  //         .where((item) =>
+  //             item.itemname!.toLowerCase().contains(query.toLowerCase()))
+  //         .toList();
+  //   }
+  //   update(); 
+  // }ss
 }

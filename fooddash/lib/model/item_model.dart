@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemModel {
-  String? id, itemname, itemDescription, ingredients, imageUrl;
+  String? id, itemname, itemDescription, ingredients, imageUrl , cetagory;
   int? itemPrice;
 
   ItemModel({
@@ -11,6 +11,8 @@ class ItemModel {
     this.itemDescription,
     this.itemname,
     this.imageUrl,
+    this.cetagory,
+
    
   });
 
@@ -22,6 +24,7 @@ class ItemModel {
       ingredients: map["ingredients"],
       itemDescription: map["itemDescription"],
       imageUrl: map["imageUrl"],
+      
     );
   }
 
@@ -32,6 +35,7 @@ class ItemModel {
       "ingredients": ingredients,
       "itemDescription": itemDescription,
       "imageUrl": imageUrl,
+      "cetagory":cetagory
     };
   }
 }
