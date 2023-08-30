@@ -43,8 +43,8 @@ class OwnerProfil extends StatelessWidget {
                       "Available Balance",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    StreamBuilder<double>(
-                        stream: _paymentController.getTotalRevenueStream(),
+                    FutureBuilder<double>(
+                        future: _paymentController.getTotalAmount(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {

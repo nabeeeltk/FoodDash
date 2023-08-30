@@ -81,7 +81,7 @@ class OwnerFoodDetailsPage extends StatelessWidget {
                         elevation: 8.0,
                       ).then((value) {
                         if (value == 'edit') {
-                          Get.to(EditItemPage());
+                          Get.to(EditItemPage(itemId:pitem.id!,));
                         } else if (value == 'delete') {
                           controller.deleteItem(pitem.id!);
                         } else if (value == 'Wish List') {}

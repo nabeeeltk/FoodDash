@@ -4,11 +4,14 @@ import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:fooddash/controller/user_profile/user_profile_controller.dart';
 import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:fooddash/view/splash/splash_screen.dart';
+import 'package:fooddash/view/user_profile/help_support.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:fooddash/view/user_profile/user_profile_edit.dart';
 import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
+// ignore: must_be_immutable
 class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
@@ -94,7 +97,9 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.help),
               title: const Text('Help& Support',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {},
+              onTap: () {
+                Get.to( const HelpAndSupport());
+              },
             ),
             const Divider(),
             ListTile(
@@ -136,7 +141,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.share),
               title: const Text('Share', style: TextStyle(color: Colors.white)),
               onTap: () {
-               
+               Share.share("asdfghjklsdfghjkl;xcvbnm,.xcvbnm,./");
               },
             ),
             const Divider(),

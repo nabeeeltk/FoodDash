@@ -19,7 +19,9 @@ class SearchWidget extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+                 onChanged: (value) {
                  
+                 },
                 textAlign: TextAlign.start,
                 cursorHeight: 25,
                 cursorColor: Colors.black,

@@ -3,7 +3,7 @@ import 'package:fooddash/widget/food_item_list.dart';
 import 'package:get/get.dart';
 class SearchController extends GetxController {
    final TextEditingController searchController = TextEditingController();
-  final RxList<String> _searchResults = <String>[].obs;
+ RxList<String> _searchResults = <String>[].obs;
 
   RxList<String> get searchResults => _searchResults;
 

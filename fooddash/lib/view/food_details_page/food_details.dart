@@ -9,12 +9,14 @@ import '../payment/payment_page.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final ItemModel pitem; // Receive the item data
+  final bool isfavorite;
 
   final _cartController = Get.put(MyCardController());
   final controller = Get.put(AddNewItemcontrller());
 
 //  final ReviewController _reviewController = Get.put(ReviewController());
-  FoodDetailsPage({required this.pitem, Key? key}) : super(key: key);
+  FoodDetailsPage({required this.pitem, this.isfavorite = false, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,11 @@ class FoodDetailsPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon:
-                        const Icon(Icons.favorite, color: Colors.red, size: 30),
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 30,
+                    ),
                   )
                 ],
               ),

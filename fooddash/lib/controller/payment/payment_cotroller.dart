@@ -38,17 +38,25 @@ class PaymentController extends GetxController {
     Get.to(const PaymentSuccessPage());
   }
 
-  Stream<double> getTotalRevenueStream() {
-    return _firestore.collection('payments').snapshots().map((querySnapshot) {
-      double sum = 0.0;
-      for (QueryDocumentSnapshot document in querySnapshot.docs) {
-        String paymentAmountString = document.get('amount');
-        double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
-        sum += paymentAmount;
-      }
-      return sum;
-    });
+ Future<double> getTotalAmount() async {
+  double totalAmount = 0.0;
+  
+
+  CollectionReference paymentsCollection = FirebaseFirestore.instance.collection('payments');
+  
+  try {
+    QuerySnapshot querySnapshot = await paymentsCollection.get();
+    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+      String paymentAmountString = document.get('amount');
+      double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
+      totalAmount += paymentAmount;
+    }
+  } catch (e) {
+    print('Error fetching payment data: $e');
   }
+  
+  return totalAmount;
+}
 
   void _handlePaymentError(PaymentFailureResponse response) {
     // Payment failed, handle error

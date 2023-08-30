@@ -17,10 +17,12 @@ class AddNewItemcontrller extends GetxController {
   final TextEditingController itemDescriptionController =
       TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
+  
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
   List<ItemModel> filteredItems = []; // Store fi
   final RxBool isVeg = true.obs;
   var loading = false.obs;
+  final RxBool isfavorite =false.obs;
 
   // Default to Veg
 
@@ -115,11 +117,12 @@ class AddNewItemcontrller extends GetxController {
        
       });
 
-      Get.to(const RootScreen());
+    await Get.to(const RootScreen());
     } catch (e) {
       log('Error editing item: $e');
     }
   }
+  
 
   // void getFilteredItems(String query) {
   //   if (query.isEmpty) {

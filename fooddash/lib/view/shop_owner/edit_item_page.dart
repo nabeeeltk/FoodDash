@@ -1,17 +1,28 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fooddash/model/faveraite_model.dart';
 import 'package:get/get.dart';
 
 import '../../controller/owner/add_item_cotroller.dart';
 
 class EditItemPage extends StatelessWidget {
-  final _controller = Get.put(AddNewItemcontrller());
+  String itemId;
 
-  EditItemPage({super.key});
+  final _controller = Get.put(AddNewItemcontrller());
+  ItemModel? edititem;
+
+  EditItemPage({super.key, required this.itemId});
 
   @override
   Widget build(BuildContext context) {
+    final edititem =
+     _controller.menuItems.firstWhere((item) => item.id == itemId);
+    _controller.itemNameController.text = edititem!.itemname.toString();
+    _controller.itemPriceController.text = edititem!.itemPrice.toString();
+    _controller.itemDescriptionController.text =edititem!.itemDescription.toString();
+    _controller.ingredientsController.text = edititem!.ingredients.toString();
+
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(
@@ -34,7 +45,7 @@ class EditItemPage extends StatelessWidget {
               child: TextFormField(
                 controller: _controller.itemNameController,
                 decoration: const InputDecoration(
-                  hintText: "Enter new item name",
+                  hintText: "",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -111,7 +122,7 @@ class EditItemPage extends StatelessWidget {
                 minWidth: double.infinity,
                 color: Colors.orange.shade800,
                 onPressed: () {
-                  // _controller.editItem(itemId:);
+                  _controller.editItem(itemId);
                   log(_controller.ingredientsController.text);
                 },
                 child: const Text(

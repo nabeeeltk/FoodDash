@@ -67,9 +67,8 @@ class ShopeHomeScreen extends StatelessWidget {
                             return const Padding(
                               padding: EdgeInsets.only(left: 8.0, top: 8),
                               child: Text(
-                               
-                               "00",
-                                style:  TextStyle(
+                                "00",
+                                style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 40),
                               ),
                             );
@@ -100,22 +99,28 @@ class ShopeHomeScreen extends StatelessWidget {
                               spreadRadius: 2)
                         ],
                         color: Colors.white),
-                    child:  Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding:const  EdgeInsets.only(left: 8.0, top: 8),
-                          child: StreamBuilder(
-                            stream: _paymentController.getTotalRevenueStream(),
-                            builder: (context, snapshot) => 
-                             Text(
-                            "00",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 40),
-                            ),
+                          padding: const EdgeInsets.only(left: 8.0, top: 8),
+                          child: FutureBuilder(
+                            future: _paymentController.getTotalAmount(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+
+                                return const CircularProgressIndicator();
+                              }
+                              return const  Text(
+                                "00",
+                                style:  TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 40),
+                              );
+                            },
                           ),
                         ),
-                      const   Padding(
+                        const Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Text(
                             "Total Revenue",
