@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
+import 'package:fooddash/controller/search_controller.dart';
 import 'package:get/get.dart';
 
 class SearchWidget extends StatelessWidget {
    SearchWidget({super.key});
    final  AddNewItemcontrller _addNewItemcontrller =Get.put(AddNewItemcontrller());
-   final SearchController _searchController = Get.put(SearchController());
+   final SearchControllerPage _searchController = Get.put(SearchControllerPage());
    
 
   @override
@@ -19,8 +20,9 @@ class SearchWidget extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
+                controller: _searchController.searchController,
                  onChanged: (value) {
-                 
+                  _searchController.updateSearchResults(value);
                  },
                 textAlign: TextAlign.start,
                 cursorHeight: 25,

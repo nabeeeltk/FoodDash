@@ -17,10 +17,11 @@ class EditItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final edititem =
-     _controller.menuItems.firstWhere((item) => item.id == itemId);
+        _controller.menuItems.firstWhere((item) => item.id == itemId);
     _controller.itemNameController.text = edititem!.itemname.toString();
     _controller.itemPriceController.text = edititem!.itemPrice.toString();
-    _controller.itemDescriptionController.text =edititem!.itemDescription.toString();
+    _controller.itemDescriptionController.text =
+        edititem!.itemDescription.toString();
     _controller.ingredientsController.text = edititem!.ingredients.toString();
 
     return Scaffold(

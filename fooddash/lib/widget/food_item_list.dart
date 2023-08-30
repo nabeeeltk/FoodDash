@@ -2,20 +2,32 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/owner/add_item_cotroller.dart';
+import '../controller/search_controller.dart';
 import '../view/food_details_page/food_details.dart';
 
 class FoodItemList extends StatelessWidget {
   final _controller = Get.put(AddNewItemcontrller());
   FoodItemList({super.key});
+final serachcontroller = Get.put(SearchControllerPage());
+  List<String> getMenuItemsNames() {
+    return _controller.menuItems.map((item) => item.itemname.toString()).toList();
+  }
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder(
         future: _controller.getMenuItems(),
         builder: (context, snapshot) {
+             final items = serachcontroller.searchResults.isEmpty
+        ? _controller.menuItems
+        : _controller.menuItems
+            .where((item) => serachcontroller.searchResults.contains(item.itemname))
+            .toList();
           return ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                var item = _controller.menuItems[index];
+                var item =items[index];
+               // var item = _controller.menuItems[index];
                 log(_controller.menuItems.length.toString());
                 return InkWell(
                   onTap: () {
@@ -79,7 +91,9 @@ class FoodItemList extends StatelessWidget {
               separatorBuilder: (context, index) {
                 return const Divider(thickness: 0, color: Colors.black);
               },
-              itemCount: _controller.menuItems.length);
+              itemCount:items.length);
         });
   }
+
+ 
 }
