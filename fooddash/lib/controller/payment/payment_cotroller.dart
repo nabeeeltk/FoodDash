@@ -38,40 +38,38 @@ class PaymentController extends GetxController {
     Get.to(const PaymentSuccessPage());
   }
 
- Future<double> getTotalAmount() async {
-  double totalAmount = 0.0;
-  
+  Future<double> getTotalAmount() async {
+    double totalAmount = 0.0;
 
-  CollectionReference paymentsCollection = FirebaseFirestore.instance.collection('payments');
-  
-  try {
-    QuerySnapshot querySnapshot = await paymentsCollection.get();
-    for (QueryDocumentSnapshot document in querySnapshot.docs) {
-      String paymentAmountString = document.get('amount');
-      double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
-      totalAmount += paymentAmount;
+    CollectionReference paymentsCollection =
+        FirebaseFirestore.instance.collection('payments');
+
+    try {
+      QuerySnapshot querySnapshot = await paymentsCollection.get();
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
+        String paymentAmountString = document.get('amount');
+        double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
+        totalAmount += paymentAmount;
+      }
+    } catch (e) {
+      log('Error fetching payment data: $e');
     }
-  } catch (e) {
-    print('Error fetching payment data: $e');
+
+    return totalAmount;
   }
-  
-  return totalAmount;
-}
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    // Payment failed, handle error
+    
     Get.snackbar('Payment Error', 'Payment failed: ${response.message}',
         backgroundColor: Colors.white);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
-    // Handle external wallet response if needed
   }
 
   void initiatePayment() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
-
     if (user != null) {
       final options = {
         'key': 'rzp_test_SNZ3CCn30y0Aq3',
@@ -97,15 +95,12 @@ class PaymentController extends GetxController {
         Razorpay.EVENT_EXTERNAL_WALLET,
         _handleExternalWallet,
       );
-    } else {
-     
-    }
+    } else {}
   }
 
   @override
   void dispose() {
-    _razorpay
-        .clear(); 
+    _razorpay.clear();
     super.dispose();
   }
 }
