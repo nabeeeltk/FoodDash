@@ -26,8 +26,8 @@ class FoodItemList extends StatelessWidget {
                   .where((item) =>
                       serachcontroller.searchResults.contains(item.itemname))
                   .toList();
-          return Obx(
-            () => ListView.separated(
+          return 
+            ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   var item = items[index];
@@ -95,8 +95,8 @@ class FoodItemList extends StatelessWidget {
                 separatorBuilder: (context, index) {
                   return const Divider(thickness: 0, color: Colors.black);
                 },
-                itemCount: items.length),
-          );
-        });
+                itemCount: items.length);
+   } );
+        }
   }
-}
+

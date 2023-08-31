@@ -1,11 +1,14 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
 import 'package:get/get.dart';
+import '../../controller/wishlist_cotroller.dart';
 import '../../model/Item_model.dart';
 import '../payment/payment_page.dart';
+import '../user_profile/user_address.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final ItemModel pitem; // Receive the item data
@@ -13,6 +16,7 @@ class FoodDetailsPage extends StatelessWidget {
 
   final _cartController = Get.put(MyCardController());
   final controller = Get.put(AddNewItemcontrller());
+  final  favecontroller = Get.put(WishlistController());
 
 //  final ReviewController _reviewController = Get.put(ReviewController());
   FoodDetailsPage({required this.pitem, this.isfavorite = false, Key? key})
@@ -58,7 +62,9 @@ class FoodDetailsPage extends StatelessWidget {
                         )),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     icon: const Icon(
                       Icons.favorite,
                       color: Colors.red,
@@ -96,16 +102,6 @@ class FoodDetailsPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (context) => AddReview(
-                            // onAddReview: (double rating, String comment) {
-                            //   // Create a ReviewModel object
-                            //   ReviewModel review = ReviewModel(
-                            //     username: 'User', // You can replace with the actual username
-                            //     rating: rating.toInt(),
-                            //     comment: comment,
-                            //   );
-                            //   // Add the review to the ReviewController
-                            //   _reviewController.addReview(review);
-                            // },
                             ));
                   },
                   icon: const Icon(
@@ -153,7 +149,7 @@ class FoodDetailsPage extends StatelessWidget {
               MaterialButton(
                 height: 40,
                 onPressed: () {
-                  Get.to(PaymentPage());
+                  Get.to(UserAdress());
                 },
                 color: Colors.white,
                 child: const Text(

@@ -18,7 +18,6 @@ class UserProfilePage extends StatelessWidget {
   User? user = FirebaseAuth.instance.currentUser;
   final UserProfileController pimage = Get.put(UserProfileController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,9 +43,13 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10),
-            const  CircleAvatar(
+          const   CircleAvatar(
               radius: 70,
-             backgroundImage:AssetImage("image/profileimg.png")
+              backgroundImage: 
+              // pimage.profileImageUrl != null
+              //     ? NetworkImage(pimage.profileImageUrl!)
+              //     :  
+                  AssetImage("image/profileimg.png"),
             ),
             const SizedBox(
               height: 10,
@@ -68,7 +71,6 @@ class UserProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               user!.email.toString(),
-              
               style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -98,7 +100,7 @@ class UserProfilePage extends StatelessWidget {
               title: const Text('Help& Support',
                   style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to( const HelpAndSupport());
+                Get.to(const HelpAndSupport());
               },
             ),
             const Divider(),
@@ -116,32 +118,28 @@ class UserProfilePage extends StatelessWidget {
               title: const Text('Address Book',
                   style: TextStyle(color: Colors.white)),
               onTap: () {
-              Get.to(  UserAdress());
+                Get.to(UserAdress());
               },
             ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.list),
               title: const Text('About', style: TextStyle(color: Colors.white)),
-              onTap: () {
-               
-              },
+              onTap: () {},
             ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.security),
               title: const Text('Security &privecy',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.share),
               title: const Text('Share', style: TextStyle(color: Colors.white)),
               onTap: () {
-               Share.share("asdfghjklsdfghjkl;xcvbnm,.xcvbnm,./");
+                Share.share("asdfghjklsdfghjkl;xcvbnm,.xcvbnm,./");
               },
             ),
             const Divider(),

@@ -56,7 +56,10 @@ class UserAddressController extends GetxController {
           phoneNumber: data['phoneNumber'] ?? '',
         );
       }).toList();
-
+        
+      await  Get.snackbar(
+          backgroundColor: Colors.white,
+          "Sucsessfull", "Address Adedd");
       log('Addresses fetched from Firestore');
     } catch (error) {
       log('Error fetching addresses from Firestore: $error');
@@ -70,8 +73,10 @@ class UserAddressController extends GetxController {
 
       // After deleting the address, you can update the addresses list.
       await fetchAddresses();
+      Get.back();
     } catch (error) {
       log('Error deleting address from Firestore: $error');
     }
   }
+  
 }

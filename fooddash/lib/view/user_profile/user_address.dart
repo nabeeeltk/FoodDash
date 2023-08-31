@@ -65,15 +65,16 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
                           fontWeight: FontWeight.bold),),
                            IconButton(onPressed: (){
                             showDialog(context: context, builder:(context) {
-                              return AlertDialog(content: const Text("Delete?"),
-                              title:const  Text("Are You Sure"),
+                              return AlertDialog(
+                                content: const Text("Delete?"),
+                              title:const  Text("Are You Sure!"),
                               actions: [
                                  TextButton(onPressed: (){
                                   Get.back();
                                 }, child:const  Text("Cancel")),
                                 TextButton(onPressed: (){
                                    _addressController.deleteAddress(adresitem);
-                                }, child:const  Text("ok")),
+                                }, child:const  Text("ok",style: TextStyle(color: Colors.red),)),
                                
                               ],
                               );
@@ -119,8 +120,9 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
             MaterialButton(
               minWidth: 250,
               height: 40,
-              
+                
               color: Colors.green,
+            
               child:const  Text("Confirm Order",style: TextStyle(fontSize: 18,color: Colors.white),),
               onPressed: (){
                 _paymentController.initiatePayment();
