@@ -16,6 +16,7 @@ class MyCart extends StatelessWidget {
   final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
    RxInt itemCount = 1.obs;
 
+
   MyCart({super.key});
 
   @override

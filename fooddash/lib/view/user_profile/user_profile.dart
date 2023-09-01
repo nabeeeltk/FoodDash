@@ -77,24 +77,24 @@ class UserProfilePage extends StatelessWidget {
                   color: Colors.orange),
             ),
             const SizedBox(height: 30),
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('Edit Profile',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Get.to(const EditProfilePage());
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.shopping_cart),
-              title: const Text('My Orders',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Get.to(const UserOrderPage());
-              },
-            ),
-            const Divider(),
+            // ListTile(
+            //   leading: const Icon(Icons.person),
+            //   title: const Text('Edit Profile',
+            //       style: TextStyle(color: Colors.white)),
+            //   onTap: () {
+            //     Get.to(const EditProfilePage());
+            //   },
+            // ),
+            // const Divider(),
+            // ListTile(
+            //   leading: const Icon(Icons.shopping_cart),
+            //   title: const Text('My Orders',
+            //       style: TextStyle(color: Colors.white)),
+            //   onTap: () {
+            //     Get.to(const UserOrderPage());
+            //   },
+            // ),
+            // const Divider(),
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text('Help& Support',

@@ -33,10 +33,13 @@ class UserAddressController extends GetxController {
         'address': newAddress.address,
         'phoneNumber': newAddress.phoneNumber,
       });
-
+            
       log('Address added to Firestore');
       fetchAddresses();
       await Get.to(UserAdress()); // Fetch addresses to update the list
+      await  Get.snackbar(
+          backgroundColor: Colors.white,
+          "Sucsessfull", "Address Adedd");
     } catch (error) {
       log('Error adding address to Firestore: $error');
     }
@@ -57,9 +60,7 @@ class UserAddressController extends GetxController {
         );
       }).toList();
         
-      await  Get.snackbar(
-          backgroundColor: Colors.white,
-          "Sucsessfull", "Address Adedd");
+   
       log('Addresses fetched from Firestore');
     } catch (error) {
       log('Error fetching addresses from Firestore: $error');
