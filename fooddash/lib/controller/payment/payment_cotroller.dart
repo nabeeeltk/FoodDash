@@ -19,7 +19,7 @@ class PaymentController extends GetxController {
     double totalPrize = 0.0;
     for (var item in _cardController.mycartItems) {
       int itemCount = _cardController.itemCount
-          .toInt(); // Get the item count for this specific item
+          .toInt();
       double itemPrice = double.parse(item.itemPrice.toString());
       totalPrize += itemCount * itemPrice;
     }
@@ -27,7 +27,7 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    double paymentAmount = calculateTotalPrice(); // Calculate payment amount
+    double paymentAmount = calculateTotalPrice(); 
 
     await _firestore.collection('payments').add({
       'amount': paymentAmount.toDouble(),
@@ -50,12 +50,13 @@ class PaymentController extends GetxController {
         String paymentAmountString = document.get('amount');
         double paymentAmount = double.tryParse(paymentAmountString) ?? 0.0;
         totalAmount += paymentAmount;
+        print(paymentAmountString);
       }
     } catch (e) {
       log('Error fetching payment data: $e');
     }
 
-    return totalAmount;
+    return totalAmount.toDouble();
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

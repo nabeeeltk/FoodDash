@@ -2,8 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/car_controller.dart';
+import '../../controller/owner/add_item_cotroller.dart';
+
 class UserOrderPage extends StatelessWidget {
-  const UserOrderPage({super.key});
+  final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
+    final MyCardController _cardController = Get.put(MyCardController());
+
+   UserOrderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,41 +25,46 @@ class UserOrderPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-              return Card(
-                color: Colors.grey.shade200,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 100,
-                              width: 100,
-                              decoration:const  BoxDecoration(
-                                color: Colors.blueGrey,
-                                image: DecorationImage(image: AssetImage("image/Banner1.jpeg"),fit: BoxFit.cover)
+            Obx(() {
+                final cartItems = _cardController.mycartItems;
+              return ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                   var item = _controller.menuItems[index];
+                return Card(
+                  color: Colors.grey.shade200,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 100,
+                                width: 100,
+                                decoration:  BoxDecoration(
+                                  color: Colors.blueGrey,
+                                  image: DecorationImage(image: NetworkImage(item.imageUrl.toString()),fit: BoxFit.cover)
+                                ),
                               ),
                             ),
-                          ),
-                         const  Text("Item Name",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                        const  Padding(
-                           padding:  EdgeInsets.all(8.0),
-                           child:  Text("Prize:#300",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green)),
-                         )
-                        ],
-                      ),
-                    
-                    ],
-                  ),
-              );
-            }, separatorBuilder: (context, index) {
-              return const  SizedBox(height: 2,);
-            }, itemCount: 3)
+                            Text(item.itemname.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                            Padding(
+                             padding:  EdgeInsets.all(8.0),
+                             child:  Text(  "₹ ${item.itemPrice.toString()}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green)),
+                           )
+                          ],
+                        ),
+                      
+                      ],
+                    ),
+                );
+              }, separatorBuilder: (context, index) {
+                return const  SizedBox(height: 2,);
+              }, itemCount: cartItems.length);
+            },
+            )
              
           ],
         ),

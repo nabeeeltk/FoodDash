@@ -2,12 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/auth/auth_contoller.dart';
 import 'package:fooddash/controller/user_profile/user_profile_controller.dart';
+import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:fooddash/view/user_profile/help_support.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
+
+
 
 // ignore: must_be_immutable
 class UserProfilePage extends StatelessWidget {
@@ -93,6 +96,15 @@ class UserProfilePage extends StatelessWidget {
                 Get.to(MyCart());
               },
             ),
+             const Divider(),
+            ListTile(
+              leading: const Icon(Icons.shopping_cart),
+              title:
+                  const Text('My Order', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Get.to(UserOrderPage());
+              },
+            ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.library_books_outlined),
@@ -106,14 +118,18 @@ class UserProfilePage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.list),
               title: const Text('About', style: TextStyle(color: Colors.white)),
-              onTap: () {},
+              onTap: () {
+             
+              },
             ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.security),
               title: const Text('Security &privecy',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {},
+              onTap: () {
+                
+              },
             ),
             const Divider(),
             ListTile(

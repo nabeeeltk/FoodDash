@@ -1,16 +1,26 @@
 
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/controller/user_adress_controller.dart';
 import 'package:fooddash/view/user_profile/add_new_adress.dart';
 import 'package:get/get.dart';
 
+import '../../controller/order_controller.dart';
+import '../../model/order_model.dart';
+import '../../widget/orderid.dart';
+
 class UserAdress extends StatelessWidget {
    UserAdress({Key? key}) : super(key: key);
 final UserAddressController  _addressController  =Get.put(UserAddressController());
    final PaymentController  _paymentController = Get.put(PaymentController());
+   final OrderController  _ordercontroller= Get.put(OrderController());
+   final AddNewItemcontrller _addNewItemcontrller =Get.put(AddNewItemcontrller());
+  
   @override
   Widget build(BuildContext context) {
+
+    
    
     return Scaffold(
       backgroundColor: Colors.black,
@@ -126,8 +136,9 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
               color: Colors.green,
             
               child:const  Text("Confirm Order",style: TextStyle(fontSize: 18,color: Colors.white),),
-              onPressed: (){
+              onPressed: () async{
                 _paymentController.initiatePayment();
+                placeOrder();
               }),
                MaterialButton(
               minWidth: 250,
@@ -143,5 +154,21 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
         ),
       ),
     );
+  }
+   void placeOrder() async {
+     
+    
+  final adresitem = _addressController.addresses[0]; 
+  final shippingAddress = _addressController.addresses[0]; 
+  final itemName = _addNewItemcontrller.menuItems[0]; 
+    final order = OrderDetails(
+     orderId: generateOrderId() ,
+    customerName: adresitem.name.toString(), 
+    shippingAddress: shippingAddress.address.toString(),
+    orderDate: DateTime.now(), 
+    itemName: itemName.itemname.toString()
+    );
+
+    await _ordercontroller.addOrderDetails(order);
   }
 }

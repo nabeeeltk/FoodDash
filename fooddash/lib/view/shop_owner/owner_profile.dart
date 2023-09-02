@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
+import 'package:fooddash/view/shop_owner/order_histroy.dart';
 import 'package:fooddash/view/shop_owner/user_review.dart';
 import 'package:get/get.dart';
 
@@ -87,7 +88,9 @@ class OwnerProfil extends StatelessWidget {
                 'Order history',
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(OrderHistroy());
+              },
             ),
             const Divider(),
             ListTile(

@@ -6,11 +6,15 @@ class OwnerAllFoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Column(
+    return   Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
       children: [
         SearchWidget(),
-        OwnerAllFoodItem()
+        const  OwnerAllFoodItem()
       ],
+    ),
+      ),
     );
   }
 }
