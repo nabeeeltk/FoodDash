@@ -59,17 +59,15 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    
     Get.snackbar('Payment Error', 'Payment failed: ${response.message}',
         backgroundColor: Colors.white);
   }
 
-  void _handleExternalWallet(ExternalWalletResponse response) {
-  }
+  void _handleExternalWallet(ExternalWalletResponse response) {}
 
   void initiatePayment() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    User? user = _auth.currentUser;
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
     if (user != null) {
       final options = {
         'key': 'rzp_test_SNZ3CCn30y0Aq3',

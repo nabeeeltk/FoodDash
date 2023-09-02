@@ -6,8 +6,6 @@ import 'package:fooddash/view/my_cart/my_cart.dart';
 import 'package:fooddash/view/splash/splash_screen.dart';
 import 'package:fooddash/view/user_profile/help_support.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
-import 'package:fooddash/view/user_profile/user_profile_edit.dart';
-import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -16,7 +14,7 @@ class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
-  final UserProfileController pimage = Get.put(UserProfileController());
+  final UserProfileController _pimage = Get.put(UserProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +44,8 @@ class UserProfilePage extends StatelessWidget {
           const   CircleAvatar(
               radius: 70,
               backgroundImage: 
-              // pimage.profileImageUrl != null
-              //     ? NetworkImage(pimage.profileImageUrl!)
+              // _pimage.profileImageUrl != null
+              //     ? NetworkImage(_pimage.profileImageUrl!)
               //     :  
                   AssetImage("image/profileimg.png"),
             ),
@@ -60,7 +58,7 @@ class UserProfilePage extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.grey.shade300),
               child: TextButton(
                 onPressed: () {
-                  pimage.chooseImage();
+                  _pimage.chooseImage();
                 },
                 child: const Text(
                   "Choose Image",
@@ -77,24 +75,7 @@ class UserProfilePage extends StatelessWidget {
                   color: Colors.orange),
             ),
             const SizedBox(height: 30),
-            // ListTile(
-            //   leading: const Icon(Icons.person),
-            //   title: const Text('Edit Profile',
-            //       style: TextStyle(color: Colors.white)),
-            //   onTap: () {
-            //     Get.to(const EditProfilePage());
-            //   },
-            // ),
-            // const Divider(),
-            // ListTile(
-            //   leading: const Icon(Icons.shopping_cart),
-            //   title: const Text('My Orders',
-            //       style: TextStyle(color: Colors.white)),
-            //   onTap: () {
-            //     Get.to(const UserOrderPage());
-            //   },
-            // ),
-            // const Divider(),
+        
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text('Help& Support',

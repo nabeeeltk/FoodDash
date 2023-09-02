@@ -19,7 +19,7 @@ class AddNewItemcontrller extends GetxController {
   final TextEditingController ingredientsController = TextEditingController();
   
   RxList<ItemModel> menuItems = <ItemModel>[].obs;
-  List<ItemModel> filteredItems = []; // Store fi
+  List<ItemModel> filteredItems = []; 
   final RxBool isVeg = true.obs;
   var loading = false.obs;
   final RxBool isfavorite =false.obs;
@@ -58,13 +58,13 @@ class AddNewItemcontrller extends GetxController {
         "ingredients": ingredientsController.text,
         "itemPrice": itemPriceController.text,
         "imageUrl": imageUrl,
-       // Update imageUrl
+     
       });
 
       await Get.to(ShopeHomeScreen());
       loading.value = false;
     } catch (e) {
-      // Handle error
+      
       log('Error adding item: $e');
       loading.value = false;
     }
@@ -78,7 +78,7 @@ class AddNewItemcontrller extends GetxController {
         return ItemModel.fromMap(doc);
       }).toList();
     } catch (e) {
-      // Handle error
+    
       log('Error fetching menu items: $e');
     }
   }
@@ -89,7 +89,7 @@ class AddNewItemcontrller extends GetxController {
       log('Item deleted successfully');
       await Get.to(ShopeHomeScreen());
     } catch (e) {
-      // Handle error
+    
       log('Error deleting item: $e');
     }
   }
@@ -124,15 +124,4 @@ class AddNewItemcontrller extends GetxController {
   }
   
 
-  // void getFilteredItems(String query) {
-  //   if (query.isEmpty) {
-  //     filteredItems = menuItems;
-  //   } else {
-  //     filteredItems = menuItems
-  //         .where((item) =>
-  //             item.itemname!.toLowerCase().contains(query.toLowerCase()))
-  //         .toList();
-  //   }
-  //   update(); 
-  // }ss
 }
