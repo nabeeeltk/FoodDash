@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +16,7 @@ class OrderController extends GetxController {
       // Order details added successfully.
     } catch (error) {
       // Handle the error.
-      print('Error adding order: $error');
+      log('Error adding order: $error' as num);
     }
   }
  Future<void> fetchOrders() async {
@@ -22,9 +24,9 @@ class OrderController extends GetxController {
     final querySnapshot = await _firestore.collection('orders').get();
 
     orders.value = querySnapshot.docs.map((doc) {
-      final data = doc.data() as Map<String, dynamic>;
+      final data =  doc.data() as Map<String, dynamic>;
       return OrderDetails(
-        orderId: doc.id, // Use the Firestore document ID as the orderId
+        orderId: doc.id,
         customerName: data['customerName'] ?? '',
         shippingAddress: data['shippingAddress'] ?? '',
         itemName: data['itemName'] ?? '',

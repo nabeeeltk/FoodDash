@@ -10,8 +10,6 @@ import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-
-
 // ignore: must_be_immutable
 class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
@@ -44,14 +42,15 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10),
-          const   CircleAvatar(
-              radius: 70,
-              backgroundImage: 
-              // _pimage.profileImageUrl != null
-              //     ? NetworkImage(_pimage.profileImageUrl!)
-              //     :  
-                  AssetImage("image/profileimg.png"),
-            ),
+             FutureBuilder(
+              future: _pimage.fetchProfileImageUrl(""),
+              builder: (context, snapshot) => 
+               CircleAvatar(
+                radius: 70,
+                backgroundImage: 
+                    NetworkImage(_pimage.profileImageUrl.toString())
+                         ),
+             ),
             const SizedBox(
               height: 10,
             ),
