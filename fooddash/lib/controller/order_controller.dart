@@ -10,7 +10,7 @@ class OrderController extends GetxController {
    RxList<OrderDetails> orders = <OrderDetails>[].obs;
 
 
-  Future<void> addOrderDetails(OrderDetails order) async {
+  Future <void> addOrderDetails(OrderDetails order) async {
     try {
       await _firestore.collection('orders').add(order.toJson());
       // Order details added successfully.
@@ -18,13 +18,13 @@ class OrderController extends GetxController {
       // Handle the error.
       log('Error adding order: $error' as num);
     }
-  }
+  } 
  Future<void> fetchOrders() async {
   try {
     final querySnapshot = await _firestore.collection('orders').get();
 
     orders.value = querySnapshot.docs.map((doc) {
-      final data =  doc.data() as Map<String, dynamic>;
+      final data =   doc.data() as Map<String, dynamic>;
       return OrderDetails(
         orderId: doc.id,
         customerName: data['customerName'] ?? '',
