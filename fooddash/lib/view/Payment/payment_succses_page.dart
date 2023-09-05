@@ -42,8 +42,8 @@ class PaymentSuccessPage extends StatelessWidget {
               child:const  Text("Track Order", style: TextStyle(fontSize: 20,color: Colors.white),),
               onPressed: (){
 
-                
-             Get.to( TrackOrderPage(orderId: '#5452',orderStatus: "Upadate",))  ;
+                Get.to(TimelineWidget());
+           
               }),
           ),
          const  SizedBox(height: 20,),

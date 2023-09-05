@@ -10,6 +10,8 @@ import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../payment/track_order_page.dart';
+
 // ignore: must_be_immutable
 class UserProfilePage extends StatelessWidget {
   UserProfilePage({super.key});
@@ -118,7 +120,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.list),
               title: const Text('About', style: TextStyle(color: Colors.white)),
               onTap: () {
-             
+               Get.to(TimelineWidget());
               },
             ),
             const Divider(),

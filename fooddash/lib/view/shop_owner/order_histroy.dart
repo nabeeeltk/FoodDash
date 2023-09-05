@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/order_controller.dart';
+import 'package:fooddash/view/shop_owner/update_status.dart';
 import 'package:get/get.dart';
 
 class OrderHistroy extends StatelessWidget {
@@ -32,27 +33,32 @@ class OrderHistroy extends StatelessWidget {
                   final order = _orderController.orders[index];
                   return  Padding(
                     padding:  EdgeInsets.all(8.0),
-                    child:  Card(
-                    
-                      elevation: 4,
-                      child:  Padding(
-                        padding:const  EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment:MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                    child:  InkWell(
+                      onTap: () {
+                        Get.to(UpdateOrderStatus());
+                      },
+                      child: Card(
+                      
+                        elevation: 4,
+                        child:  Padding(
+                          padding:const  EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment:MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                                   
+                                        
+                                   Text(order.customerName,style:const  TextStyle(fontSize: 20)),
+                                   Text(order.itemName,style:const  TextStyle(fontSize: 18)),
+                                   Text(order.shippingAddress,style:const  TextStyle(fontSize: 18)),
+                                   Text(order.orderDate.toString(),style:const  TextStyle(fontSize: 18)),
+                                   Text(order.orderId,style: const TextStyle(fontSize: 18),),
                                  
-                                      
-                                 Text(order.customerName,style:const  TextStyle(fontSize: 20)),
-                                 Text(order.itemName,style:const  TextStyle(fontSize: 18)),
-                                 Text(order.shippingAddress,style:const  TextStyle(fontSize: 18)),
-                                 Text(order.orderDate.toString(),style:const  TextStyle(fontSize: 18)),
-                                 Text(order.orderId,style: const TextStyle(fontSize: 18),),
-                               
-                                 
-                          ],
-                        ),
-                      ) ,
+                                   
+                            ],
+                          ),
+                        ) ,
+                      ),
                     ),
                   );
                }, separatorBuilder: (context, index) {
