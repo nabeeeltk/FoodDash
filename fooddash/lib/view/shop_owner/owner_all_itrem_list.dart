@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddash/view/shop_owner/owner_food_item_list.dart';
 import 'package:fooddash/widget/search_filtter.dart';
 
 class OwnerAllFoodItem extends StatelessWidget {
@@ -6,15 +7,17 @@ class OwnerAllFoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
-      children: [
-        SearchWidget(),
-        const  OwnerAllFoodItem()
-      ],
-    ),
+          children: [
+            SearchWidget(),
+            OwnerFoodItemList()
+
+          ],
+        ),
       ),
     );
+    
   }
 }

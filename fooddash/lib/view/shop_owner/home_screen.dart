@@ -8,7 +8,7 @@ import '../../controller/order_controller.dart';
 class ShopeHomeScreen extends StatelessWidget {
   ShopeHomeScreen({super.key});
   final PaymentController _paymentController = Get.put(PaymentController());
-   final OrderController _orderController = Get.put(OrderController());
+  final OrderController _orderController = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,18 +57,17 @@ class ShopeHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FutureBuilder(
-                           future: _paymentController.getTotalAmount(),
+                          future: _paymentController.getTotalAmount(),
                           builder: (context, countSnapshot) {
                             if (countSnapshot.connectionState ==
                                 ConnectionState.waiting) {
                               const CircularProgressIndicator();
                             }
-                           
                             return Padding(
-                              padding:const  EdgeInsets.only(left: 8.0, top: 8),
+                              padding: const EdgeInsets.only(left: 8.0, top: 8),
                               child: Text(
                                 ordercount().toString(),
-                                style:const  TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 40),
                               ),
                             );
@@ -109,13 +108,17 @@ class ShopeHomeScreen extends StatelessWidget {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-
                                 return const CircularProgressIndicator();
                               }
-                              return  const  Text("00",
-                              // _paymentController.getTotalAmount.toString(),
-                                style:  TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 40),
+                              if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              }
+                              return Text(
+                                snapshot.data!.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40,
+                                ),
                               );
                             },
                           ),
@@ -143,9 +146,9 @@ class ShopeHomeScreen extends StatelessWidget {
       ),
     );
   }
-   ordercount(){
-  final  count =_orderController.orders.length+1;
-  return count;
+
+  ordercount() {
+    final count = _orderController.orders.length + 1;
+    return count;
   }
-  
 }
