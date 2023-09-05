@@ -1,13 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/view/food_details_page/add_review.dart';
 import 'package:get/get.dart';
 import '../../controller/wishlist_cotroller.dart';
 import '../../model/Item_model.dart';
-import '../payment/payment_page.dart';
 import '../user_profile/user_address.dart';
 
 class FoodDetailsPage extends StatelessWidget {

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../controller/owner/add_item_cotroller.dart';
 
+// ignore: must_be_immutable
 class EditItemPage extends StatelessWidget {
   String itemId;
 
@@ -18,11 +19,11 @@ class EditItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final edititem =
         _controller.menuItems.firstWhere((item) => item.id == itemId);
-    _controller.itemNameController.text = edititem!.itemname.toString();
-    _controller.itemPriceController.text = edititem!.itemPrice.toString();
+    _controller.itemNameController.text = edititem.itemname.toString();
+    _controller.itemPriceController.text = edititem.itemPrice.toString();
     _controller.itemDescriptionController.text =
-        edititem!.itemDescription.toString();
-    _controller.ingredientsController.text = edititem!.ingredients.toString();
+        edititem.itemDescription.toString();
+    _controller.ingredientsController.text = edititem.ingredients.toString();
 
     return Scaffold(
       appBar: AppBar(

@@ -52,7 +52,7 @@ class Authcontroller extends GetxController {
   adduser() async {
     if (auth.currentUser != null) {
       String userEmail = auth.currentUser?.email ?? "";
-      String userName = username.text ?? "";
+      String userName = username.text;
 
       if (userEmail.isNotEmpty && userName.isNotEmpty) {
         UserModel user = UserModel(email: userEmail, username: userName);

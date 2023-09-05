@@ -148,7 +148,7 @@ class ShopeHomeScreen extends StatelessWidget {
   }
 
   ordercount() {
-    final count = _orderController.orders.length + 1;
+    final count = _orderController.orders.length;
     return count;
   }
 }
