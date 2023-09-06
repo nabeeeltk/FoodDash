@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import '../../controller/time_line_controller.dart';
 
 class TimelineWidget extends StatelessWidget {
-  final TimelineController controller = Get.put(TimelineController());
+final TimelineController controller = Get.put(TimelineController());
 
-  TimelineWidget({super.key});
+TimelineWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

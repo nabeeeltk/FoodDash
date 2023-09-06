@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/auth/auth_contoller.dart';
+import 'package:fooddash/controller/location_controller.dart';
 import 'package:fooddash/controller/user_profile/user_profile_controller.dart';
 import 'package:fooddash/view/myOrder/user_orde_page.dart';
 import 'package:fooddash/view/my_cart/my_cart.dart';
@@ -9,7 +10,6 @@ import 'package:fooddash/view/user_profile/help_support.dart';
 import 'package:fooddash/view/user_profile/user_address.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../payment/track_order_page.dart';
 
 // ignore: must_be_immutable
@@ -18,6 +18,7 @@ class UserProfilePage extends StatelessWidget {
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
   final UserProfileController _pimage = Get.put(UserProfileController());
+  final LocationController  _locationController =Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +107,16 @@ class UserProfilePage extends StatelessWidget {
                 Get.to(UserOrderPage());
               },
             ),
+              const Divider(),
+            ListTile(
+              leading: const Icon(Icons.help),
+              title: const Text('Location ',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                _locationController.fetchLocation();
+              },
+            ),
+          
             const Divider(),
             ListTile(
               leading: const Icon(Icons.library_books_outlined),
