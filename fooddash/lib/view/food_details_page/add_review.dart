@@ -10,7 +10,7 @@ import '../../model/review_model.dart';
 class AddReview extends StatelessWidget {
   final reviewctrl= Get.put(ReviewController());
    AddReview({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     double userRating = 0.0;
