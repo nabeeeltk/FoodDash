@@ -44,6 +44,7 @@ class UserProfilePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            
             const SizedBox(height: 10),
             FutureBuilder(
               future: _pimage.fetchProfileImageUrl(""),

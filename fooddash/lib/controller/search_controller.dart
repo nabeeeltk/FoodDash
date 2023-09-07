@@ -7,7 +7,7 @@ import '../widget/food_item_list.dart';
 
 class SearchControllerPage extends GetxController {
   final TextEditingController searchController = TextEditingController();
- RxList<String> _searchResults = <String>[].obs;
+  final RxList<String> _searchResults = <String>[].obs;
 
   RxList<String> get searchResults => _searchResults;
 

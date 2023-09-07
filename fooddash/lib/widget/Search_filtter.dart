@@ -23,7 +23,7 @@ class SearchWidget extends StatelessWidget {
                 child: TextField(
                   controller: _searchController.searchController,
                   onChanged: (value) {
-                    _searchController.updateSearchResults(value); // Update results as the user types
+                    _searchController.updateSearchResults(value);
                   },
                   textAlign: TextAlign.start,
                   cursorHeight: 25,
