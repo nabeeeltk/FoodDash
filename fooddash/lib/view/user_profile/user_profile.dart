@@ -18,7 +18,7 @@ class UserProfilePage extends StatelessWidget {
   final ctrl = Get.put(Authcontroller);
   User? user = FirebaseAuth.instance.currentUser;
   final UserProfileController _pimage = Get.put(UserProfileController());
-  final LocationController  _locationController =Get.put(LocationController());
+  final LocationController _locationController = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,27 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10),
-             FutureBuilder(
+            FutureBuilder(
               future: _pimage.fetchProfileImageUrl(""),
-              builder: (context, snapshot) => 
-               CircleAvatar(
-                radius: 70,
-                backgroundImage: 
-                    NetworkImage(_pimage.profileImageUrl.toString())
-                         ),
-             ),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircleAvatar(
+                    radius: 70,
+                    backgroundImage: AssetImage("image/profileimg.png"),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                } else if (snapshot.hasData) {
+                  return CircleAvatar(
+                    radius: 70,
+                    backgroundImage: NetworkImage(snapshot.data.toString()),
+                  );
+                } else {
+                 
+                  return  const Text("No data available");
+                }
+              },
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -80,7 +92,6 @@ class UserProfilePage extends StatelessWidget {
                   color: Colors.orange),
             ),
             const SizedBox(height: 30),
-        
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text('Help& Support',
@@ -98,7 +109,7 @@ class UserProfilePage extends StatelessWidget {
                 Get.to(MyCart());
               },
             ),
-             const Divider(),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.shopping_cart),
               title:
@@ -107,7 +118,7 @@ class UserProfilePage extends StatelessWidget {
                 Get.to(UserOrderPage());
               },
             ),
-              const Divider(),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text('Location ',
@@ -116,7 +127,6 @@ class UserProfilePage extends StatelessWidget {
                 _locationController.fetchLocation();
               },
             ),
-          
             const Divider(),
             ListTile(
               leading: const Icon(Icons.library_books_outlined),
@@ -131,7 +141,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.list),
               title: const Text('About', style: TextStyle(color: Colors.white)),
               onTap: () {
-               Get.to(TimelineWidget());
+                Get.to(TimelineWidget());
               },
             ),
             const Divider(),
@@ -139,9 +149,7 @@ class UserProfilePage extends StatelessWidget {
               leading: const Icon(Icons.security),
               title: const Text('Security &privecy',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             const Divider(),
             ListTile(

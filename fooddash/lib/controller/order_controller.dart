@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
 import '../model/order_model.dart';
 
 class OrderController extends GetxController {
@@ -13,9 +11,9 @@ class OrderController extends GetxController {
   Future <void> addOrderDetails(OrderDetails order) async {
     try {
       await _firestore.collection('orders').add(order.toJson());
-      // Order details added successfully.
+     
     } catch (error) {
-      // Handle the error.
+     
       log('Error adding order: $error' as num);
     }
   } 

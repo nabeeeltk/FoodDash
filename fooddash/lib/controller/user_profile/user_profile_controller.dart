@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UserProfileController extends GetxController {
   File? profileImage;
-  String? profileImageUrl;
+  final profileImageUrl = ''.obs; 
 
   void chooseImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -33,7 +33,7 @@ class UserProfileController extends GetxController {
 
    
     final snapshot = await uploadTask.whenComplete(() {});
-    profileImageUrl = await snapshot.ref.getDownloadURL();
+   final  profileImageUrl = await snapshot.ref.getDownloadURL();
     log("Image uploaded to Firebase Storage: $profileImageUrl");
   } catch (e) {
     log("Error uploading image to Firebase Storage: $e");

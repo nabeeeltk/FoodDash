@@ -17,27 +17,30 @@ class SearchWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(
-              child: TextField(
-                controller: _searchController.searchController,
-                onChanged: (value) {
-                  _searchController.updateSearchResults(value); // Update results as the user types
-                },
-                textAlign: TextAlign.start,
-                cursorHeight: 25,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  hintText: "Search dishes",
-                  hintStyle: const TextStyle(fontSize: 18),
-                  fillColor: Colors.grey.shade400,
-                  filled: true,
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    size: 30,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
+            StreamBuilder(
+
+              builder: (context, snapshot) =>  Expanded(
+                child: TextField(
+                  controller: _searchController.searchController,
+                  onChanged: (value) {
+                    _searchController.updateSearchResults(value); // Update results as the user types
+                  },
+                  textAlign: TextAlign.start,
+                  cursorHeight: 25,
+                  cursorColor: Colors.black,
+                  decoration: InputDecoration(
+                    hintText: "Search  dishes & enjoy",
+                    hintStyle: const TextStyle(fontSize: 18),
+                    fillColor: Colors.grey.shade400,
+                    filled: true,
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      size: 30,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
               ),
