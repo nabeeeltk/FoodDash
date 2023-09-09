@@ -116,30 +116,35 @@ class FoodDetailsPage extends StatelessWidget {
                   label: const Text("free")),
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: Text(
-                  "ingredients",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child:  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      "ingredients",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  pitem.ingredients.toString(),
-                  style: const TextStyle(fontSize: 12, color: Colors.white),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    pitem.ingredients.toString(),
+                    style: const TextStyle(fontSize: 12, color: Colors.white),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
+                const SizedBox(
+                  height: 50,
+                ),
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -155,17 +160,22 @@ class FoodDetailsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
-              MaterialButton(
-                height: 40,
-                onPressed: () {
-                  _cartController.addItemToCart(pitem);
-                  log(pitem.toString());
-                },
-                color: Colors.orange.shade800,
-                child: const Text(
-                  "ADD TO CART",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
+              Stack(
+                 alignment: AlignmentDirectional.bottomCenter, 
+                children: [
+                  MaterialButton(
+                    height: 40,
+                    onPressed: () {
+                      _cartController.addItemToCart(pitem);
+                      log(pitem.toString());
+                    },
+                    color: Colors.orange.shade800,
+                    child: const Text(
+                      "ADD TO CART",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

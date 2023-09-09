@@ -18,7 +18,7 @@ class LocationController extends GetxController {
       currentLocation.value = position;
     } catch (e) {
       // Handle location fetch errors here.
-      print('Error fetching location: $e');
+    print('Error fetching location: $e');
     }
   }
 }

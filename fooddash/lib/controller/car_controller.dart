@@ -22,4 +22,5 @@ class MyCardController extends GetxController {
 
     await Get.to(MyCart());
   }
+  
 }
