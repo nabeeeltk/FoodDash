@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/owner/add_item_cotroller.dart';
+
 import '../controller/time_line_controller.dart';
 import '../controller/user_adress_controller.dart';
 import '../model/Item_model.dart';
 
+// ignore: must_be_immutable
 class OrderStatus extends StatelessWidget {
   UserAddressController _addressController = Get.put(UserAddressController());
   final TimelineController controller = Get.put(TimelineController());
@@ -37,6 +38,7 @@ class OrderStatus extends StatelessWidget {
             return Text("Error: ${snapshot.error}");
           } else {
             final firstAddress = _addressController.addresses[0];
+            // ignore: unused_local_variable
             final firstTimelineItem = controller.timelineItems.isNotEmpty
                 ? controller.timelineItems[0]
                 : null;
