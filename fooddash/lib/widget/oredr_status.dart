@@ -54,7 +54,7 @@ class OrderStatus extends StatelessWidget {
                 padding: EdgeInsets.all(8),
                 child: Container(
                   height: 250,
-                  color: Colors.orange,
+                  color: Colors.blueGrey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

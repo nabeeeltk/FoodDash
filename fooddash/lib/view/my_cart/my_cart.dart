@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
+import 'package:fooddash/model/faveraite_model.dart';
 
 import 'package:fooddash/view/user_profile/user_address.dart';
 
@@ -14,6 +15,7 @@ class MyCart extends StatelessWidget {
   final MyCardController _cardController = Get.put(MyCardController());
   final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
   RxInt itemCount = 1.obs;
+  ItemModel? romoveitem;
 
   MyCart({super.key});
 
@@ -63,11 +65,16 @@ class MyCart extends StatelessWidget {
                         content: const Text("Delete"),
                         actions: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.back();
+                              },
                               child: const Text("Cancel",
                                   style: TextStyle(color: Colors.black))),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _cardController.removeItemFromCart(cartItems[0]);
+                                Get.back();
+                              },
                               child: const Text(
                                 "Ok",
                                 style: TextStyle(color: Colors.red),

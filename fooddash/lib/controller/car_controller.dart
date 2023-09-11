@@ -22,5 +22,9 @@ class MyCardController extends GetxController {
 
     await Get.to(MyCart());
   }
-  
+  void removeItemFromCart(ItemModel item) {
+ 
+  mycartItems.removeWhere((cartItem) => cartItem == item);
+}
+
 }

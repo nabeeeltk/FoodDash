@@ -1,5 +1,8 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/car_controller.dart';
 import 'package:fooddash/controller/owner/add_item_cotroller.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/controller/user_adress_controller.dart';
@@ -16,6 +19,7 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
    final PaymentController  _paymentController = Get.put(PaymentController());
    final OrderController  _ordercontroller= Get.put(OrderController());
    final AddNewItemcontrller _addNewItemcontrller =Get.put(AddNewItemcontrller());
+   final MyCardController _cardController=Get.put(MyCardController());
   
   @override
   Widget build(BuildContext context) {
@@ -137,8 +141,11 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
             
               child:const  Text("Confirm Order",style: TextStyle(fontSize: 18,color: Colors.white),),
               onPressed: () async{
+                 final cartItems = _cardController.mycartItems;
                 _paymentController.initiatePayment();
                 placeOrder();
+                _cardController.removeItemFromCart(cartItems[0]);
+                log("All Cart items cleared");
               }),
                MaterialButton(
               minWidth: 250,
