@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/owner_auth_controller.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/view/shop_owner/order_histroy.dart';
 import 'package:fooddash/view/shop_owner/user_review.dart';
 import 'package:get/get.dart';
 
+import '../splash/splash_screen.dart';
+
 class OwnerProfil extends StatelessWidget {
   OwnerProfil({super.key});
   final PaymentController _paymentController = Get.put(PaymentController());
+  final _ctrl =Get.put(ShopOwnerAuthController());
   //  final _controller = Get.put(AddNewItemcontrller());
   // // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -107,11 +112,50 @@ class OwnerProfil extends StatelessWidget {
               onTap: () {},
             ),
             const Divider(),
-            ListTile(
+           ListTile(
               leading: const Icon(Icons.logout),
               title:
                   const Text('Log Out', style: TextStyle(color: Colors.white)),
-              onTap: () {},
+              onTap: () async {
+                User? user = FirebaseAuth.instance.currentUser;
+
+                if (user != null) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        icon: const Icon(
+                          Icons.warning,
+                          size: 50,
+                          color: Colors.red,
+                        ),
+                        title: const Text('Confirm Log Out'),
+                        content:
+                            const Text('Are you sure you want to log out?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.green),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              await Get.to(SplashScren());
+                            },
+                            child: const Text('Log Out',
+                                style: TextStyle(color: Colors.red)),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
             ),
           ],
         ),

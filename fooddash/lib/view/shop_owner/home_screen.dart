@@ -1,14 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddash/controller/auth/owner_auth_controller.dart';
 import 'package:fooddash/controller/payment/payment_cotroller.dart';
 import 'package:fooddash/view/shop_owner/owner_food_item_list.dart';
 import 'package:fooddash/widget/search_filtter.dart';
 import 'package:get/get.dart';
 import '../../controller/order_controller.dart';
+import '../../model/shop_owner_model.dart';
 
 class ShopeHomeScreen extends StatelessWidget {
   ShopeHomeScreen({super.key});
   final PaymentController _paymentController = Get.put(PaymentController());
   final OrderController _orderController = Get.put(OrderController());
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _ctrl =Get.put(ShopOwnerAuthController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +32,27 @@ class ShopeHomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 8.0),
-              child: Text(
-                "Shope Owner",
-                style: TextStyle(fontSize: 20),
+              child:FutureBuilder(
+               future: _ctrl.getShopOwner(_auth.currentUser?.uid??"") ,// Pass the user's UID here
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.data == null) {
+                    return Text('');
+                  }
+
+                  // Shop owner data retrieved successfully
+                  final shopOwner = snapshot.data as ShopOwnerModel;
+                  return Text(
+                    " ",
+                  // shopOwner.shopName.toString(),
+                  style: TextStyle(fontSize: 20),
+                );
+                },
               ),
             ),
             const SizedBox(

@@ -2,13 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fooddash/utile/constents.dart';
+import 'package:fooddash/view/auth/ShopeOwner/owner_signup.dart';
 import 'package:fooddash/view/auth/user/forgot_password.dart';
 import 'package:fooddash/widget/root_screen.dart';
 import 'package:fooddash/widget/social_media_icon.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/auth/owner_auth_controller.dart';
+
 class OwnerLogin extends StatelessWidget {
-  const OwnerLogin({Key? key}) : super(key: key);
+ OwnerLogin({Key? key}) : super(key: key);
+  final _ctrl=Get.put(ShopOwnerAuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class OwnerLogin extends StatelessWidget {
             ),
             const Center(
               child: Text(
-                "Log In",
+                " Shop Log In",
                 style: TextStyle(color: Colors.white, fontSize: 30),
               ),
             ),
@@ -48,6 +52,7 @@ class OwnerLogin extends StatelessWidget {
                   children: [
                    const  SizedBox(height: 30,),
                     TextField(
+                      controller:_ctrl.shopOwnerLoginEmail,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -63,6 +68,7 @@ class OwnerLogin extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     TextField(
+                      controller: _ctrl.shopOwnerPassword,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -85,10 +91,10 @@ class OwnerLogin extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Get.to( ForgotPassword());
+                            Get.to( OwnerSignUp());
                           },
                           child: Text(
-                            "Forgot Password?",
+                            "Sign Up?",
                             style: TextStyle(
                               color: Colors.orange.shade800,
                               fontSize: 15,
@@ -102,7 +108,8 @@ class OwnerLogin extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: MaterialButton(
                         onPressed: () {
-                          Get.to(const RootScreen());
+                           _ctrl.shopOwnerSignin();
+                         
                         },
                         color: appColor.themcolor,
                         height: 50,
