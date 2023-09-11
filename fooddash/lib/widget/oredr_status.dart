@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
+// import '../controller/order_controller.dart';
 import '../controller/time_line_controller.dart';
 import '../controller/user_adress_controller.dart';
 import '../model/Item_model.dart';
@@ -10,6 +11,7 @@ import '../model/Item_model.dart';
 class OrderStatus extends StatelessWidget {
   UserAddressController _addressController = Get.put(UserAddressController());
   final TimelineController controller = Get.put(TimelineController());
+  //  final OrderController _orderController = Get.put(OrderController());
   final ItemModel mitem;
 
   OrderStatus({required this.mitem, Key? key}) : super(key: key);
@@ -43,8 +45,12 @@ class OrderStatus extends StatelessWidget {
                 ? controller.timelineItems[0]
                 : null;
 
-            return SingleChildScrollView(
-              child: Padding(
+            return ListView.builder(
+              
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                
+                return Padding(
                 padding: EdgeInsets.all(8),
                 child: Container(
                   height: 250,
@@ -117,13 +123,12 @@ class OrderStatus extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      
-                    
-                     
+                      Text(controller.title.text)
                     ],
                   ),
                 ),
-              ),
+              );
+              },
             );
           }
         },
