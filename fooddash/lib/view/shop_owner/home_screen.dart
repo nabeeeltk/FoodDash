@@ -33,16 +33,16 @@ class ShopeHomeScreen extends StatelessWidget {
               ),
             ),
              Padding(
-              padding: EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0),
               child:FutureBuilder(
                future: _ctrl.getShopOwner(_auth.currentUser?.uid??"") ,// Pass the user's UID here
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return  const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (snapshot.data == null) {
-                    return Text('');
+                    return const  Text('');
                   }
 
                   // Shop owner data retrieved successfully

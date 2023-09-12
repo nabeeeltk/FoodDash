@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pdf/pdf.dart';
 
-
-// import '../controller/order_controller.dart';
+ import '../controller/order_controller.dart';
 import '../controller/time_line_controller.dart';
 import '../controller/user_adress_controller.dart';
 import '../model/Item_model.dart';
@@ -12,7 +10,7 @@ import '../model/Item_model.dart';
 class OrderStatus extends StatelessWidget {
   UserAddressController _addressController = Get.put(UserAddressController());
   final TimelineController controller = Get.put(TimelineController());
-  //  final OrderController _orderController = Get.put(OrderController());
+  final OrderController _orderController = Get.put(OrderController());
   final ItemModel mitem;
 
   OrderStatus({required this.mitem, Key? key}) : super(key: key);
@@ -41,6 +39,7 @@ class OrderStatus extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text("Error: ${snapshot.error}");
           } else {
+           print(Text("sdfghjkl............."));
             final firstAddress = _addressController.addresses[0];
             // ignore: unused_local_variable
             final firstTimelineItem = controller.timelineItems.isNotEmpty

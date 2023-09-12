@@ -13,11 +13,11 @@ class OrderHistroy extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Order Details",style: TextStyle(color: Colors.white)),
+        title: const  Text("Order Details",style: TextStyle(color: Colors.white)),
         backgroundColor:Colors.black ,
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon: Icon(Icons.arrow_back_ios,
+        }, icon: const Icon(Icons.arrow_back_ios,
         color: Colors.white,size: 30,)),
       ),
       body: SingleChildScrollView(
@@ -32,7 +32,7 @@ class OrderHistroy extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final order = _orderController.orders[index];
                   return  Padding(
-                    padding:  EdgeInsets.all(8.0),
+                    padding:const   EdgeInsets.all(8.0),
                     child:  InkWell(
                       onTap: () {
                         Get.to(UpdateOrderStatus());
@@ -52,9 +52,7 @@ class OrderHistroy extends StatelessWidget {
                                    Text(order.itemName,style:const  TextStyle(fontSize: 18)),
                                    Text(order.shippingAddress,style:const  TextStyle(fontSize: 18)),
                                    Text(order.orderDate.toString(),style:const  TextStyle(fontSize: 18)),
-                                   Text(order.orderId,style: const TextStyle(fontSize: 18),),
-                                 
-                                   
+                                   Text(order.orderId,style: const TextStyle(fontSize: 18),),   
                             ],
                           ),
                         ) ,
@@ -62,7 +60,7 @@ class OrderHistroy extends StatelessWidget {
                     ),
                   );
                }, separatorBuilder: (context, index) {
-                return Divider(thickness: 1,);
+                return const  Divider(thickness: 1,);
                  
                }, itemCount:_orderController.orders.length),
              )
