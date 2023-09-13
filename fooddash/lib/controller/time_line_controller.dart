@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddash/model/time_lilne_model.dart';
@@ -9,12 +8,13 @@ class TimelineController extends GetxController {
   final RxList<TimelineItem> timelineItems = <TimelineItem>[].obs;
   final TextEditingController title = TextEditingController();
   final TextEditingController description = TextEditingController();
-
   void addTimelineItem() async {
     final newItem = TimelineItem(
-      title: title.text, // Use the value from the title controller
+      title: title.text, 
+      // Use the value from the title controller
       description:
-          description.text, // Use the value from the description controller
+          description.text,
+       // Use the value from the description controller
       dateTime: DateTime.now(),
     );
 
@@ -51,6 +51,7 @@ class TimelineController extends GetxController {
           .toList();
 
       timelineItems.assignAll(items);
+      log(title.toString());
     } catch (e) {
       log('Error fetching timeline items: $e');
     }

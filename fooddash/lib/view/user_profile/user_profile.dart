@@ -113,7 +113,7 @@ class UserProfilePage extends StatelessWidget {
               title:
                   const Text('My Order', style: TextStyle(color: Colors.white)),
               onTap: () {
-                Get.to(UserOrderPage());
+                Get.to(OrderStatus());
               },
             ),
             

@@ -1,83 +1,82 @@
-
 import 'package:flutter/material.dart';
-
-import 'package:fooddash/widget/oredr_status.dart';
+import 'package:fooddash/controller/order_controller.dart';
+import 'package:fooddash/controller/time_line_controller.dart';
+import 'package:fooddash/view/shop_owner/update_status.dart';
 import 'package:get/get.dart';
 
-import '../../controller/car_controller.dart';
-import '../../controller/owner/add_item_cotroller.dart';
+class OrderStatus extends StatelessWidget {
 
-class UserOrderPage extends StatelessWidget {
-  final AddNewItemcontrller _controller = Get.put(AddNewItemcontrller());
-    final MyCardController _cardController = Get.put(MyCardController());
-
-    
-
-   UserOrderPage({super.key});
+  final OrderController _orderController = Get.put(OrderController());
+  final TimelineController _controller = Get.put(TimelineController());
+   OrderStatus({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title:const Text("My Order",style: TextStyle(color: Colors.white),),
+        title: const  Text("Order Details",style: TextStyle(color: Colors.white)),
+        backgroundColor:Colors.black ,
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon:const  Icon(Icons.arrow_back_ios,size: 30,color: Colors.white,)),
+        }, icon: const Icon(Icons.arrow_back_ios,
+        color: Colors.white,size: 30,)),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Obx(() {
-               final cartItems = _cardController.mycartItems; 
-              return ListView.separated(
+             FutureBuilder(
+              future:_orderController.fetchOrders() ,
+              builder: (context, snapshot) => 
+                ListView.separated(
+                 physics:const  NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  var cartItems =_cardController.mycartItems[index];
-                  
-                   var item = _controller.menuItems[index];
-                return InkWell(
-                  onTap:() => Get.to(OrderStatus(mitem: cartItems,)) ,
-                  child: Card(
-                    color: Colors.grey.shade200,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  final order = _orderController.orders[index];
+                
+                  return  Padding(
+                    padding:const   EdgeInsets.all(8.0),
+                    child:  InkWell(
+                      onTap: () {
+                        Get.to(UpdateOrderStatus());
+                      },
+                      child: Card(
+                      
+                        elevation: 4,
+                        child:  Padding(
+                          padding:const  EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment:MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration:  BoxDecoration(
-                                    color: Colors.blueGrey,
-                                    image: DecorationImage(image: NetworkImage(item.imageUrl.toString()),fit: BoxFit.cover)
-                                  ),
-                                ),
-                              ),
-                              Text(item.itemname.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                              Padding(
-                               padding:  EdgeInsets.all(8.0),
-                               child:  Text(  "₹ ${item.itemPrice.toString()}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green)),
-                             )
+                                   
+                                        
+                                   Text(order.customerName,style:const  TextStyle(fontSize: 20)),
+                                   Text(order.itemName,style:const  TextStyle(fontSize: 18)),
+                                   Text(order.shippingAddress,style:const  TextStyle(fontSize: 18)),
+                                   Text(order.orderDate.toString(),style:const  TextStyle(fontSize: 18)),
+                                   Text(order.orderId,style: const TextStyle(fontSize: 18),),   
+                                   FutureBuilder(
+                                    future: _controller.fetchTimelineItems(),
+                                    builder: (context, snapshot) => 
+                                    Text(_controller.title.text,style: const TextStyle(fontSize: 18),)),   
+                                   
+                                    
                             ],
                           ),
-                        
-                        ],
+                        ) ,
                       ),
-                  ),
-                );
-              }, separatorBuilder: (context, index) {
-                return const  SizedBox(height: 2,);
-              }, itemCount: cartItems.length);
-            },
-            )
-             
+                    ),
+                  );
+               }, separatorBuilder: (context, index) {
+                return const  Divider(thickness: 1,);
+                 
+               }, itemCount:_orderController.orders.length),
+             )
           ],
         ),
       ),
     );
+
   }
 }

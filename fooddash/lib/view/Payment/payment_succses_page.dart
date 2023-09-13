@@ -32,20 +32,7 @@ class PaymentSuccessPage extends StatelessWidget {
             ),
            const  SizedBox(height: 20),
           
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              color: Colors.orange.shade800,
-              minWidth: double.infinity,
-              height: 50,
-              child:const  Text("Track Order", style: TextStyle(fontSize: 20,color: Colors.white),),
-              onPressed: (){
-
-                Get.to(TimelineWidget());
-           
-              }),
-          ),
+      
          const  SizedBox(height: 20,),
            Padding(
             padding: const EdgeInsets.all(8.0),

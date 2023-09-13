@@ -107,16 +107,20 @@ final UserAddressController  _addressController  =Get.put(UserAddressController(
                             children: [
                               Text(adresitem. phoneNumber.toString()),
                               
-                               Obx(()=>
-                                 Checkbox(
-                                    value:
-                                        _addressController.selectedCheckboxes[index].value,
-                                    onChanged: (newValue) {
-                                      _addressController.handleCheckboxChange(
-                                          index, newValue!);
-                                    },
-                                  ),
-                               ),
+                                Obx(
+            () => Checkbox(
+              value: _addressController.selectedCheckboxes[index].value,
+              onChanged: (newValue) {
+                int selectedAddressIndex = -1;
+                _addressController.handleCheckboxChange(index, newValue!);
+                if (newValue!) {
+                  selectedAddressIndex = index;
+                } else {
+                  selectedAddressIndex = -1; // Deselect the address
+                }
+              },
+            ),
+          ),
                             ],
                           )
                 
