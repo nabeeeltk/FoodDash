@@ -5,9 +5,7 @@ import 'package:fooddash/widget/search_filtter.dart';
 import 'package:fooddash/widget/food_item_list.dart';
 import 'package:fooddash/widget/main_card.dart';
 import 'package:fooddash/widget/root_screen.dart';
-
 import 'package:get/get.dart';
-
 import '../food_details_page/all_food_item.dart';
 
 // ignore: must_be_immutable
@@ -63,11 +61,11 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 10),
                     ),
-                    IconButton(
-                        onPressed: () {
-                          Get.to( const RootScreen());
-                        },
-                        icon:const  Icon(Icons.home))
+                    // IconButton(
+                    //     onPressed: () {
+                    //       Get.to( const RootScreen());
+                    //     },
+                    //     icon:const  Icon(Icons.home))
                   ],
                 ),
               ),
